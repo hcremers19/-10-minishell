@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/minishell.h"
+// #include "../Includes/minishell.h"
 
-int	main(int ac, char **av, char **env)
-{
-	(void)ac;
-	(void)av;
-	(void)env;
-	printf("Hello world !\n");
-	return (0);
-}
+// int	main(int ac, char **av, char **env)
+// {
+// 	(void)ac;
+// 	(void)av;
+// 	(void)env;
+// 	printf("Hello world !\n");
+// 	return (0);
+// }
