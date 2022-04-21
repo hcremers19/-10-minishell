@@ -2,6 +2,6 @@
 
 int main()
 {
-    printf("Hello world!\n");
+    printf("\033[H\033[J");
     return(0);
 }

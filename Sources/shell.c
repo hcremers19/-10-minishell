@@ -12,7 +12,7 @@
 #define MAXLIST 100 // max number of commands to be supported
 
 // Clearing the shell using escape sequences
-#define clear() printf("\033[H\033[J")
+#define clear() printf("\033[H\033[J") //Pour clear le shell
 
 // Greeting shell during startup
 void init_shell()
@@ -24,10 +24,10 @@ void init_shell()
 	printf("\n\n\t-USE AT YOUR OWN RISK-");
 	printf("\n\n\n\n*******************"
 		"***********************");
-	char* username = getenv("USER");
+	char* username = getenv("USER"); // getenv utilisable
 	printf("\n\n\nUSER is: @%s", username);
 	printf("\n");
-	sleep(1);
+	sleep(1); //sleep pas utilisable
 	clear();
 }
 
@@ -36,9 +36,9 @@ int takeInput(char* str)
 {
 	char* buf;
 
-	buf = readline("\n>>> ");
+	buf = readline("\n>>> "); // readline OK
 	if (strlen(buf) != 0) {
-		add_history(buf);
+		add_history(buf); // add_history OK
 		strcpy(str, buf);
 		return 0;
 	} else {
@@ -50,7 +50,7 @@ int takeInput(char* str)
 void printDir()
 {
 	char cwd[1024];
-	getcwd(cwd, sizeof(cwd));
+	getcwd(cwd, sizeof(cwd)); // getcwd OK
 	printf("\nDir: %s", cwd);
 }
 
@@ -58,19 +58,19 @@ void printDir()
 void execArgs(char** parsed)
 {
 	// Forking a child
-	pid_t pid = fork();
+	pid_t pid = fork(); // fork OK
 
 	if (pid == -1) {
 		printf("\nFailed forking child..");
 		return;
 	} else if (pid == 0) {
-		if (execvp(parsed[0], parsed) < 0) {
+		if (execvp(parsed[0], parsed) < 0) { // execvp pas OK -> execve ?
 			printf("\nCould not execute command..");
 		}
 		exit(0);
 	} else {
 		// waiting for child to terminate
-		wait(NULL);
+		wait(NULL); // wait OK
 		return;
 	}
 }
@@ -82,7 +82,7 @@ void execArgsPiped(char** parsed, char** parsedpipe)
 	int pipefd[2];
 	pid_t p1, p2;
 
-	if (pipe(pipefd) < 0) {
+	if (pipe(pipefd) < 0) { // pipe OK
 		printf("\nPipe could not be initialized");
 		return;
 	}
@@ -95,9 +95,9 @@ void execArgsPiped(char** parsed, char** parsedpipe)
 	if (p1 == 0) {
 		// Child 1 executing..
 		// It only needs to write at the write end
-		close(pipefd[0]);
-		dup2(pipefd[1], STDOUT_FILENO);
-		close(pipefd[1]);
+		close(pipefd[0]); // close OK
+		dup2(pipefd[1], STDOUT_FILENO); // dup2 OK
+ 		close(pipefd[1]);
 
 		if (execvp(parsed[0], parsed) < 0) {
 			printf("\nCould not execute command 1..");
@@ -133,7 +133,7 @@ void execArgsPiped(char** parsed, char** parsedpipe)
 // Help command builtin
 void openHelp()
 {
-	puts("\n***WELCOME TO MY SHELL HELP***"
+	puts("\n***WELCOME TO MY SHELL HELP***" // puts pas OK -> tputs ?
 		"\nCopyright @ Suprotik Dey"
 		"\n-Use the shell at your own risk..."
 		"\nList of Commands supported:"
@@ -171,13 +171,13 @@ int ownCmdHandler(char** parsed)
 		printf("\nGoodbye\n");
 		exit(0);
 	case 2:
-		chdir(parsed[1]);
+		chdir(parsed[1]); // chdir OK
 		return 1;
 	case 3:
 		openHelp();
 		return 1;
 	case 4:
-		username = getenv("USER");
+		username = getenv("USER"); // getenv OK
 		printf("\nHello %s.\nMind that this is "
 			"not a place to play around."
 			"\nUse help to know more..\n",
@@ -195,7 +195,7 @@ int parsePipe(char* str, char** strpiped)
 {
 	int i;
 	for (i = 0; i < 2; i++) {
-		strpiped[i] = strsep(&str, "|");
+		strpiped[i] = strsep(&str, "|"); // strsep pas OK
 		if (strpiped[i] == NULL)
 			break;
 	}
