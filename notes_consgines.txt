@@ -1,0 +1,88 @@
+Notes minishell :
+
+a) Fonctions autorisées :
+			
+	•	readline : lit une ligne de terminal et la retourne utilisant le prompt comme prompt. Il faut malloc la string.
+	•	rl_clear_history : libère yes donnas privées que redline enregistre en historique. 
+	•	rl_on_new_line (void) : dit aux fonctions de mise à jour qu’on est passé sur une nouvelle ligne (vide) généralement après \n.
+	•	rl_replace_line : remplace le contenu de rl_line_buffer par du texte.
+	•	rl_redisplay : change ce qui est à l’écran pour afficher le contenu actuel de rl_line_buffer.
+	•	add_history : place la dernière string lue par readline à la suite d’un historique (attention : string != NULL).
+	•	printf : ok.
+	•	malloc : ok.
+	•	free : ok.
+	•	write : ok.
+	•	access(char *path, ? mode) : verifier (success = 0, failure = -1) l’accessibilité d’un fichier, en mode :
+	⁃	R_OK for read permission
+	⁃	W_OK for write permission
+	⁃	X_OK for execute/search permission
+	⁃	F_OK for existence test
+	•	open : ouvrir des fichiers et des repertoires (attention à bien protéger).
+	•	read : ok.
+	•	close : ok.
+	•	fork() : créer un nouveau process (child process) qui est une copie conforme du processus appellant (parent process), le child process un ID unique et un pid égal à zéro.
+	•	wait : attend la fin de tout processus enfant.
+	•	waitpid : idem mais pour un ou plusieurs child process specifiés. 
+	•	wait3 : attendre qu’un processus quelconque change d’état.
+	•	wait4 : idem sauf qu’on peut spécifier un ou plusieurs child process.
+	•	signal : gestionnaire de signaux.
+	•	sigaction : examine et modifie l’action associée à un signal, modifie l’action effectuée par un processus a la reception d’un signal spécifique.
+	•	sigemptydset : initialise un set de signal à zero.
+	•	sigaddset : ajoute le signal spécifié en paramètre (signe) a l’ensemble des signaux.
+	•	kill : (termine ou) envoi un signal à un processus.
+	•	exit : ok.
+	•	getcwd : obtenir le repertoire de travail courant et le copie buff (premier argument).
+	•	chdir(*path) : remplace le repertoire de travail courant du processus appelant par celui indiqué em paramètre.
+	•	stat(*path, *buff): recuperate l’état d’un fichier pointé par path et remplit buff.
+	•	lstat : idem sauf que path est un lien symbolique (alias d'un fichier ordinaire ou d'un répertoire.), il donne l’état du lien lui meme plutôt que le fichier visé.
+	•	fstat : est identique a stat sauf que le fichier ouvert est pointé par un fd obtenu avec open.
+	•	unlink(*path) : supprime le lien pointé par path et décrément le nombre de lien référencé par ce lien. 
+	•	execve : execute le programme correspondant au fichier (exécutable ou script).
+	•	dup : duplique un fd en utilisant le plus petit numéro inutilisé pour le nouveau fd.
+	•	dup2(oldfd, newfd) : idem sauf qu’il transforme le nerfs en une copie de oldfd fermant auparavant newfd si besoin.
+	•	pipe (pipefd[2]) : crée un tube, un canal unidirectionnel de données qui peut être utilisé pour la communication entre processus. Le tableau pipefd est utilisé pour renvoyé deux descripteurs de fichier faisant référence aux extrémités du tube.
+	•	opendir (name) : la fonction opendir() ouvre un flux répertoire correspondant au répertoire name, et renvoie un pointeur sur ce flux. Le flux est positionné sur la première entrée du répertoire.
+	•	readdir : consulter un repertoire, renvoie un pointeur sur une structure dirent représentant l'entrée suivante du flux répertoire pointé par dir, renvoie NULL à la fin du répertoire, ou en cas d'erreur.
+	•	closedir : ferme un repertoire, ferme le flux de répertoire associé à dir, après le descripteur dir du flux de répertoire n'est plus disponible.
+	•	strerror : obtenir le libellé d’un numéro d’erreur, renvoie une chaine décrivant le code d’erreur passé en argument.
+	•	perror : afficher un message d’erreur dans la sortie standard.
+	•	isatty(desc) : renvoie 1 si desc est un descripteur de fichier ouvert connecté au terminal.
+	•	ttyname(fd) : obtenir le nom d’un terminal, renvoie un pointeur sur le chemin d'accès terminé par un octet nul du périphérique terminal ouvert associé au descripteur de fichier fd, ou NULL en cas d'erreur.
+	•	ttyslot : trouver l’emplacement du terminal en cours dans un fichier, renvoit position d’entree du terminal en cours dans un fichier.
+	•	ioctl : modifie le comportement des périphériques sous-jacents des fichiers spéciaux. En particulier, de nombreuses caractéristiques des fichiers spéciaux en mode caractère (par exemple des terminaux) peuvent être contrôlées avec des requêtes ioctl(). L'argument d doit être un descripteur de fichier ouvert.
+	•	getenv : recherche dans la liste des variables d'environnement un variable nommée name, et renvoie un pointeur sur la chaîne value correspondante.
+	•	tcsetattr et tcgetattr : Les fonctions termios établissent une interface générale sous forme de terminal, permettant de contrôler les ports de communication asynchrone.
+	•	tgetent : routine qui charge l'entrée pour le nom, renvoie 1 en cas de succès, 0 s'il y a aucune entrée de ce type, et -1 si la base de données terminfo est introuvable.
+	•	tgetflag : routine obtient l'entrée booléenne pour id, ou zéro si elle n'est pas disponible.
+	•	tgetnum : routine obtient l'entrée numérique pour id, ou -1 si elle n'est pas disponible.
+	•	tgetstr : routine renvoie l'entrée de chaîne pour id, ou zéro si elle n'est pas disponible. Utilisez tputs pour afficher la chaîne renvoyée. La valeur de retour sera également copiée dans le tampon pointé par area, et la valeur de area sera mise à jour pour pointer au-delà de la valeur nulle terminant cette valeur.
+	•	tgoto : routine instancie les paramètres dans la capacité donnée. La sortie de cette routine doit être transmise à tputs.
+	•	tputs : ??
+
+
+
+b) Requêtes :
+
+	1.	 Afficher un prompt.
+	2.	Posséder un historique fonctionnel (add_history rl)
+	3.	Gérer ’ (single quote) qui doit empêcher le shell d’interpréter les méta-caractères présents dans la séquence entre guillemets.
+	4.	Gérer " (double quote) qui doit empêcher le shell d’interpréter les méta-caractères présents dans la séquence entre guillemets sauf le $ (signe dollar).
+	5.	Implémenter les redirections : < et > et << (< doit recevoir un délimiteur et lire l’input donné jusqu’à rencontrer une ligne contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jour ! ) et >> (doit rediriger la sortie en mode append).
+	6.	Implémenter les pipes (caractère |). La sortie de chaque commande de la pipeline est connectée à l’entrée de la commande suivante grâce à un pipe.
+	7.	Gérer les variables d’environnement (un $ suivi d’une séquence de caractères) qui doivent être substituées par leur contenu.
+	8.	Gérer $? qui doit être substitué par le statut de sortie de la dernière pipeline exécutée au premier plan.
+	9.	Gérer ctrl-C (affiche un nouveau prompt sur une nouvelle ligne), ctrl-D (quitte le shell) et ctrl-\ (ne fait rien) qui doivent fonctionner comme dans bash
+	10.	Votre shell doit implémenter les builtins suivantes :
+			⁃	echo et l’option -n
+			⁃	cd uniquement avec un chemin relatif (relatif au répertoire courant où se trouve l'utilisateur ) ou absolu (se base sur la racine de l'arborescence et commence par /)
+			⁃	pwd sans aucune option
+			⁃	export sans aucune option
+			⁃	unset sans aucune option
+			⁃	env sans aucune option ni argument
+			⁃	exit sans aucune option
+
+c) Règles :
+
+	⁃	Pas plus d’une variable globale (a justifier).
+	⁃	Ne pas interpréter de quotes (guillemets) non fermés ou de caractères spéciaux non demandés dans le sujet, tels que \ (le backslash) ou ; (le point-virgule).
+	⁃	Pas de fuite mémoire excepté pour celle causées par readline 
