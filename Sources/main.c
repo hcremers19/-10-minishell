@@ -10,13 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../Includes/minishell.h"
+#include "../Includes/minishell.h"
 
-// int	main(int ac, char **av, char **env)
-// {
-// 	(void)ac;
-// 	(void)av;
-// 	(void)env;
-// 	printf("Hello world !\n");
-// 	return (0);
-// }
+
+void	init_screen(void)
+{
+	printf("\033[H\033[J");
+	printf(SCREEN);
+	printf("minishell.%s->", getenv("USER="));
+}
+
+int	main(int ac, char **av, char **env)
+{
+	(void)ac;
+	(void)av;
+	(void)env;
+	init_screen();
+	return (0);
+}
