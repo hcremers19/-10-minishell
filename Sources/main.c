@@ -16,9 +16,23 @@ char	*prompt(void)
 {
 	char	*output;
 
-	output = ft_strjoin(getenv("USER="), ".mini_shEH >>>");
+	output = ft_strjoin(getenv("USER="), ".minishell >> ");
 	return (output);
 }
+
+int	take_input(void)
+{
+	char	*input;
+	
+	input = readline(prompt());
+	if (ft_strlen(input) != 0)
+	{
+		add_history(input);
+		return (0);
+	}
+	return (1);
+}
+
 
 void	init_screen(void)
 {
@@ -28,7 +42,6 @@ void	init_screen(void)
 
 int	main(int ac, char **av, char **env)
 {
-	char	*input;
 
 	(void)ac;
 	(void)av;
@@ -36,7 +49,7 @@ int	main(int ac, char **av, char **env)
 	init_screen();
 	while (19)
 	{
-		input = readline(prompt());
+		take_input();
 	}
 	return (0);
 }
