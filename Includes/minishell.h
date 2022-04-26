@@ -22,6 +22,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include "../Sources/libft/libft.h"
+
 /****************************************************/
 /*		DEFINES										*/
 /****************************************************/
