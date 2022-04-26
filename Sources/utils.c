@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/04/11 15:26:52 by acaillea         ###   ########.fr       */
+/*   Created: 2022/04/26 13:44:55 by acaillea          #+#    #+#             */
+/*   Updated: 2022/04/26 13:44:58 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-char	*prompt(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*output;
+	char	*s3;
+	int		i;
+	int		j;
 
-	output = ft_strjoin(getenv("USER="), ".mini_shEH >>>");
-	return (output);
+	if (!s1 || !s2)
+		return (NULL);
+	s3 = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2) + 1)));
+	if (!s3)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++j])
+		s3[++i] = s1[j];
+	j = -1;
+	while (s2[++j])
+		s3[++i] = s2[j];
+	s3[i + 1] = '\0';
+	return (s3);
 }
 
-void	init_screen(void)
+size_t	ft_strlen(const char *s)
 {
-	printf("\033[H\033[J");
-	printf(SCREEN);
-}
+	size_t	i;
 
-int	main(int ac, char **av, char **env)
-{
-	char	*input;
-
-	(void)ac;
-	(void)av;
-	(void)env;
-	init_screen();
-	while (19)
-	{
-		input = readline(prompt());
-	}
-	return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

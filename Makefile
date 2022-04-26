@@ -22,6 +22,7 @@ NAME	=	minishell
 SRC_DIR	= ./Sources/
 
 SRC		= 	main.c			\
+			utils.c			\
 
 INC		= 	./Includes/minishell.h
 
@@ -34,6 +35,7 @@ OBJ_DIR	= 	./Objects/
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
+RLFLAGS = -lreadline
 
 MK		= mkdir -p
 RM		= /bin/rm -f
@@ -57,7 +59,7 @@ ${OBJ_DIR}%.o:${SRC_DIR}%.c
 #	@printf "$(L_CLEAR)\r"
 
 ${NAME}:	${OBJ_DIR} ${OBJS}
-	${CC} -g ${CFLAGS} ${PTFLAG} ${OBJS} ${OBJS_M} -o ${NAME}
+	${CC} -g ${CFLAGS} ${RLFLAGS} ${OBJS} -o ${NAME}
 #	@${PRI} "\n[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
 #	${C_BOLD}$@ - - ---> ${C_GREEN}Successfully build\n\n${C_DEFAUT}"
 
