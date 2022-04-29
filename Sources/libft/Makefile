@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcremers <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/28 14:25:14 by hcremers          #+#    #+#              #
-#    Updated: 2021/07/28 14:25:18 by hcremers         ###   ########.fr        #
+#    Updated: 2022/04/29 16:26:03 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(NAME): ${OBJS}
 	@ar rcs ${NAME} ${OBJS}
 	@ranlib ${NAME}
 	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
-	${C_BOLD}libft - -- ------> ${C_GREEN}Successfully build${C_DEFAUT}"
+	${C_BOLD}libft - -- ------> ${C_GREEN}Successfully built${C_DEFAUT}"
 
 #------------------------------------------------------------------------------#
 
@@ -59,13 +59,13 @@ all:	${NAME}
 
 clean:
 	@${RM} ${OBJS}
-	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Libft's Files Deleted \
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Libft Files Deleted \
 	\n${C_DEFAUT}"
 
 fclean:
 	@${RM} ${OBJS}
 	@${RM} ${NAME}
-	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Libft's Library Deleted \
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Libft Library Deleted \
 	\n${C_DEFAUT}"
 
 re:	fclean all

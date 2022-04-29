@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acaillea <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/04/11 15:12:06 by acaillea         ###   ########.fr        #
+#    Updated: 2022/04/29 16:25:02 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ ${NAME}:	${OBJ_DIR} ${OBJS}
 	@make -C ${LIB_DIR}
 	@${CC} -g ${CFLAGS} ${RLFLAGS} ${OBJS} ${LIB} -o ${NAME}
 	@${PRI} "\n[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
-	${C_BOLD}$@ - - ---> ${C_GREEN}Successfully build\n${C_DEFAUT}"
+	${C_BOLD}$@ - - ---> ${C_GREEN}Successfully built\n${C_DEFAUT}"
 	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
 	${C_BOLD}sheh - -- -------> ${C_GREEN}Ready to sheh\n${C_DEFAUT}"
 
@@ -78,13 +78,13 @@ ${NAME}:	${OBJ_DIR} ${OBJS}
 clean :
 	@make clean -C ${LIB_DIR}
 	@${RM} -r ${OBJ_DIR}
-	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell's Files Deleted \
+	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell Files Deleted \
 	\n${C_DEFAUT}"
 
 fclean : clean
 	@make fclean -C ${LIB_DIR}
 	@${RM} ${NAME}
-	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell's Exe's Deleted \
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell Exe Deleted \
 	\n${C_DEFAUT}"
 
 re : 	fclean all
