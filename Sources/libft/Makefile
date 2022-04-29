@@ -51,7 +51,7 @@ $(NAME): ${OBJS}
 	@ar rcs ${NAME} ${OBJS}
 	@ranlib ${NAME}
 	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
-	${C_BOLD}libft - - ---> ${C_GREEN}Successfully build${C_DEFAUT}"
+	${C_BOLD}libft - -- ------> ${C_GREEN}Successfully build${C_DEFAUT}"
 
 #------------------------------------------------------------------------------#
 

@@ -62,7 +62,7 @@ ${OBJ_DIR}%.o:${SRC_DIR}%.c
 	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
 	@${PRI} "$		Compiling	minishell :	[${C_ORANGE}$<${C_DEFAUT}]\
 	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-	@${VEL} 0.5
+#	@${VEL} 0.5
 	@printf "$(L_CLEAR)\r"
 
 ${NAME}:	${OBJ_DIR} ${OBJS}
@@ -70,19 +70,21 @@ ${NAME}:	${OBJ_DIR} ${OBJS}
 	@${CC} -g ${CFLAGS} ${RLFLAGS} ${OBJS} ${LIB} -o ${NAME}
 	@${PRI} "\n[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
 	${C_BOLD}$@ - - ---> ${C_GREEN}Successfully build\n${C_DEFAUT}"
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
+	${C_BOLD}sheh - -- -------> ${C_GREEN}Ready to sheh\n${C_DEFAUT}"
 
 #------------------------------------------------------------------------------#
 
 clean :
 	@make clean -C ${LIB_DIR}
 	@${RM} -r ${OBJ_DIR}
-	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Files Deleted \
+	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell's Files Deleted \
 	\n${C_DEFAUT}"
 
 fclean : clean
 	@make fclean -C ${LIB_DIR}
 	@${RM} ${NAME}
-	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Exe's Deleted \
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell's Exe's Deleted \
 	\n${C_DEFAUT}"
 
 re : 	fclean all
