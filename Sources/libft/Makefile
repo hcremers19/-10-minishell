@@ -43,9 +43,9 @@ MK		= mkdir -p
 
 .c.o:
 	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-#	@${PRI} "$		Compiling	libft :	[${C_ORANGE}$<${C_DEFAUT}]\
+	@${PRI} "$		Compiling	libft :	[${C_ORANGE}$<${C_DEFAUT}]\
 	$(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-#	@printf "$(L_CLEAR)\r"
+	@printf "$(L_CLEAR)\r"
 
 $(NAME): ${OBJS}
 	@ar rcs ${NAME} ${OBJS}
