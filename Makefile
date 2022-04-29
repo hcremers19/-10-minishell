@@ -19,9 +19,16 @@ NAME	=	minishell
 
 #------------------------------------------------------------------------------#
 
-SRC_DIR	= ./Sources/
+LIB		= ${LIB_DIR}libft.a
+
+LIB_DIR	= ./Sources/Libft/
+
+#------------------------------------------------------------------------------#
+
+SRC_DIR	= 	./Sources/
 
 SRC		= 	main.c			\
+			ft_split.c		\
 			utils.c			\
 
 INC		= 	./Includes/minishell.h
@@ -34,7 +41,7 @@ OBJ_DIR	= 	./Objects/
 #------------------------------------------------------------------------------#
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -I/USER/$(USER)/.brew/opt/readline/include
 RLFLAGS = -lreadline
 
 MK		= mkdir -p
@@ -52,30 +59,33 @@ ${OBJ_DIR}:
 	@${MK} ${OBJ_DIR}
 
 ${OBJ_DIR}%.o:${SRC_DIR}%.c
-	@${CC} -g ${CFLAGS} ${PTFLAG} -I ${INC} -c $< -o $@
-#	@${PRI} "$		Compiling	minishell :	[${C_ORANGE}$<${C_DEFAUT}]\
-#	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-#	@${VEL} 0.5
-#	@printf "$(L_CLEAR)\r"
+	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
+	@${PRI} "$		Compiling	minishell :	[${C_ORANGE}$<${C_DEFAUT}]\
+	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
+	@${VEL} 0.5
+	@printf "$(L_CLEAR)\r"
 
 ${NAME}:	${OBJ_DIR} ${OBJS}
-	${CC} -g ${CFLAGS} ${RLFLAGS} ${OBJS} -o ${NAME}
-#	@${PRI} "\n[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
-#	${C_BOLD}$@ - - ---> ${C_GREEN}Successfully build\n\n${C_DEFAUT}"
+	@make -C ${LIB_DIR}
+	@${CC} -g ${CFLAGS} ${RLFLAGS} ${OBJS} ${LIB} -o ${NAME}
+	@${PRI} "\n[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
+	${C_BOLD}$@ - - ---> ${C_GREEN}Successfully build\n${C_DEFAUT}"
 
 #------------------------------------------------------------------------------#
 
 clean :
+	@make clean -C ${LIB_DIR}
 	@${RM} -r ${OBJ_DIR}
-	@${PRI} "\n$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Files Deleted \
-	\n\n${C_DEFAUT}"
+	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Files Deleted \
+	\n${C_DEFAUT}"
 
-fclean : 	clean
+fclean : clean
+	@make fclean -C ${LIB_DIR}
 	@${RM} ${NAME}
 	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Exe's Deleted \
-	\n\n${C_DEFAUT}"
+	\n${C_DEFAUT}"
 
-re : fclean all
+re : 	fclean all
 
 #------------------------------------------------------------------------------#
 

@@ -20,7 +20,7 @@ char	*prompt(void)
 	return (output);
 }
 
-int	take_input(void)
+int	take_input(char *str)
 {
 	char	*input;
 	
@@ -28,11 +28,19 @@ int	take_input(void)
 	if (ft_strlen(input) != 0)
 	{
 		add_history(input);
+		ft_strcpy(str, input);
 		return (0);
 	}
 	return (1);
 }
 
+void print_dir(void)
+{
+	char cwd[1024];
+
+	getcwd(cwd, sizeof(cwd));
+	printf("%s", cwd);
+}
 
 void	init_screen(void)
 {
@@ -42,6 +50,7 @@ void	init_screen(void)
 
 int	main(int ac, char **av, char **env)
 {
+	char	input[1000];
 
 	(void)ac;
 	(void)av;
@@ -49,7 +58,8 @@ int	main(int ac, char **av, char **env)
 	init_screen();
 	while (19)
 	{
-		take_input();
+		//print_dir();
+		take_input(input);
 	}
 	return (0);
 }

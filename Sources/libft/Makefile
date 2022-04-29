@@ -10,8 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
+-include ../../Includes/colors.mk
+
+#------------------------------------------------------------------------------#
 
 NAME	= libft.a
+
+#------------------------------------------------------------------------------#
 
 SCRS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
@@ -19,39 +24,52 @@ SCRS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c \
 		ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
 		ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
-		ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
+		ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_lstadd_back.c \
+		ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c \
+		ft_lstlast.c ft_lstnew.c ft_lstmap.c ft_lstsize.c
 
-OBJS	= ${SCRS:.c=.o}
+OBJS	= ${SCRS:%.c=%.o}
 
-SRCSB	= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
-		ft_lstiter.c ft_lstlast.c ft_lstnew.c ft_lstmap.c ft_lstsize.c
-
-OBJSB	= ${SRCSB:.c=.o}
+#------------------------------------------------------------------------------#
 
 CC		= gcc
-RM		= rm -f
-
 CFLAGS	= -Wall -Wextra -Werror
 
+RM		= rm -f
+PRI		= printf
+MK		= mkdir -p
+
+#------------------------------------------------------------------------------#
+
 .c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+#	@${PRI} "$		Compiling	libft :	[${C_ORANGE}$<${C_DEFAUT}]\
+	$(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
+#	@printf "$(L_CLEAR)\r"
 
-$(NAME):	${OBJS}
-			ar rcs ${NAME} ${OBJS}
-			ranlib ${NAME}
+$(NAME): ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
+	@ranlib ${NAME}
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]${C_DEFAUT}	\
+	${C_BOLD}libft - - ---> ${C_GREEN}Successfully build${C_DEFAUT}"
 
-all:		${NAME}
+#------------------------------------------------------------------------------#
 
-bonus:		${OBJS} ${OBJSB}
-			ar rcs ${NAME} ${OBJS} ${OBJSB}
-			ranlib ${NAME}
+all:	${NAME}
 
 clean:
-			${RM} ${OBJS} ${OBJSB}
+	@${RM} ${OBJS}
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Libft's Files Deleted \
+	\n${C_DEFAUT}"
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:
+	@${RM} ${OBJS}
+	@${RM} ${NAME}
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Libft's Library Deleted \
+	\n${C_DEFAUT}"
 
-re:			fclean all
+re:	fclean all
 
-.PHONY:		all clean fclean re bonus
+#------------------------------------------------------------------------------#
+
+.PHONY:		all clean fclean re

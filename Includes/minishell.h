@@ -22,7 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# include "../Sources/libft/libft.h"
+# include "../Sources/Libft/libft.h"
 
 /****************************************************/
 /*		DEFINES										*/
@@ -47,10 +47,10 @@
 /*		STRUCT										*/
 /****************************************************/
 
-typedef struct s_data	t_data;
+typedef struct s_datas	t_datas;
 //typedef struct s_cmd	t_cmd;
 
-struct s_data
+struct s_datas
 {
 
 };
@@ -58,8 +58,11 @@ struct s_data
 /****************************************************/
 /*		PROTOTYPES									*/
 /****************************************************/
+int		take_input(char *str);
+void	init_screen(void);
+char	*prompt(void);
+char	**ft_split(char const *s, char c);
 
-char	*ft_strjoin(char const *s1, char const *s2);
-size_t	ft_strlen(const char *s);
+size_t	ft_strcpy(char *dst, const char *src);
 
 #endif
