@@ -29,6 +29,7 @@ SRC_DIR	= 	./Sources/
 
 SRC		= 	main.c			\
 			ft_split.c		\
+			pars.c	\
 			utils.c			\
 
 INC		= 	./Includes/minishell.h

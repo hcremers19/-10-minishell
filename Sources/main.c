@@ -12,54 +12,72 @@
 
 #include "../Includes/minishell.h"
 
+int	ft_ciao(char *str, t_data *d)// si perror et strerror obligé : a jarter
+{
+	ft_putstr_fd(str, 1);
+	if (d->s_free == 0)
+	{
+		free(d->all);
+		free(d);
+	}
+	return (0);
+}
+
 char	*prompt(void)
 {
 	char	*output;
 
-	output = ft_strjoin(getenv("USER="), ".minishell >> ");
+	output = ft_strjoin(getenv("USER="), "\033[0;31m.minishell >> \033[0;39m");
 	return (output);
 }
 
-int	take_input(char *str)
-{
-	char	*input;
-	
-	input = readline(prompt());
-	if (ft_strlen(input) != 0)
-	{
-		add_history(input);
-		ft_strcpy(str, input);
-		return (0);
-	}
-	return (1);
-}
+// void print_dir(void)
+// {
+// 	char cwd[1024];
 
-void print_dir(void)
-{
-	char cwd[1024];
+// 	getcwd(cwd, sizeof(cwd));
+// 	printf("%s", cwd);
+// }
 
-	getcwd(cwd, sizeof(cwd));
-	printf("%s", cwd);
-}
-
-void	init_screen(void)
+int	init(t_data	*d)
 {
+	t_all	*all;
+
+	d = (t_data *)malloc(sizeof(t_data));
+	if (!d)
+		return (-19);
+	all = (t_all *)malloc(sizeof(t_all));
+	if (!all)
+		return (-19);
+	d->all = all;
+	d->s_free = 0;
 	printf("\033[H\033[J");
 	printf(SCREEN);
+	return (0);
 }
 
 int	main(int ac, char **av, char **env)
 {
-	char	input[1000];
+	char	*input;
+	t_data	*d;
 
 	(void)ac;
 	(void)av;
 	(void)env;
-	init_screen();
+	d = NULL;
+	if (init(d))
+		ft_ciao(MA_ER, d);
 	while (19)
 	{
-		//print_dir();
-		take_input(input);
+		input = readline(prompt());
+		if (ft_strlen(input) != 0)
+		{
+			add_history(input);
+			// if (ft_pars(input, d))
+			// 	perror(strerror(0));// num code?
+			free(input);
+		}
 	}
+	// printf("%s\n", env[5]);
 	return (0);
 }
