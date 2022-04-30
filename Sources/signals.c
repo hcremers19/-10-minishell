@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:48:55 by hcremers          #+#    #+#             */
-/*   Updated: 2022/04/30 14:58:34 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/04/30 15:02:06 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,3 @@ void	ft_signal(void)
 // 			kill(pid, SIGUSR2);
 // 	}
 // }
-
-// kill -TERM	->	15 (SIGTERM)
-// kill -CONT	->	19 (SIGCONT)
