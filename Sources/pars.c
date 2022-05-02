@@ -12,31 +12,45 @@
 
 #include "../Includes/minishell.h"
 
-// static int	ft_check(char *s)
-// {
-// 	int	s;
-// 	int	i;
+static int check_closing(char *s, char c, int i)
+{
+	int	j;
 
-// 	s = 0;
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (s[i] != '\\' && s[i + 1] == 39)
-// 		{
+	j = ft_strlen(s);
+	while (j > i)
+	{
+		if (s[j] == c)
+			return (19);
+		j--;
+	}
+	return (0);
+}
+
+static int	check(char *s)
+{
+	int	s;
+	int	i;
+
+	s = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != '\\' && s[i + 1] == 39)
+		{
 			
-// 		}
-// 		if (s[i] != '\\' && s[i + 1] == 34)
-// 		{
+		}
+		if (s[i] != '\\' && s[i + 1] == 34)
+		{
 
-// 		}
-// 	}
-// }
+		}
+	}
+}
 
-// char	**ft_pars(char *str, t_data *d)
-// {
-// 	int	i;
+char	**ft_pars(char *str, t_data *d)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (!str)
-// 		return (NULL);
-// }
+	i = 0;
+	if (!str)
+		return (NULL);
+}

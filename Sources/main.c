@@ -12,13 +12,13 @@
 
 #include "../Includes/minishell.h"
 
-int	ft_ciao(char *str, t_data *d)// si perror et strerror obligé : a jarter
+int	ft_error(t_data *d, int e)
 {
-	ft_putstr_fd(str, 1);
-	if (d->s_free == 0)
+	perror(strerror(e));
+	if (d->s_free > 0)
 	{
-		free(d->all);
 		free(d);
+		free(d->all);
 	}
 	return (0);
 }
@@ -46,11 +46,12 @@ int	init(t_data	*d)
 	d = (t_data *)malloc(sizeof(t_data));
 	if (!d)
 		return (-19);
+	d->s_free = -1;
 	all = (t_all *)malloc(sizeof(t_all));
 	if (!all)
 		return (-19);
+	d->s_free = 1;
 	d->all = all;
-	d->s_free = 0;
 	printf("\033[H\033[J");
 	printf(SCREEN);
 	return (0);
@@ -66,7 +67,7 @@ int	main(int ac, char **av, char **env)
 	(void)env;
 	d = NULL;
 	if (init(d))
-		ft_ciao(MA_ER, d);
+		ft_error(d, 12);
 	while (19)
 	{
 		input = readline(prompt());

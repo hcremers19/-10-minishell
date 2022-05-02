@@ -10,84 +10,155 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/minishell.h"
+//#include "../Includes/minishell.h"
 
-int	ft_wolloc(char const *s, char c)
+/* -----------------TEMporaire -->> libft--------------- */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+size_t	ft_strlen(const char *s)
 {
-	int	i;
-	int	nb;
-	int	size;
+	size_t	count;
+
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*p;
+	int		i;
+
+	p = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!p)
+		return (0);
+	i = 0;
+	while (src[i])
+	{
+		p[i] = src[i];
+		i++;
+	}
+	p[i] = '\0';
+	return (p);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!s)
+		return (0);
+	if (len > (ft_strlen(s) - start - 1))
+		len = ft_strlen(s) - start;
+	if (ft_strlen(s) - 1 < start)
+		return (ft_strdup(""));
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!str)
+		return (0);
+	i = -1;
+	j = 0;
+	while (s[++i])
+		if (i >= start && j < len)
+			str[j++] = s[i];
+	str[j] = 0;
+	return (str);
+}
+/* ------------------------------------------------------ */
+
+static int	word_count(char const *s, char c)
+{
+	size_t	count;
+	size_t	i;
 
 	i = 0;
-	nb = 0;
-	if (s[0] == '\0')
-		return (0);
-	size = ft_strlen(s) - 1;
+	count = 0;
+	while (s[i] == c && s[i])
+		i++;
 	while (s[i])
 	{
-		if (s[i] == c && s[i + 1] != c)
-			nb++;
-		i++;
+		if (s[i] == c)
+			count++;
+		while (s[i] == c && s[i])
+			i++;
+		if (s[i] != c && s[i])
+			i++;
 	}
-	if (s[0] == c && s[size] == c)
-		nb--;
-	else if (s[0] != c && s[size] != c)
-		nb++;
-	return (nb);
+	if (!s[0])
+		count = 0;
+	else if (s[i - 1] != c)
+		count++;
+	return (count);
 }
 
-int	ft_elen(char const *s, char c, int i)
+static char	**free_malloc(char **tab, int count)
 {
-	int	len;
-
-	len = 0;
-	while (s[i] != c && s[i])
-	{
-		len++;
-		i++;
-	}
-	return (len);
+	while (tab[--count])
+		free(tab[count]);
+	free (tab);
+	return (NULL);
 }
 
-char	**ft_free(char **tab, int j)
+static char	**ft_word(char *s, char c, char **tab, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
 	i = 0;
-	while (i < j && tab[i] != 0)
+	j = 0;
+	k = 0;
+	while (k < len)
 	{
-		free(tab[i]);
-		i++;
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[j + 1] != c && s[j + 1])
+			j++;
+		tab[k] = ft_substr(s, i, j - i + 1);
+		if (!tab[k])
+			return (free_malloc(tab, k));
+		i = j + 1;
+		k++;
 	}
-	free(tab);
-	return (0);
+	tab[k] = 0;
+	return (tab);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	char	**t_tab;
 	char	**tab;
-	int		i;
-	int		j;
+	char	*new_s;
+	size_t	nb_word;
 
-	if (!s)
+	new_s = (char *)s;
+	if (!new_s)
 		return (NULL);
-	tab = malloc(sizeof(char **) * (ft_wolloc(s, c) + 1));
-	if (!tab)
+	nb_word = word_count(s, c);
+	t_tab = (char **)malloc(sizeof(char *) * (nb_word + 1));
+	if (!t_tab)
 		return (NULL);
-	i = -1;
-	j = -1;
-	if (s[0] != c && s[0] != '\0')
-		tab[++j] = ft_substr(s, 0, ft_elen(s, c, 0));
-	while (s[++i])
-	{
-		if (s[i] == c && s[i + 1] != '\0' && s[i + 1] != c)
-		{
-			tab[++j] = ft_substr(s, i + 1, ft_elen(s, c, i + 1));
-			if (!tab[j])
-				return (ft_free(tab, j));
-			i += ft_elen(s, c, i + 1);
-		}
-	}
-	tab[++j] = NULL;
+	tab = ft_word(new_s, c, t_tab, nb_word);
 	return (tab);
+}
+
+int	main(int ac, char **av)
+{
+	int	i;
+	char	**tab;
+
+	(void)ac;
+	tab = ft_split(av[1], ' ');
+	i = 0;
+	while (tab[i])
+	{
+		printf("%d = %s\n", i, tab[i]);
+		i++;
+	}
+	return (0);
 }

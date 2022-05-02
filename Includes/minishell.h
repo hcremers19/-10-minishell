@@ -17,12 +17,13 @@
 /*		INCLUDES 									*/
 /****************************************************/
 
+# include <errno.h>
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <errno.h>
-# include <unistd.h>
 # include <signal.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -47,10 +48,6 @@
 *                                                                          *\n\
 * ************************************************************************ *\n\
 \033[0;39m"
-
-
-/*--	Errors--------------------------*/// si perror et strerror obligé : a jarter
-# define MA_ER "Error : Cannot allocate memory"// si perror et strerror obligé : a jarter
 
 /****************************************************/
 /*		STRUCT										*/
@@ -90,12 +87,6 @@ struct s_one
 	struct s_one	*next;
 	struct s_all	*all;
 };
-
-// struct s_list
-// {
-// 	void			*content;
-// 	struct s_list	*next;
-// };
 
 /****************************************************/
 /*		PROTOTYPES									*/
