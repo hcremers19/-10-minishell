@@ -147,18 +147,18 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-int	main(int ac, char **av)
-{
-	int	i;
-	char	**tab;
+// int	main(int ac, char **av)
+// {
+// 	int	i;
+// 	char	**tab;
 
-	(void)ac;
-	tab = ft_split(av[1], ' ');
-	i = 0;
-	while (tab[i])
-	{
-		printf("%d = %s\n", i, tab[i]);
-		i++;
-	}
-	return (0);
-}
+// 	(void)ac;
+// 	tab = ft_split(av[1], ' ');
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		printf("%d = %s\n", i, tab[i]);
+// 		i++;
+// 	}
+// 	return (0);
+// }
