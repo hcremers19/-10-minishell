@@ -12,33 +12,23 @@
 
 #include "../Includes/minishell.h"
 
-// static int check_in(char *s, char c)
-// {
-// 	int	i;
-// 	int	stat;
+static int check_in(char *s)
+{
+	int	i;
+	int	stat;
 
-// 	i = 0;
-// 	stat = 0;
-// 	while (s && s[i])
-// 	{
-// 		if (s[i] == c)
-// 		{
-// 			stat = 1;
-// 			i++;
-// 			while (s[i])
-// 			{
-// 				if (s[i] == c)
-// 				{
-// 					stat = 2;
-// 					break ;
-// 				}
-// 				i++;
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	return (stat);
-// }
+	i = 0;
+	stat = 0;
+	while (s && s[i])
+	{
+		if (s[i] == '\'')
+			stat = 1;
+		if (s[i] == '\"')
+			stat = 2;
+		i++;
+	}
+	return (stat);
+}
 
 // // static int	check(char *s)
 // // {
@@ -60,23 +50,27 @@
 // // 	}
 // // }
 
-// // char	**ft_pars(char *str, t_data *d)
-// // {
-// // 	int	i;
+char	**ft_pars(char *str, t_data *d)
+{
+	int	i;
+	int	s;
+	int	d;
 
-// // 	i = 0;
-// // 	if (!str)
-// // 		return (NULL);
-	
-// // }
+	i = 0;
+	if (!str)
+		return (NULL);
+	s = check_in(str, '\'');
+	d = check_in(str, '\"');
 
-// #include <stdio.h>
-// int main(int ac, char **av)
-// {
-// 	(void)ac;
+}
 
-// 	printf("%s\n", av[1]);
-// 	printf("%d\n", check_in(av[1], '\"'));
-// 	printf("%d\n", check_in(av[1], '\''));
-// 	return (0);
-// }
+#include <stdio.h>
+int main(int ac, char **av)
+{
+	(void)ac;
+
+	printf("%s\n", av[1]);
+	printf("%d\n", check_in(av[1], '\"'));
+	printf("%d\n", check_in(av[1], '\''));
+	return (0);
+}
