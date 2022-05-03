@@ -1,4 +1,4 @@
-#include "../Includes/pipe.h"
+#include "pipex.h"
 
 void	ft_exec(char *argv, char **envp)
 {
