@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/04/30 14:50:14 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:11:57 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,12 @@ char	**ft_pars(char *str, t_data *d);
 char	**ft_split(char const *s, char c);
 
 size_t	ft_strcpy(char *dst, const char *src);
+
+void	ft_env(t_list *env_list);
+void	ft_cd(char *path);
+void	ft_pwd(void);
+void	ft_echo(char *str, int n);
+
+t_list	*get_env(char **env);
 
 #endif
