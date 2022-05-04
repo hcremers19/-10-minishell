@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 14:59:40 by hcremers          #+#    #+#             */
-/*   Updated: 2022/05/04 17:06:30 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:22:39 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_strlen(const char *s);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
+char	*ft_strnstr(const char *haystack, const char *needle, int n);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(const char *s1, const char *set);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
+char	*ft_substr(const char *s, int start, int len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
@@ -65,7 +65,7 @@ typedef struct s_list
 
 // int		ft_lstsize(t_list *lst);
 // void	ft_lstadd_front(t_list **lst, t_list *new);
-// void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
 // void	ft_lstclear(t_list **lst, void (*del)(void *));
 // void	ft_lstiter(t_list *lst, void (*f)(void *));
 // t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));

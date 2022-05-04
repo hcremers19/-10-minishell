@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:13:42 by hcremers          #+#    #+#             */
-/*   Updated: 2021/10/07 17:13:45 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:18:44 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
-	size_t	i;
+	int		i;
 	int		i1;
 	int		i2;
 	char	*p;

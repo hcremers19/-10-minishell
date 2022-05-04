@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/04 17:11:57 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:31:01 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ char	*prompt(void);
 
 char	**ft_pars(char *str, t_data *d);
 char	**ft_split(char const *s, char c);
+
+void	ft_signal(void);
 
 size_t	ft_strcpy(char *dst, const char *src);
 

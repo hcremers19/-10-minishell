@@ -6,7 +6,7 @@
 #    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/04/29 16:25:02 by hcremers         ###   ########.fr        #
+#    Updated: 2022/05/04 17:33:16 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,11 @@ SRC_DIR	= 	./Sources/
 
 SRC		= 	main.c			\
 			ft_split.c		\
-			pars.c	\
+			pars.c			\
 			utils.c			\
+			builtins.c		\
+			enviro.c		\
+			signals.c		\
 
 INC		= 	./Includes/minishell.h
 
