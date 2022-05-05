@@ -76,7 +76,7 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			// if (ft_pars(input, d))
+			// if (!ft_pars(input, d))
 			// 	perror(strerror(0));// num code?
 			free(input);
 		}
