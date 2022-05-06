@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/04 17:31:01 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/06 14:16:40 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,15 @@ void	ft_signal(void);
 
 size_t	ft_strcpy(char *dst, const char *src);
 
+void	ft_exit(void);
+void	ft_unset(t_list *env_list, char *name);
+void	ft_export(t_list *env_list, t_list *tmp_list, char *name);
+void	tmp_var(t_list *tmp_list, char *name, char *content);
 void	ft_env(t_list *env_list);
 void	ft_cd(char *path);
 void	ft_pwd(void);
 void	ft_echo(char *str, int n);
 
-t_list	*get_env(char **env);
+t_list	*create_env(char **env);
 
 #endif
