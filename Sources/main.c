@@ -66,6 +66,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	// (void)env;
 	d = NULL;
 	if (init(d))
 		ft_error(d, 12);
@@ -78,11 +79,11 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			// if (!ft_pars(input, d))
+			// d->all->tab_cmd = ft_pars(input);//d)
+			// if (!d->all->tab_cmd)
 			// 	perror(strerror(0));// num code?
 			free(input);
 		}
 	}
-	// printf("%s\n", env[5]);
 	return (0);
 }

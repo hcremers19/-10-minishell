@@ -94,8 +94,8 @@ struct s_one
 int		init(t_data	*d);
 char	*prompt(void);
 
-char	**ft_pars(char *str, t_data *d);
-char	**ft_split(char const *s, char c);
+char	**ft_pars(char const *str);
+// char	**ft_split(char const *s, char c);
 
 void	ft_signal(void);
 

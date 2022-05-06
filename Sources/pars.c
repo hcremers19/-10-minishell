@@ -10,143 +10,149 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../Includes/minishell.h"
+#include "../Includes/minishell.h"
 
 /* -----------------TEMporaire -->> libft--------------- */
 
-// #include <stdio.h>
-// #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	count;
+size_t	ft_strlen(const char *s)
+{
+	size_t	count;
 
-// 	count = 0;
-// 	while (s[count])
-// 		count++;
-// 	return (count);
-// }
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
+}
 
-// int	ft_isalpha(int c)
-// {
-// 	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
-// 		return (1);
-// 	else
-// 		return (0);
-// }
+int	ft_isalpha(int c)
+{
+	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+		return (1);
+	else
+		return (0);
+}
 
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-// {
-// 	size_t	i;
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
 
-// 	i = 0;
-// 	if (dstsize > 0)
-// 	{
-// 		while (src[i] && i < ((size_t)dstsize - 1))
-// 		{
-// 			dst[i] = src[i];
-// 			i++;
-// 		}
-// 		dst[i] = 0;
-// 	}
-// 	return (ft_strlen(src));
-// }
+	i = 0;
+	if (dstsize > 0)
+	{
+		while (src[i] && i < ((size_t)dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = 0;
+	}
+	return (ft_strlen(src));
+}
 
-// /* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
 
-// // static int check_in(char *s, int j)
-// // {
-// // 	int	i;
-// // 	int	stat;
+static int pars_len(char const *s, int i)
+{
+	int	stat;
+	int	len;
 
-// // 	i = j;
-// // 	stat = 0;
-// // 	while (s && s[i])
-// // 	{
-// // 		if (s[i] == '\'')
-// // 			stat = 1;
-// // 		if (s[i] == '\"')
-// // 			stat = 2;
-// // 		i++;
-// // 	}
-// // 	return (stat);
-// // }
+	len = 0;
+	stat = 0;
+	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) || stat != 0))
+	{// 9 = tab, 32 = space
+		if (stat == 0 && s[i + len] == 39)// 39 = simple guillemet
+			stat = 1;
+		else if (stat == 0 && s[i + len] == 34)// 34 = double guillemet
+			stat = 2;
+		else if ((s[i + len] == 39 || s[i + len] == 34) && stat != 0)
+			stat = 0;
+		if (stat == 0 && (s[i + len] == 60 || s[i + len] == 62 || s[i + len] == 124))
+		{// 60 = plus petit ; 62 = plus grand ; 124 = pipe
+			if (s[i + len] == s[i + len + 1])
+			{
+				if ((stat == 0 && len == 0) || (stat != 0 && len != 0))
+					len += 2;
+			}
+			else
+			{
+				if ((stat == 0 && len == 0) || (stat != 0 && len != 0))
+					len ++;
+			}
+			break ;
+		}
+		len++;
+	}
+	return (len);
+}
 
-// static int	pars_count_word(char const *s)
-// {
-// 	size_t	count;
-// 	size_t	i;
+static int	pars_count(char const *s)
+{
+	size_t	count;
+	size_t	i;
+	size_t	len;
 
-// 	i = 0;
-// 	count = 0;
-// 	while ((s[i] == 9 || s[i] == 32) && s[i])
-// 		i++;
-// 	while (s[i])
-// 	{
-// 		if (s[i] == 9 || s[i] == 32)
-// 			count++;
-// 		while ((s[i] == 9 || s[i] == 32) && s[i])
-// 			i++;
-// 		if ((s[i] != 9 && s[i] != 32) && s[i])
-// 			i++;
-// 	}
-// 	if (!s[0])
-// 		count = 0;
-// 	else if ((s[i - 1] != 9 && s[i - 1] != 32))
-// 		count++;
-// 	return (count);
-// }
+	i = 0;
+	count = 0;
 
-// char	**ft_pars_word(char const *s, char **tab, int nb)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	l;
+	while (s[i])
+	{
+		while ((s[i] == 9 || s[i] == 32) && s[i])
+			i++;
+		len = pars_len(s, i);
+		if (len != 0)
+			count++;
+		i += len;
+	}
+	return (count);
+}
 
-// 	i = 0;
-// 	j = 0;
-// 	while (j < nb)
-// 	{
-// 		l = 0;
-// 		while (s[i] && (s[i] == 9 || s[i] == 32))
-// 			i++;
-// 		while (s[i] && (!ft_isalpha(s[i])))
-// 			l++;
-// 		printf("%d\n", l);
-// 		tab[j] = (char *)malloc(sizeof(char) * (l + 1));
-// 		if (!tab[j])
-// 			return (NULL);
-// 		ft_strlcpy(tab[j], &s[i], l);
-// 		i += l;
-// 		j++;
-// 	}
-// 	return (tab);
-// }
+char	**ft_pars_word(char const *s, char **tab, int nb)
+{
+	int	i;
+	int	j;
+	int	l;
 
-// char	**ft_pars(char const *s)//, t_data *d)
-// {
-// 	int			i;
-// 	// int			s;
-// 	// int			d;
-// 	char	**tab;
+	i = 0;
+	j = 0;
+	while (j < nb)
+	{
+		l = 0;
+		while (s[i] && (s[i] == 9 || s[i] == 32))
+			i++;
+		l = pars_len(s, i) + 1;
+		tab[j] = (char *)malloc(sizeof(char) * (l + 1));
+		if (!tab[j])
+			return (NULL);
+		ft_strlcpy(tab[j], &s[i], l);
+		i += l;
+		j++;
+	}
+	return (tab);
+}
 
-// 	i = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	// s = check_in(str, '\'');
-// 	// d = check_in(str, '\"');
-// 	tab = (char **)malloc(sizeof(char *) * (pars_count_word(s) + 1));
-// 	if (!tab)
-// 		return (NULL);
-// 	tab = ft_pars_word(s, tab, pars_count_word(s));
-// 	if (!tab)
-// 	{
-// 		free(tab);
-// 		return (NULL);
-// 	}
-// 	tab[pars_count_word(s)] = 0;
-// 	return (tab);
-// }
+char	**ft_pars(char const *s)//, t_data *d)
+{
+	int		i;
+	char	**tab;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	tab = (char **)malloc(sizeof(char *) * (pars_count(s) + 1));
+	if (!tab)
+		return (NULL);
+	tab = ft_pars_word(s, tab, pars_count(s));
+	if (!tab)
+	{
+		free(tab);
+		return (NULL);
+	}
+	tab[pars_count(s)] = 0;
+	return (tab);
+}
 
 // int main(int ac, char **av)
 // {
@@ -157,15 +163,12 @@
 // 	(void)ac;
 // 	i = 0;
 // 	str = av[1];
-// 	// printf("%d\n", check_in(av[1], '\"'));
-// 	// printf("%d\n", check_in(av[1], '\''));
-// 	// printf("%d\n", pars_count_word(av[1]));
 // 	tab = ft_pars(str);
 // 	if (!tab)
 // 		return (0);
-// 	while (i < pars_count_word(str))
+// 	while (tab[i])
 // 	{
-// 		printf("%s   %zu\n", tab[i], ft_strlen(tab[i]));
+// 		printf("[%d] %zu = %s\n", i, ft_strlen(tab[i]),tab[i]);
 // 		i++;
 // 	}
 // 	return (0);
