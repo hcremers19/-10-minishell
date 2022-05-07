@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
-
+/*
 void	ft_exit(void)
 {
 	exit(EXIT_SUCCESS);
@@ -44,8 +44,8 @@ void	ft_env(t_list *env_list)
 
 void	ft_cd(char *path)
 {
-	/*if (*/chdir(path)/* == -1)
-		perror("chdir()")*/;
+	//if (chdir(path) == -1)
+		perror("chdir()");
 }
 
 void	ft_pwd(void)
@@ -64,3 +64,4 @@ void	ft_echo(char *str, int n)
 	if (!n)
 		ft_putchar_fd('\n', 1);
 } // Ne supporte pas encore les variables d'environnement, si c'est ici qu'il faut les gérer
+*/

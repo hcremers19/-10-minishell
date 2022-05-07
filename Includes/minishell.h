@@ -91,16 +91,25 @@ struct s_one
 /****************************************************/
 /*		PROTOTYPES									*/
 /****************************************************/
-int		init(t_data	*d);
-char	*prompt(void);
 
+/*--	Init.c -------------------------*/
+int		init_data(t_data *d);
+
+/*--	Prompt.c -----------------------*/
+char	*prompt(void);
+// void print_dir(void);
+
+/*--	Pars.c -------------------------*/
+int 	pars_len(char const *s, int i);
+int		pars_count(char const *s);
+char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars(char const *str);
 // char	**ft_split(char const *s, char c);
 
+/*--	Signal.c -----------------------*/
 void	ft_signal(void);
 
-size_t	ft_strcpy(char *dst, const char *src);
-
+/*--	Builtins.c ---------------------*/
 void	ft_exit(void);
 void	ft_unset(t_list *env_list, char *name);
 void	ft_export(t_list *env_list, t_list *tmp_list, char *name);
@@ -110,6 +119,12 @@ void	ft_cd(char *path);
 void	ft_pwd(void);
 void	ft_echo(char *str, int n);
 
+/*---	Enviro.c -----------------------*/
 t_list	*create_env(char **env);
+char	*keep_end(char *str);
+char	*keep_strt(char *str);
+
+/*---	Utils.c ------------------------*/
+size_t	ft_strcpy(char *dst, const char *src);
 
 #endif

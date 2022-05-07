@@ -14,47 +14,47 @@
 
 /* -----------------TEMporaire -->> libft--------------- */
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	count;
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	count;
 
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
-}
+// 	count = 0;
+// 	while (s[count])
+// 		count++;
+// 	return (count);
+// }
 
-int	ft_isalpha(int c)
-{
-	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
-		return (1);
-	else
-		return (0);
-}
+// int	ft_isalpha(int c)
+// {
+// 	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+// 		return (1);
+// 	else
+// 		return (0);
+// }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
+// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+// {
+// 	size_t	i;
 
-	i = 0;
-	if (dstsize > 0)
-	{
-		while (src[i] && i < ((size_t)dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = 0;
-	}
-	return (ft_strlen(src));
-}
+// 	i = 0;
+// 	if (dstsize > 0)
+// 	{
+// 		while (src[i] && i < ((size_t)dstsize - 1))
+// 		{
+// 			dst[i] = src[i];
+// 			i++;
+// 		}
+// 		dst[i] = 0;
+// 	}
+// 	return (ft_strlen(src));
+// }
 
 /* ---------------------------------------------------- */
 
-static int pars_len(char const *s, int i)
+int pars_len(char const *s, int i)
 {
 	int	stat;
 	int	len;
@@ -73,12 +73,12 @@ static int pars_len(char const *s, int i)
 		{// 60 = plus petit ; 62 = plus grand ; 124 = pipe
 			if (s[i + len] == s[i + len + 1])
 			{
-				if ((stat == 0 && len == 0) || (stat != 0 && len != 0))
+				if (len == 0)
 					len += 2;
 			}
 			else
 			{
-				if ((stat == 0 && len == 0) || (stat != 0 && len != 0))
+				if (len == 0)
 					len ++;
 			}
 			break ;
@@ -88,7 +88,7 @@ static int pars_len(char const *s, int i)
 	return (len);
 }
 
-static int	pars_count(char const *s)
+int	pars_count(char const *s)
 {
 	size_t	count;
 	size_t	i;
@@ -103,6 +103,7 @@ static int	pars_count(char const *s)
 			i++;
 		len = pars_len(s, i);
 		if (len != 0)
+
 			count++;
 		i += len;
 	}

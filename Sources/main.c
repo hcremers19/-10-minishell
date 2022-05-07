@@ -19,43 +19,14 @@ int	ft_error(t_data *d, int e)
 	{
 		free(d);
 		free(d->all);
+		if (d->s_free > 1)
+		{
+			free(d->all->tab_cmd);
+		}
 	}
 	return (0);
 }
 
-char	*prompt(void)
-{
-	char	*output;
-
-	output = ft_strjoin(getenv("USER="), "\033[0;31m.minishell >> \033[0;39m");
-	return (output);
-}
-
-// void print_dir(void)
-// {
-// 	char cwd[1024];
-
-// 	getcwd(cwd, sizeof(cwd));
-// 	printf("%s", cwd);
-// }
-
-int	init(t_data	*d)
-{
-	t_all	*all;
-
-	d = (t_data *)malloc(sizeof(t_data));
-	if (!d)
-		return (-19);
-	d->s_free = -1;
-	all = (t_all *)malloc(sizeof(t_all));
-	if (!all)
-		return (-19);
-	d->s_free = 1;
-	d->all = all;
-	printf("\033[H\033[J");
-	printf(SCREEN);
-	return (0);
-}
 
 int	main(int ac, char **av, char **env)
 {
@@ -66,9 +37,9 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	// (void)env;
+	(void)env;
 	d = NULL;
-	if (init(d))
+	if (init_data(d))
 		ft_error(d, 12);
 	ft_signal();
 	env_list = create_env(env);
