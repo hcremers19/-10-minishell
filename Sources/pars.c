@@ -12,48 +12,6 @@
 
 #include "../Includes/minishell.h"
 
-/* -----------------TEMporaire -->> libft--------------- */
-
-// #include <stdio.h>
-// #include <stdlib.h>
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	count;
-
-// 	count = 0;
-// 	while (s[count])
-// 		count++;
-// 	return (count);
-// }
-
-// int	ft_isalpha(int c)
-// {
-// 	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
-// 		return (1);
-// 	else
-// 		return (0);
-// }
-
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	if (dstsize > 0)
-// 	{
-// 		while (src[i] && i < ((size_t)dstsize - 1))
-// 		{
-// 			dst[i] = src[i];
-// 			i++;
-// 		}
-// 		dst[i] = 0;
-// 	}
-// 	return (ft_strlen(src));
-// }
-
-/* ---------------------------------------------------- */
-
 int pars_len(char const *s, int i)
 {
 	int	stat;
@@ -103,7 +61,6 @@ int	pars_count(char const *s)
 			i++;
 		len = pars_len(s, i);
 		if (len != 0)
-
 			count++;
 		i += len;
 	}
@@ -123,7 +80,7 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 		l = 0;
 		while (s[i] && (s[i] == 9 || s[i] == 32))
 			i++;
-		l = pars_len(s, i) + 1;
+		l = pars_len(s, i);
 		tab[j] = (char *)malloc(sizeof(char) * (l + 1));
 		if (!tab[j])
 			return (NULL);
@@ -134,7 +91,7 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 	return (tab);
 }
 
-char	**ft_pars_line(char const *s)//, t_data *d)
+char	**ft_pars_line(char const *s)
 {
 	int		i;
 	char	**tab;
@@ -155,37 +112,35 @@ char	**ft_pars_line(char const *s)//, t_data *d)
 	return (tab);
 }
 
+t_one	*ft_pars(char const *s, t_data *d)
+{
+	int		i;
+	t_one	*tmp;
 
-
-// t_one	*ft_pars(char const *s, t_data *d)
-// {
-// 	t_one	*cmd_lst;
-// 	int		i;
-
-// 	i = 0;
-// 	cmd_lst = (t_one *)malloc(sizeof(t_one));
-// 	if (!cmd_lst)
-// 		return (NULL);
-// 	while ()
-// 	{
-		
-// 	}
-// ////////////////////////////////
-// 	t_list	*ft_lstnew(char *name, char *content)
-// {
-// 	t_list	*elmt;
-
-// 	elmt = (t_list *)malloc(sizeof(t_list));
-// 	if (!elmt)
-// 		return (0);
-// 	elmt->name = name;
-// 	elmt->content = content;
-// 	elmt->next = 0;
-// 	return (elmt);
-// //////////////////////////////////////
-// }
-
-// }
+	i = 0;
+	d->all->frst_tab = ft_pars_line(s);
+	if (!d->all->frst_tab)
+		return (NULL);
+	d->all->first = (t_one *)malloc(sizeof(t_one));
+	if (!d->all->first)
+		return (NULL);
+	tmp = d->all->first;
+	while (tmp)
+	{
+		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, i);
+		if (!tmp->all_cmd)
+			return (NULL);
+		if (i == len_tab(d->all->frst_tab))
+			tmp->next = NULL;
+		else
+			tmp = (t_one *)malloc(sizeof(t_one));
+		tmp = tmp->next;
+		i++;
+	}
+	if (i != len_tab(d->all->frst_tab))
+		return (NULL);
+	return (d->all->first);
+}
 
 // int main(int ac, char **av)
 // {

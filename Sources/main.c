@@ -12,6 +12,19 @@
 
 #include "../Includes/minishell.h"
 
+void	ft_free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab && tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 int	ft_error(t_data *d, int e)
 {
 	perror(strerror(e));
@@ -39,7 +52,7 @@ int	main(int ac, char **av, char **env)
 	d = init_data();
 	if (!d)
 		ft_error(d, 12);
-	ft_signal();
+	// ft_signal();
 	d->env_list = create_env(env);
 	d->tmp_list = ft_lstnew(NULL, NULL);
 	while (19)
@@ -48,17 +61,16 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			d->all->frst_tab = ft_pars_line(input);//d)
-			if (!d->all->frst_tab)
-				perror(strerror(0));// num code?
-			int i = 0;
-			while (d->all->frst_tab[i])
-			{
-				printf("[%d] %d = %s\n", i, ft_strlen(d->all->frst_tab[i]),d->all->frst_tab[i]);
-				i++;
-			}
-			free(input);
+			// if (!ft_pars(input, d))
+			// 	return (ft_error(d, 0));//code ?
+			// int i = 0;
+			// while (d->all->frst_tab[i])
+			// {
+			// 	printf("[%d] = %s\n", i, d->all->frst_tab[i]);
+			// 	i++;
+			// }
 		}
+		free(input);
 	}
 	return (0);
 }

@@ -84,9 +84,9 @@ struct s_all
 struct s_one
 {
 	int				pos;
-	char			*cmd;
-	char			*arg;
-	char			**scnd_tab;
+	char			**all_cmd;
+	// char			*cmd;
+	// char			*arg;
 	struct s_one	*next;
 	struct s_all	*all;
 };
@@ -107,7 +107,13 @@ int 	pars_len(char const *s, int i);
 int		pars_count(char const *s);
 char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
-// char	**ft_split(char const *s, char c);
+t_one	*ft_pars(char const *s, t_data *d);
+
+/*--	Pars_utils.c -------------------*/
+int		nb_pipe(char **tab);
+int		len_tab(char **tab);
+char	**copy_line_tab(char **tab, t_data *d, int i); 
+// char	**copy_tab(char **in);
 
 /*--	Signal.c -----------------------*/
 void	ft_signal(void);
