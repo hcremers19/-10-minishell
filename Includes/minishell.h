@@ -66,6 +66,8 @@ struct s_data
 	int				pid;
 	int				s_free;
 	struct s_all	*all;
+	t_list			*env_list;
+	t_list			*tmp_list;
 };
 
 /*-----	All commandes datas-------------*/
@@ -73,7 +75,7 @@ struct s_data
 struct s_all
 {
 	int				nb_cmd;
-	char			**tab_cmd;
+	char			**frst_tab;
 	struct s_one	*first;
 };
 
@@ -81,9 +83,10 @@ struct s_all
 
 struct s_one
 {
+	int				pos;
 	char			*cmd;
 	char			*arg;
-	char			**tab_cmd;
+	char			**scnd_tab;
 	struct s_one	*next;
 	struct s_all	*all;
 };
@@ -92,8 +95,8 @@ struct s_one
 /*		PROTOTYPES									*/
 /****************************************************/
 
-/*--	Init.c -------------------------*/
-int		init_data(t_data *d);
+/*---	Init.c -------------------------*/
+t_data	*init_data(void);
 
 /*--	Prompt.c -----------------------*/
 char	*prompt(void);
@@ -103,11 +106,12 @@ char	*prompt(void);
 int 	pars_len(char const *s, int i);
 int		pars_count(char const *s);
 char	**ft_pars_word(char const *s, char **tab, int nb);
-char	**ft_pars(char const *str);
+char	**ft_pars_line(char const *str);
 // char	**ft_split(char const *s, char c);
 
 /*--	Signal.c -----------------------*/
 void	ft_signal(void);
+void	handler(int sig);
 
 /*--	Builtins.c ---------------------*/
 void	ft_exit(void);

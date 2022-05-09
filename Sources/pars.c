@@ -134,7 +134,7 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 	return (tab);
 }
 
-char	**ft_pars(char const *s)//, t_data *d)
+char	**ft_pars_line(char const *s)//, t_data *d)
 {
 	int		i;
 	char	**tab;
@@ -155,6 +155,38 @@ char	**ft_pars(char const *s)//, t_data *d)
 	return (tab);
 }
 
+
+
+// t_one	*ft_pars(char const *s, t_data *d)
+// {
+// 	t_one	*cmd_lst;
+// 	int		i;
+
+// 	i = 0;
+// 	cmd_lst = (t_one *)malloc(sizeof(t_one));
+// 	if (!cmd_lst)
+// 		return (NULL);
+// 	while ()
+// 	{
+		
+// 	}
+// ////////////////////////////////
+// 	t_list	*ft_lstnew(char *name, char *content)
+// {
+// 	t_list	*elmt;
+
+// 	elmt = (t_list *)malloc(sizeof(t_list));
+// 	if (!elmt)
+// 		return (0);
+// 	elmt->name = name;
+// 	elmt->content = content;
+// 	elmt->next = 0;
+// 	return (elmt);
+// //////////////////////////////////////
+// }
+
+// }
+
 // int main(int ac, char **av)
 // {
 // 	int 	i;
@@ -164,7 +196,7 @@ char	**ft_pars(char const *s)//, t_data *d)
 // 	(void)ac;
 // 	i = 0;
 // 	str = av[1];
-// 	tab = ft_pars(str);
+// 	tab = ft_pars_line(str);
 // 	if (!tab)
 // 		return (0);
 // 	while (tab[i])

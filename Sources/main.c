@@ -21,7 +21,7 @@ int	ft_error(t_data *d, int e)
 		free(d->all);
 		if (d->s_free > 1)
 		{
-			free(d->all->tab_cmd);
+			free(d->all->frst_tab);
 		}
 	}
 	return (0);
@@ -32,27 +32,31 @@ int	main(int ac, char **av, char **env)
 {
 	char	*input;
 	t_data	*d;
-	t_list	*env_list;
-	t_list	*tmp_list;
 
 	(void)ac;
 	(void)av;
-	(void)env;
-	d = NULL;
-	if (init_data(d))
+	// (void)env;
+	d = init_data();
+	if (!d)
 		ft_error(d, 12);
 	ft_signal();
-	env_list = create_env(env);
-	tmp_list = ft_lstnew(NULL, NULL);
+	d->env_list = create_env(env);
+	d->tmp_list = ft_lstnew(NULL, NULL);
 	while (19)
 	{
 		input = readline(prompt());
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			// d->all->tab_cmd = ft_pars(input);//d)
-			// if (!d->all->tab_cmd)
-			// 	perror(strerror(0));// num code?
+			d->all->frst_tab = ft_pars_line(input);//d)
+			if (!d->all->frst_tab)
+				perror(strerror(0));// num code?
+			int i = 0;
+			while (d->all->frst_tab[i])
+			{
+				printf("[%d] %d = %s\n", i, ft_strlen(d->all->frst_tab[i]),d->all->frst_tab[i]);
+				i++;
+			}
 			free(input);
 		}
 	}
