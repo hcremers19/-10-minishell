@@ -61,14 +61,14 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			// if (!ft_pars(input, d))
-			// 	return (ft_error(d, 0));//code ?
-			// int i = 0;
-			// while (d->all->frst_tab[i])
-			// {
-			// 	printf("[%d] = %s\n", i, d->all->frst_tab[i]);
-			// 	i++;
-			// }
+			if (!ft_pars(input, d))
+				return (ft_error(d, 0));//code ?
+			int i = 0;
+			while (d->all->frst_tab[i])
+			{
+				printf("[%d] = %s\n", i, d->all->frst_tab[i]);
+				i++;
+			}
 		}
 		free(input);
 	}

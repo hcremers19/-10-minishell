@@ -127,13 +127,18 @@ t_one	*ft_pars(char const *s, t_data *d)
 	tmp = d->all->first;
 	while (tmp)
 	{
-		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, i);
+		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d);
 		if (!tmp->all_cmd)
 			return (NULL);
 		if (i == len_tab(d->all->frst_tab))
 			tmp->next = NULL;
 		else
+		{
 			tmp = (t_one *)malloc(sizeof(t_one));
+			if (!tmp)
+				return (NULL);
+			init_cmd(tmp, d, i);
+		}
 		tmp = tmp->next;
 		i++;
 	}

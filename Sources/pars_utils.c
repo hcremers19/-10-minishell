@@ -12,31 +12,57 @@
 
 #include "../Includes/minishell.h"
 
-int	nb_pipe(char **tab)
+// int	nb_pipe(char **tab)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	i = 0;
+// 	count = 0;
+// 	while (tab && tab[i])
+// 	{
+// 		if (tab[i][0] == '|' && ft_strlen(tab[i]) == 1)
+// 			count++;
+// 		i++;
+// 	}
+// 	return (count);
+// }
+
+int	nb_spec_char(char **tab, int c, int len)
 {
 	int	i;
 	int	count;
 
 	i = 0;
 	count = 0;
+	if (len != 2 && len != 1)
+		return (-19);
 	while (tab && tab[i])
 	{
-		if (tab[i][0] == '|' && ft_strlen(tab[i]) == 1)
-			count++;
+		if (len == 2)
+		{
+			if (tab[i][0] == c && tab[i][1] == c && ft_strlen(tab[i]) == 2)
+				count++;
+		}
+		else if (len == 1)
+		{
+			if (tab[i][0] == c && ft_strlen(tab[i]) == 1)
+				count++;
+		}
 		i++;
 	}
 	return (count);
 }
 
-int	len_tab(char **tab)
-{
-	int	i;
+// int	len_tab(char **tab)
+// {
+// 	int	i;
 
-	i = 0;
-	while (tab && tab[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (tab && tab[i])
+// 		i++;
+// 	return (i);
+// }
 
 // char	**copy_tab(char **in)
 // {
@@ -66,7 +92,7 @@ int	len_tab(char **tab)
 // 	return (out);
 // }
 
-char	**copy_line_tab(char **tab, t_data *d, int i)
+char	**copy_line_tab(char **tab, t_data *d)
 {
 	int		j;
 
@@ -90,5 +116,9 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 	}
 	return (tab);
 }
-// ici ici iciiiiiiiiii : bus error
 // comment conserver l'indice entre ft_pars et copy_line
+
+// int	init_cmd(t_one *stru, t_data *d, int i)
+// {
+
+// }
