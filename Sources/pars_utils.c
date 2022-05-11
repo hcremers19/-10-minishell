@@ -54,15 +54,15 @@ int	nb_spec_char(char **tab, int c, int len)
 	return (count);
 }
 
-// int	len_tab(char **tab)
-// {
-// 	int	i;
+int	len_tab(char **tab)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (tab && tab[i])
-// 		i++;
-// 	return (i);
-// }
+	i = 0;
+	while (tab && tab[i])
+		i++;
+	return (i);
+}
 
 // char	**copy_tab(char **in)
 // {
@@ -92,21 +92,25 @@ int	nb_spec_char(char **tab, int c, int len)
 // 	return (out);
 // }
 
-char	**copy_line_tab(char **tab, t_data *d)
+char	**copy_line_tab(char **tab, t_data *d, int i)
 {
-	int		j;
+	int	j;
+	int	k;
 
+	j = i;
 	while (d->all->frst_tab[i] && d->all->frst_tab[i][0] != '|' && ft_strlen(d->all->frst_tab[i]) != 1)
 	{
-		j = i;
 		while (d->all->frst_tab[j] && d->all->frst_tab[j][0] != '|' && ft_strlen(d->all->frst_tab[j]) != 1)
 			j++;
+		if (!j)
+			return (NULL);
 		tab = (char **)malloc(sizeof(char *) * (j + 1));
 		if (!tab)
 			return (NULL);
+		k = 0;
 		while (j)
 		{
-			tab[i] = (char *)malloc(sizeof(char) * (ft_strlen(d->all->frst_tab[i]) + 1));
+			tab[k] = (char *)malloc(sizeof(char) * (ft_strlen(d->all->frst_tab[i]) + 1));
 			if (!tab[i])
 				return (NULL);
 			ft_strlcpy(tab[i], d->all->frst_tab[i], ft_strlen(d->all->frst_tab[i]));
@@ -114,6 +118,7 @@ char	**copy_line_tab(char **tab, t_data *d)
 		}
 		i++;
 	}
+	tab[] = NULL;
 	return (tab);
 }
 // comment conserver l'indice entre ft_pars et copy_line
@@ -122,3 +127,31 @@ char	**copy_line_tab(char **tab, t_data *d)
 // {
 
 // }
+char	**copy_line_tab(char **tab, t_data *d, int i)
+{
+	int		j;
+	int		k;
+	char	**init;
+
+	j = i;
+	k = 0;
+	init = d->all->frst_tab;
+	while (init[j] && init[j][0] != '|' && ft_strlen(init[j]) != 1)
+		j++;
+	if (!j)
+		return (NULL);
+	tab = (char **)malloc(sizeof(char *) * (j + 1));
+	if (!tab)
+		return (NULL);
+	while (j)
+	{
+		tab[k] = (char *)malloc(sizeof(char) * (ft_strlen(init[i]) + 1));
+		if (!tab[i])
+			return (NULL);
+		ft_strlcpy(tab[i], init[i], ft_strlen(init[i]));
+		k++;
+		j--;
+	}
+	tab[k] = NULL;
+	return (tab);
+}

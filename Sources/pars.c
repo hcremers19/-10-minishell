@@ -115,9 +115,11 @@ char	**ft_pars_line(char const *s)
 t_one	*ft_pars(char const *s, t_data *d)
 {
 	int		i;
+	int		j;
 	t_one	*tmp;
 
 	i = 0;
+	j = 0;
 	d->all->frst_tab = ft_pars_line(s);
 	if (!d->all->frst_tab)
 		return (NULL);
@@ -127,9 +129,10 @@ t_one	*ft_pars(char const *s, t_data *d)
 	tmp = d->all->first;
 	while (tmp)
 	{
-		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d);
+		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, int j);
 		if (!tmp->all_cmd)
 			return (NULL);
+		j += len_tab(tmp->all_cmd) + 1;
 		if (i == len_tab(d->all->frst_tab))
 			tmp->next = NULL;
 		else
