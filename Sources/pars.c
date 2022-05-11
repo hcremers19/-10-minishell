@@ -129,10 +129,20 @@ t_one	*ft_pars(char const *s, t_data *d)
 	tmp = d->all->first;
 	while (tmp)
 	{
+		if (i > 0)
+		{
+			tmp = (t_one *)malloc(sizeof(t_one));
+			if (!tmp)
+				return (NULL);
+		}
+		printf("1 i = %d %d\n", i, j);
 		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, j);
 		if (!tmp->all_cmd)
 			return (NULL);
-		j += len_tab(tmp->all_cmd) + 1;
+		printf("2 i = %d %d\n", i, j);
+		printf("-----------------------------------\n");
+		j += len_tab(tmp->all_cmd);
+		printf("3 i = %d %d\n", i, j);
 		if (i == len_tab(d->all->frst_tab))
 			tmp->next = NULL;
 		else
@@ -142,6 +152,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 				return (NULL);
 			// init_cmd(tmp, d, i);
 		}
+		printf("4 i = %d %d\n", i, j);
 		tmp = tmp->next;
 		i++;
 	}

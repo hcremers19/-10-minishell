@@ -110,7 +110,8 @@ char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
 /*--	Pars_utils.c -------------------*/
-int		nb_pipe(char **tab);
+// int		nb_pipe(char **tab);
+int		nb_spec_char(char **tab, int c, int len);
 int		len_tab(char **tab);
 char	**copy_line_tab(char **tab, t_data *d, int i); 
 // char	**copy_tab(char **in);

@@ -45,7 +45,7 @@ int	main(int ac, char **av, char **env)
 	char	*input;
 	t_data	*d;
 
-	(void)ac;
+	(void)ac;// == 1 !
 	(void)av;
 	// (void)env;
 	d = init_data();
@@ -55,19 +55,20 @@ int	main(int ac, char **av, char **env)
 	d->tmp_list = ft_lstnew(NULL, NULL);
 	while (19)
 	{
-		ft_signal();
+		// ft_signal();
 		input = readline(prompt());
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			if (!ft_pars(input, d))
-				return (ft_error(d, 0));//code ?
-			int i = 0;
-			while (d->all->frst_tab[i])
-			{
-				printf("[%d] = %s\n", i, d->all->frst_tab[i]);
-				i++;
-			}
+			// if (!ft_pars(input))//, d))
+			// 	return (ft_error(d, 0));//code ?
+			// ft_pars_line(input);
+			// int i = 0;
+			// while (d->all->frst_tab[i])
+			// {
+			// 	printf("[%d] = %s\n", i, d->all->frst_tab[i]);
+			// 	i++;
+			// }
 		}
 		free(input);
 	}

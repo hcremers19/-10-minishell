@@ -12,22 +12,6 @@
 
 #include "../Includes/minishell.h"
 
-// int	nb_pipe(char **tab)
-// {
-// 	int	i;
-// 	int	count;
-
-// 	i = 0;
-// 	count = 0;
-// 	while (tab && tab[i])
-// 	{
-// 		if (tab[i][0] == '|' && ft_strlen(tab[i]) == 1)
-// 			count++;
-// 		i++;
-// 	}
-// 	return (count);
-// }
-
 int	nb_spec_char(char **tab, int c, int len)
 {
 	int	i;
@@ -64,6 +48,58 @@ int	len_tab(char **tab)
 	return (i);
 }
 
+char	**copy_line_tab(char **tab, t_data *d, int i)
+{
+	int		j;
+	int		k;
+	char	**init;
+
+	j = i;
+	k = 0;
+	init = d->all->frst_tab;
+	while (init[j] && init[j][0] != '|' && ft_strlen(init[j]) != 1)
+		j++;
+	if (!j)
+		return (NULL);
+	tab = (char **)malloc(sizeof(char *) * (j + 1));
+	if (!tab)
+		return (NULL);
+	while (j)
+	{
+		tab[k] = (char *)malloc(sizeof(char) * (ft_strlen(init[i]) + 1));
+		if (!tab[i])
+			return (NULL);
+		ft_strlcpy(tab[i], init[i], ft_strlen(init[i]));
+		k++;
+		i++;
+		j--;
+	}
+	tab[k] = NULL;
+	return (tab);
+}
+
+// int	init_cmd(t_one *stru, t_data *d, int i)
+// {
+
+// }
+
+
+// int	nb_pipe(char **tab)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	i = 0;
+// 	count = 0;
+// 	while (tab && tab[i])
+// 	{
+// 		if (tab[i][0] == '|' && ft_strlen(tab[i]) == 1)
+// 			count++;
+// 		i++;
+// 	}
+// 	return (count);
+// }
+
 // char	**copy_tab(char **in)
 // {
 // 	int		i;
@@ -91,36 +127,3 @@ int	len_tab(char **tab)
 // 	out[j] = 0;
 // 	return (out);
 // }
-
-// int	init_cmd(t_one *stru, t_data *d, int i)
-// {
-
-// }
-char	**copy_line_tab(char **tab, t_data *d, int i)
-{
-	int		j;
-	int		k;
-	char	**init;
-
-	j = i;
-	k = 0;
-	init = d->all->frst_tab;
-	while (init[j] && init[j][0] != '|' && ft_strlen(init[j]) != 1)
-		j++;
-	if (!j)
-		return (NULL);
-	tab = (char **)malloc(sizeof(char *) * (j + 1));
-	if (!tab)
-		return (NULL);
-	while (j)
-	{
-		tab[k] = (char *)malloc(sizeof(char) * (ft_strlen(init[i]) + 1));
-		if (!tab[i])
-			return (NULL);
-		ft_strlcpy(tab[i], init[i], ft_strlen(init[i]));
-		k++;
-		j--;
-	}
-	tab[k] = NULL;
-	return (tab);
-}
