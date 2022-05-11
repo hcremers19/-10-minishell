@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/06 14:12:50 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:48:06 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int	main(int ac, char **av, char **env)
 	d = init_data();
 	if (!d)
 		ft_error(d, 12);
-	// ft_signal();
 	d->env_list = create_env(env);
 	d->tmp_list = ft_lstnew(NULL, NULL);
 	while (19)
 	{
+		ft_signal();
 		input = readline(prompt());
 		if (ft_strlen(input) != 0)
 		{
