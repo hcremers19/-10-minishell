@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/11 11:48:06 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:54:57 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_error(t_data *d, int e)
 	}
 	return (0);
 }
-
 
 int	main(int ac, char **av, char **env)
 {

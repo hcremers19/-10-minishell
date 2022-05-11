@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_split.c                                       :+:      :+:    :+:   */
+/*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:07:37 by acaillea          #+#    #+#             */
-/*   Updated: 2022/04/29 18:07:42 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:05:27 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 	tmp = d->all->first;
 	while (tmp)
 	{
-		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, int j);
+		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, j);
 		if (!tmp->all_cmd)
 			return (NULL);
 		j += len_tab(tmp->all_cmd) + 1;
@@ -140,7 +140,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 			tmp = (t_one *)malloc(sizeof(t_one));
 			if (!tmp)
 				return (NULL);
-			init_cmd(tmp, d, i);
+			// init_cmd(tmp, d, i);
 		}
 		tmp = tmp->next;
 		i++;
