@@ -57,19 +57,21 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 	j = i;
 	k = 0;
 	init = d->all->frst_tab;
-	while (init[j] && init[j][0] != '|' && ft_strlen(init[j]) != 1)
+	while (init[j] && init[j][0] != '|') //&& ft_strlen(init[j]) != 1)
 		j++;
+	printf("CALME TOI LISAAAAA OOOOOOO\n %d\n", j);
 	if (!j)
 		return (NULL);
+	j -= i;
 	tab = (char **)malloc(sizeof(char *) * (j + 1));
 	if (!tab)
 		return (NULL);
 	while (j)
 	{
 		tab[k] = (char *)malloc(sizeof(char) * (ft_strlen(init[i]) + 1));
-		if (!tab[i])
+		if (!tab[k])
 			return (NULL);
-		ft_strlcpy(tab[i], init[i], ft_strlen(init[i]));
+		ft_strlcpy(tab[k], init[i], ft_strlen(init[i]));
 		k++;
 		i++;
 		j--;

@@ -108,17 +108,15 @@ char	**ft_pars_line(char const *s)
 		free(tab);
 		return (NULL);
 	}
-	tab[pars_count(s)] = 0;
+	tab[pars_count(s)] = NULL;
 	return (tab);
 }
 
 t_one	*ft_pars(char const *s, t_data *d)
 {
-	int		i;
 	int		j;
 	t_one	*tmp;
 
-	i = 0;
 	j = 0;
 	d->all->frst_tab = ft_pars_line(s);
 	if (!d->all->frst_tab)
@@ -129,35 +127,23 @@ t_one	*ft_pars(char const *s, t_data *d)
 	tmp = d->all->first;
 	while (tmp)
 	{
-		if (i > 0)
-		{
-			tmp = (t_one *)malloc(sizeof(t_one));
-			if (!tmp)
-				return (NULL);
-		}
-		printf("1 i = %d %d\n", i, j);
 		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, j);
 		if (!tmp->all_cmd)
 			return (NULL);
-		printf("2 i = %d %d\n", i, j);
-		printf("-----------------------------------\n");
-		j += len_tab(tmp->all_cmd);
-		printf("3 i = %d %d\n", i, j);
-		if (i == len_tab(d->all->frst_tab))
+		j += len_tab(tmp->all_cmd) + 1;
+		if (j >= len_tab(d->all->frst_tab))
 			tmp->next = NULL;
 		else
 		{
-			tmp = (t_one *)malloc(sizeof(t_one));
-			if (!tmp)
+			tmp->next = (t_one *)malloc(sizeof(t_one));
+			if (!tmp->next)
 				return (NULL);
 			// init_cmd(tmp, d, i);
 		}
-		printf("4 i = %d %d\n", i, j);
 		tmp = tmp->next;
-		i++;
 	}
-	if (i != len_tab(d->all->frst_tab))
-		return (NULL);
+	// if (i != len_tab(d->all->frst_tab) - 1)
+	// 	return (NULL);
 	return (d->all->first);
 }
 

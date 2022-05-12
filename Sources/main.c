@@ -60,17 +60,25 @@ int	main(int ac, char **av, char **env)
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
-			// if (!ft_pars(input))//, d))
-			// 	return (ft_error(d, 0));//code ?
-			// ft_pars_line(input);
-			// int i = 0;
-			// while (d->all->frst_tab[i])
-			// {
-			// 	printf("[%d] = %s\n", i, d->all->frst_tab[i]);
-			// 	i++;
-			// }
+			if (!ft_pars(input, d))
+				return (ft_error(d, 1));//code ?
+			ft_pars_line(input);
+			int i;
+			int j = 0;
+			while (d->all->first)
+			{
+				printf("=====%d======\n", j);
+				i = 0;
+				while (d->all->first->all_cmd[i])
+				{
+					printf("PARS -> %d = %s\n", i, d->all->first->all_cmd[i]);
+					i++;
+				}
+				j++;
+			}
 		}
 		free(input);
 	}
 	return (0);
 }
+ 

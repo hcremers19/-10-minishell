@@ -48,8 +48,9 @@ OBJ_DIR	= 	./Objects/
 #------------------------------------------------------------------------------#
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -I/USER/$(USER)/.brew/opt/readline/include
-RLFLAGS = -lreadline
+CFLAGS	= -Wall -Werror -Wextra #-I/USER/$(USER)/.brew/opt/readline/include/readline
+# RLFLAGS = -lreadline
+#-L/Users/acaillea/.brew/opt/readline/lib -I/Users/acaillea/.brew/opt/readline/include/readline -lreadline
 MK		= mkdir -p
 RM		= /bin/rm -f
 VEL		= sleep
