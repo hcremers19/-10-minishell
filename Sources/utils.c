@@ -28,3 +28,16 @@ size_t	ft_strcpy(char *dst, const char *src)
 	return (s);
 }
 
+int	check_c_in(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}

@@ -75,7 +75,7 @@ struct s_data
 struct s_all
 {
 	int				nb_cmd;
-	char			**frst_tab;
+	char			**init_tab;
 	struct s_one	*first;
 };
 
@@ -84,9 +84,8 @@ struct s_all
 struct s_one
 {
 	int				pos;
-	char			**all_cmd;
-	// char			*cmd;
-	// char			*arg;
+	int				type;//0=RAS 1="" 2=""et$  3='' 4=$
+	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
 };
@@ -109,12 +108,18 @@ char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
+/*--	Pars_end.c -------------------*/
+void	init_cmd(t_data *d, int nb);
+int		get_type(t_one *stru);
+int		check_env_var(t_one *stru);
+
 /*--	Pars_utils.c -------------------*/
-// int		nb_pipe(char **tab);
 int		nb_spec_char(char **tab, int c, int len);
 int		len_tab(char **tab);
-char	**copy_line_tab(char **tab, t_data *d, int i); 
+char	**copy_line_tab(char **tab, t_data *d, int i);
+
 // char	**copy_tab(char **in);
+// int		nb_pipe(char **tab);
 
 /*--	Signal.c -----------------------*/
 void	ft_signal(void);
@@ -137,5 +142,5 @@ char	*keep_strt(char *str);
 
 /*---	Utils.c ------------------------*/
 size_t	ft_strcpy(char *dst, const char *src);
-
+int		check_c_in(char *str, char c);
 #endif

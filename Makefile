@@ -31,6 +31,7 @@ SRC		= 	main.c			\
 			prompt.c		\
 			ft_split.c		\
 			pars.c			\
+			pars_end.c		\
 			pars_utils.c	\
 			utils.c			\
 			builtins.c		\

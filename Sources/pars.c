@@ -115,11 +115,13 @@ char	**ft_pars_line(char const *s)
 t_one	*ft_pars(char const *s, t_data *d)
 {
 	int		j;
+	int		i;
 	t_one	*tmp;
 
+	i = 0;
 	j = 0;
-	d->all->frst_tab = ft_pars_line(s);
-	if (!d->all->frst_tab)
+	d->all->init_tab = ft_pars_line(s);
+	if (!d->all->init_tab)
 		return (NULL);
 	d->all->first = (t_one *)malloc(sizeof(t_one));
 	if (!d->all->first)
@@ -127,42 +129,22 @@ t_one	*ft_pars(char const *s, t_data *d)
 	tmp = d->all->first;
 	while (tmp)
 	{
-		tmp->all_cmd = copy_line_tab(tmp->all_cmd, d, j);
-		if (!tmp->all_cmd)
+		tmp->pars_tab = copy_line_tab(tmp->pars_tab, d, j);
+		if (!tmp->pars_tab)
 			return (NULL);
-		j += len_tab(tmp->all_cmd) + 1;
-		if (j >= len_tab(d->all->frst_tab))
+		j += len_tab(tmp->pars_tab) + 1;
+		if (j >= len_tab(d->all->init_tab))
 			tmp->next = NULL;
 		else
 		{
 			tmp->next = (t_one *)malloc(sizeof(t_one));
 			if (!tmp->next)
 				return (NULL);
-			// init_cmd(tmp, d, i);
 		}
 		tmp = tmp->next;
+		i++;
 	}
-	// if (i != len_tab(d->all->frst_tab) - 1)
-	// 	return (NULL);
+	d->all->nb_cmd = i;
+	// init_cmd(d, i);
 	return (d->all->first);
 }
-
-// int main(int ac, char **av)
-// {
-// 	int 	i;
-// 	char	*str;
-// 	char	**tab;
-	
-// 	(void)ac;
-// 	i = 0;
-// 	str = av[1];
-// 	tab = ft_pars_line(str);
-// 	if (!tab)
-// 		return (0);
-// 	while (tab[i])
-// 	{
-// 		printf("[%d] %zu = %s\n", i, ft_strlen(tab[i]),tab[i]);
-// 		i++;
-// 	}
-// 	return (0);
-// }

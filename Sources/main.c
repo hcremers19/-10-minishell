@@ -30,13 +30,19 @@ int	ft_error(t_data *d, int e)
 	perror(strerror(e));
 	if (d->s_free > 0)
 	{
-		free(d);
 		free(d->all);
 		if (d->s_free > 1)
 		{
-			free(d->all->frst_tab);
+			ft_free_tab(d->all->init_tab);
 		}
 	}
+	free(d);
+	return (0);
+}
+
+int	ft_pre_malloc_error(int e)
+{
+	perror(strerror(e));
 	return (0);
 }
 
@@ -45,7 +51,8 @@ int	main(int ac, char **av, char **env)
 	char	*input;
 	t_data	*d;
 
-	(void)ac;// == 1 !
+	if (ac != 1)
+		return (ft_pre_malloc_error(7));
 	(void)av;
 	// (void)env;
 	d = init_data();
@@ -67,13 +74,16 @@ int	main(int ac, char **av, char **env)
 			int j = 0;
 			while (d->all->first)
 			{
-				printf("=====%d======\n", j);
+				printf("==============\n");
 				i = 0;
-				while (d->all->first->all_cmd[i])
+				while (d->all->first->pars_tab[i])
 				{
-					printf("PARS -> %d = %s\n", i, d->all->first->all_cmd[i]);
+					printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
 					i++;
 				}
+				printf("---------------\n");
+				printf("type= %d\n", d->all->first->type);
+				d->all->first = d->all->first->next;
 				j++;
 			}
 		}

@@ -56,10 +56,9 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 
 	j = i;
 	k = 0;
-	init = d->all->frst_tab;
+	init = d->all->init_tab;
 	while (init[j] && init[j][0] != '|') //&& ft_strlen(init[j]) != 1)
 		j++;
-	printf("CALME TOI LISAAAAA OOOOOOO\n %d\n", j);
 	if (!j)
 		return (NULL);
 	j -= i;
@@ -79,12 +78,6 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 	tab[k] = NULL;
 	return (tab);
 }
-
-// int	init_cmd(t_one *stru, t_data *d, int i)
-// {
-
-// }
-
 
 // int	nb_pipe(char **tab)
 // {

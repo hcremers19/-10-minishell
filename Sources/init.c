@@ -24,8 +24,8 @@ t_data	*init_data(void)
 	if (!d->all)
 		return (NULL);
 	d->s_free = 1;
-	d->all->frst_tab = (char **)malloc(sizeof(char *));
-	if (!d->all->frst_tab)
+	d->all->init_tab = (char **)malloc(sizeof(char *));
+	if (!d->all->init_tab)
 		return (NULL);
 	d->s_free = 2;
 	printf("\033[H\033[J");
