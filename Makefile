@@ -6,7 +6,7 @@
 #    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/05/11 14:08:10 by hcremers         ###   ########.fr        #
+#    Updated: 2022/05/14 13:14:16 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ OBJ_DIR	= 	./Objects/
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra -I/Users/$(USER)/.brew/Cellar/readline/8.1.2/include
-RLFLAGS = -L/Users/$(USER)/.brew/lib -lreadline
+RLFLAGS = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 MK		= mkdir -p
 RM		= /bin/rm -f
 VEL		= sleep

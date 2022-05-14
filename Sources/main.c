@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/11 11:54:57 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/05/14 13:13:57 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int ac, char **av, char **env)
 	d->tmp_list = ft_lstnew(NULL, NULL);
 	while (19)
 	{
-		// ft_signal();
+		ft_signal();
 		input = readline(prompt());
 		if (ft_strlen(input) != 0)
 		{
