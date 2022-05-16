@@ -108,10 +108,10 @@ char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
-/*--	Pars_end.c -------------------*/
-void	init_cmd(t_data *d, int nb);
-int		get_type(t_one *stru);
-int		check_env_var(t_one *stru);
+/*-------	Pars_end.c -----------------*/
+void		init_cmds(t_data *d, int nb);
+// static int	get_type(t_one *stru);
+// static int	check_env_var(t_one *stru, t_data *d);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);

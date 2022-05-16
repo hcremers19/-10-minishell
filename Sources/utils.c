@@ -36,7 +36,7 @@ int	check_c_in(char *str, char c)
 	while (str && str[i])
 	{
 		if (str[i] == c)
-			return (1);
+			return (i);
 		i++;
 	}
 	return (0);

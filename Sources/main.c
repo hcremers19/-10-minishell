@@ -69,7 +69,6 @@ int	main(int ac, char **av, char **env)
 			add_history(input);
 			if (!ft_pars(input, d))
 				return (ft_error(d, 1));//code ?
-			ft_pars_line(input);
 			int i;
 			int j = 0;
 			while (d->all->first)
