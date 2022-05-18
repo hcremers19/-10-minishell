@@ -117,6 +117,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 	int		j;
 	int		i;
 	t_one	*tmp;
+	t_one	*init_tmp;//??
 
 	i = 0;
 	j = 0;
@@ -127,6 +128,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 	if (!d->all->first)
 		return (NULL);
 	tmp = d->all->first;
+	init_tmp = d->all->first;///?
 	while (tmp)
 	{
 		tmp->pars_tab = copy_line_tab(tmp->pars_tab, d, j);
@@ -145,6 +147,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 		i++;
 	}
 	d->all->nb_cmd = i;
+	d->all->first = init_tmp;//?
 	if (init_cmds(d, i))
 		return (NULL);
 	return (d->all->first);
