@@ -109,7 +109,10 @@ char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
 /*-------	Pars_end.c -----------------*/
-void		init_cmds(t_data *d, int nb);
+int		init_cmds(t_data *d, int nb);
+// char	*env_or_not_env(char *str, t_data *d);
+// char	*join_mat(char **tab);
+
 // static int	get_type(t_one *stru);
 // static int	check_env_var(t_one *stru, t_data *d);
 

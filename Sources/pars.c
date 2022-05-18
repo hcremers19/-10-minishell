@@ -145,7 +145,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 		i++;
 	}
 	d->all->nb_cmd = i;
-	// if (init_cmds(d, i))
-	// 	return (NULL);
+	if (init_cmds(d, i))
+		return (NULL);
 	return (d->all->first);
 }
