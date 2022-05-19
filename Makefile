@@ -28,6 +28,7 @@ SRC_DIR	= 	./Sources/
 
 SRC		= 	main.c			\
 			init.c			\
+			execpipe.c		\
 			prompt.c		\
 			ft_split.c		\
 			pars.c			\

@@ -102,7 +102,6 @@ char	*join_mat(char **tab)
 	return (str);
 }
 
-
 int	init_cmds(t_data *d, int nb)
 {
 	int	i;
