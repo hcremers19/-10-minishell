@@ -146,4 +146,7 @@ char	*keep_strt(char *str);
 /*---	Utils.c ------------------------*/
 size_t	ft_strcpy(char *dst, const char *src);
 int		check_c_in(char *str, char c);
+
+/*--------------------------------------*/
+int execpipe(int argc, char *argv, char *envp);
 #endif

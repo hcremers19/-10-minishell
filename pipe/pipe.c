@@ -24,17 +24,17 @@
 // 	ft_exec(argv[2], envp);
 // }
 
-int open_file(char  *argv, int i)
+int open_file(char *argv, int i)
 {
 	int file;
 
 	file = 0;
 	if (i == 0)
-		file = open(argv[1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+		file = open(argv, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	else if (i == 1)
-		file = open(argv[1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		file = open(argv, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	else if (i == 2)
-		file = open(argv[1], O_WRONLY | O_RDONLY, 0777);
+		file = open(argv, O_RDONLY, 0777);
 	else if (i == -1)
 		perror("open");
 	return (file);
@@ -77,7 +77,7 @@ void	here_doc(char *limiter, int argc)
 	if (reader == 0)
 	{
 		close(fd[0]);
-		while (get_next_line(fd))
+		while (get_next_line(&line))
 		{
 			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
 				exit(EXIT_SUCCESS);
@@ -120,7 +120,7 @@ void	here_doc(char *limiter, int argc)
 // 	return (0);
 // }
 
-int main(int argc, char **argv, char **envp)
+int ft_pipe(int argc, char **argv, char **envp)
 {
 	int i;
 	int filein;
@@ -147,4 +147,10 @@ int main(int argc, char **argv, char **envp)
 		ft_exec(argv[argc - 2], envp);
 	}
 	usage();
+	return ft_pipe(argc, argv, envp);
+}
+
+int main(int argc, char **argv, char **envp)
+{
+	ft_pipe(argc, argv, envp);
 }
