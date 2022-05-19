@@ -28,7 +28,6 @@ SRC_DIR	= 	./Sources/
 
 SRC		= 	main.c			\
 			init.c			\
-			execpipe.c		\
 			prompt.c		\
 			ft_split.c		\
 			pars.c			\
@@ -38,6 +37,10 @@ SRC		= 	main.c			\
 			builtins.c		\
 			enviro.c		\
 			signals.c		\
+			pipe.c			\
+			pipe_utils.c	\
+			pipe_utils2.c	\
+			execpipe.c		\
 
 INC		= 	./Includes/minishell.h
 

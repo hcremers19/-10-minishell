@@ -26,8 +26,13 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 
 # include "../Sources/Libft/libft.h"
+
 
 /****************************************************/
 /*		DEFINES										*/
@@ -84,7 +89,6 @@ struct s_all
 struct s_one
 {
 	int				pos;
-	int				*type;//0=RAS 1="" 2=""et$  3='' 4=$
 	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
@@ -109,19 +113,17 @@ char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
 /*--	Pars_end.c -----------------*/
-int		init_cmds(t_data *d, int nb);
-char	*env_or_not_env(char *str, t_data *d);
-char	*join_mat(char **tab);
+// int		init_cmds(t_data *d, int nb);
+// char	*env_or_not_env(char *str, t_data *d);
+// char	*join_mat(char **tab);
 // int		get_type(t_one *stru);
-int		check_env_var(char *str, t_data *d);
-
+// int		check_env_var(char *str, t_data *d);
 // static int	get_type(t_one *stru);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
 int		len_tab(char **tab);
 char	**copy_line_tab(char **tab, t_data *d, int i);
-
 // char	**copy_tab(char **in);
 // int		nb_pipe(char **tab);
 
@@ -148,6 +150,23 @@ char	*keep_strt(char *str);
 size_t	ft_strcpy(char *dst, const char *src);
 int		check_c_in(char *str, char c);
 
-/*--------------------------------------*/
-int execpipe(int argc, char *argv, char *envp);
+/*--	Execpipe.c ---------------------*/
+int 	execpipe(t_data *d, char **env);
+
+/*--	Pipe.c -------------------------*/
+int 	ft_pipe(char **tab, t_data *d, char **env);
+void	here_doc(char *limiter, int nb);
+void	child_process(char *tab, char **envp);
+int 	open_file(char *tab, int i);
+// void	parent_process(char **argv, char **envp, int *fd);
+
+/*--	Pipe_utils.c -------------------*/
+char	*get_cmd_path(char *cmd, char **envp);
+void	ft_exec(char **argv, char **envp);
+// char	**ft_split(char const *s, char c);
+
+/*--	Pipe_utils2.c ------------------*/
+void 	usage(void);
+int 	get_next_line(char **line);
+
 #endif

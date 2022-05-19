@@ -1,10 +1,22 @@
-#include "pipex.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 12:19:10 by acaillea          #+#    #+#             */
+/*   Updated: 2022/05/19 12:19:14 by acaillea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../Includes/minishell.h"
 
 void	ft_exec(char *argv, char **envp)
 {
 	char	**cmd;
 
-	cmd = ft_split(argv, ' ');
+	// cmd = ft_split(argv, ' ');
 	if (execve(get_cmd_path(cmd[0], envp), cmd, envp) == -1)
 	{
 		perror(strerror(8));
@@ -97,20 +109,20 @@ static char	**ft_word(char *s, char c, char **tab, size_t count)
 	return (tab);
 }
 
-char	**ft_split(char const *s, char c)
-{
-	char	**tab;
-	char	**tab2;
-	char	*new_s;
-	size_t	count;
+// char	**ft_split(char const *s, char c)
+// {
+// 	char	**tab;
+// 	char	**tab2;
+// 	char	*new_s;
+// 	size_t	count;
 
-	new_s = (char *)s;
-	if (!new_s)
-		return (NULL);
-	count = word_count(s, c);
-	tab = malloc(sizeof(char *) * (count + 1));
-	if (!tab)
-		return (NULL);
-	tab2 = ft_word(new_s, c, tab, count);
-	return (tab2);
-}
+// 	new_s = (char *)s;
+// 	if (!new_s)
+// 		return (NULL);
+// 	count = word_count(s, c);
+// 	tab = malloc(sizeof(char *) * (count + 1));
+// 	if (!tab)
+// 		return (NULL);
+// 	tab2 = ft_word(new_s, c, tab, count);
+// 	return (tab2);
+// }
