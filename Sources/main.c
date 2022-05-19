@@ -70,25 +70,25 @@ int	main(int ac, char **av, char **env)
 			if (!ft_pars(input, d))
 				return (ft_error(d, 1));//code ?
 			////////////////////////////////////
-			// int i;
-			// int j = 0;
-			// while (d->all->first)
-			// {
-			// 	printf("==============\n");
-			// 	i = 0;
-			// 	while (d->all->first->pars_tab[i])
-			// 	{
-			// 		printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
-			// 		// printf("type= %d\n", d->all->first->type);
-			// 		i++;
-			// 	}
-			// 	printf("---------------\n");
-			// 	d->all->first = d->all->first->next;
-			// 	j++;
-			// }
+			int i;
+			int j = 0;
+			while (d->all->first)
+			{
+				printf("==============\n");
+				i = 0;
+				while (d->all->first->pars_tab[i])
+				{
+					printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
+					// printf("type= %d\n", d->all->first->type);
+					i++;
+				}
+				printf("---------------\n");
+				d->all->first = d->all->first->next;
+				j++;
+			}
 			////////////////////////////////////
-			if (execpipe(d, env))
-				return (ft_error(d, 0));//code ?
+			// if (execpipe(d, env))
+			// 	return (ft_error(d, 0));//code ?
 		}
 		free(input);
 	}

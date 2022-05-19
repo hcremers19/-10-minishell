@@ -14,6 +14,9 @@
 
 t_list	*ft_lststr(t_list *lst, char *name) // À tester !
 {
+	t_list	*tmp;
+
+	tmp = lst;
 	while (lst->next)
 	{
 		if (ft_strlen(lst->name) == ft_strlen(name)
@@ -22,5 +25,6 @@ t_list	*ft_lststr(t_list *lst, char *name) // À tester !
 		else
 			lst = lst->next;
 	}
+	lst = tmp;
 	return (0);
 }

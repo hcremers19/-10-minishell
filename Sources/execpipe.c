@@ -12,17 +12,17 @@
 
 #include "../Includes/minishell.h"
 
-int execpipe(t_data *d, char **env)
-{
-    t_one   *tmp;
+// int execpipe(t_data *d, char **env)
+// {
+//     t_one   *tmp;
 
-    tmp = d->all->first;
-    while (d->all->first)
-    {
-        if (ft_pipe(d->all->first->pars_tab, d, env))
-            return (-19);
-        d->all->first = d->all->first->next;
-    }
-    d->all->first = tmp;
-    return (0);
-}
+//     tmp = d->all->first;
+//     while (d->all->first)
+//     {
+//         if (ft_pipe(d->all->first->pars_tab, d, env))
+//             return (-19);
+//         d->all->first = d->all->first->next;
+//     }
+//     d->all->first = tmp;
+//     return (0);
+// }
