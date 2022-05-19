@@ -79,10 +79,10 @@ int	main(int ac, char **av, char **env)
 				while (d->all->first->pars_tab[i])
 				{
 					printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
+					// printf("type= %d\n", d->all->first->type);
 					i++;
 				}
 				printf("---------------\n");
-				printf("type= %d\n", d->all->first->type);
 				d->all->first = d->all->first->next;
 				j++;
 			}
