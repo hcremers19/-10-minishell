@@ -69,6 +69,7 @@ int	main(int ac, char **av, char **env)
 			add_history(input);
 			if (!ft_pars(input, d))
 				return (ft_error(d, 1));//code ?
+				////////////
 			int i;
 			int j = 0;
 			while (d->all->first)
@@ -85,9 +86,11 @@ int	main(int ac, char **av, char **env)
 				d->all->first = d->all->first->next;
 				j++;
 			}
+			///////////////////////////////
+			execpipe(argc, argv, envp);
 		}
 		free(input);
 	}
 	return (0);
 }
- 
+

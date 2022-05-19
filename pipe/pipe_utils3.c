@@ -9,7 +9,7 @@ int get_next_line(char **line)
 
     i = 0;
     r = 0;
-    buffer = (char *)malloc(10000);
+    buffer = (char *)malloc(100000);
     if (!buffer)
 		return (-1);
 	r = read(0, &c, 1);

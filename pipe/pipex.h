@@ -37,4 +37,5 @@ int get_next_line(char **line);
 size_t	ft_strlen(const char *str);  
 void	ft_putstr_fd(char *str, int fd);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int ft_pipe(int argc, char **argv, char **envp);
 #endif
