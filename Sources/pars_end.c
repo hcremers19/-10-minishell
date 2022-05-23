@@ -12,62 +12,7 @@
 
 #include "../Includes/minishell.h"
 
-// int	get_type(t_one *stru)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (stru->pars_tab[i])
-// 	{
-// 		if (stru->pars_tab[i][0] == 39)
-// 			return (3);
-// 		else if (stru->pars_tab[i][0] == 34)
-// 		{
-// 			if (check_c_in(stru->pars_tab[i], '$'))
-// 				return (2);
-// 			return (1);
-// 		}
-// 		else if (check_c_in(stru->pars_tab[i], '$'))
-// 			return (4);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-// int	check_env_var(char *str, t_data *d)
-// {
-// 	int		j;
-// 	int		k;
-// 	int		t;
-// 	char	**tmp_tab;
-
-// 	tmp_tab = (char **)malloc(sizeof(char *) * 4);
-// 	if (!tmp_tab)
-// 		return (-19);
-// 	j = check_c_in(str, '$');
-// 	if (j)
-// 	{
-// 		k = j;
-// 		while (str[j] || str[j] != '$' || str[j] != 9 || str[j] != 32)
-// 			j++;
-// 		t = 0;
-// 		tmp_tab[t] = ft_substr(str, 0, k - 1);
-// 		if (!tmp_tab[t])
-// 			return (-19);
-// 		tmp_tab[++t] = env_or_not_env(str, d);
-// 		if (!tmp_tab[t])
-// 			return (-19);
-// 		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str));
-// 		if (!tmp_tab[t])
-// 			return (-19);
-// 		str = join_mat(tmp_tab);
-// 		if (!str)
-// 			return (-19);
-// 	}
-// 	free(tmp_tab);
-// 	return (0);
-// }
-
+// check env_var avec lststr
 // char	*env_or_not_env(char *str, t_data *d)
 // {
 // 	t_list	*res;
@@ -83,6 +28,30 @@
 // 		return (ret);
 // 	}
 // 	return (NULL);
+// }
+
+// check env_var sans lststr
+// char	*env_or_not_env(char *str, t_data *d)
+// {
+// 	t_list	*tmp;
+// 	char	*ret;
+
+// 	tmp = d->env_list;
+// 	while (d->env_list)
+// 	{
+// 		if (ft_strncmp(d->env_list->name, str, ft_strlen(d->env_list->name)))
+// 		{
+// 			ret = (char *)malloc(sizeof(char) * (ft_strlen(d->env_list->name) + 1));
+// 			if (!ret)
+// 				return (NULL);
+// 			ft_strlcpy(ret, d->env_list->content, ft_strlen(d->env_list->content));
+// 			printf("%s\n", str);
+// 			return (ret);
+// 		}
+// 		d->env_list = d->env_list->next;
+// 	}
+// 	d->env_list = tmp;
+// 	return (str);
 // }
 
 // char	*join_mat(char **tab)
@@ -102,7 +71,41 @@
 // 	return (str);
 // }
 
-// int	init_cmds(t_data *d, int nb)
+// int	check_env_var(char *str, t_data *d)
+// {
+// 	int		j;
+// 	int		k;
+// 	int		t;
+// 	char	**tmp_tab;
+
+// 	tmp_tab = (char **)malloc(sizeof(char *) * 4);
+// 	if (!tmp_tab)
+// 		return (-19);
+// 	j = check_c_in(str, '$');
+// 	if (j)
+// 	{
+// 		k = j;
+// 		t = 0;
+// 		while (str[j] && str[j] != '$' && str[j] != 9 && str[j] != 32)
+// 			j++;
+// 		tmp_tab[t] = ft_substr(str, 0, k - 1);
+// 		if (!tmp_tab[t])
+// 			return (-19);
+// 		tmp_tab[++t] = env_or_not_env(str, d);
+// 		if (!tmp_tab[t])
+// 			return (-19);
+// 		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str));
+// 		if (!tmp_tab[t])
+// 			return (-19);
+// 		str = join_mat(tmp_tab);
+// 		if (!str)
+// 			return (-19);
+// 	}
+// 	free(tmp_tab);
+// 	return (0);
+// }
+
+// int	init_cmds(t_data *d)
 // {
 // 	int	i;
 // 	int	j;
@@ -112,10 +115,10 @@
 // 	tmp = d->all->first;
 // 	while (d->all->first)
 // 	{
-// 		d->all->first->pos = nb - i - 1;
+// 		d->all->first->pos = d->all->nb_cmd - i - 1;
 // 		j = 0;
 // 		while (d->all->first->pars_tab[j])
-// 		{
+// 		{//check_in_c renvoit la position du premier $ dans la string
 // 			if ((check_c_in(d->all->first->pars_tab[j], '$') && d->all->first->pars_tab[j][0] == '\"')
 // 				 || (check_c_in(d->all->first->pars_tab[j], '$') && d->all->first->pars_tab[j][0] != '\''))
 // 			{

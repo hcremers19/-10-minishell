@@ -122,3 +122,25 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 // 	out[j] = 0;
 // 	return (out);
 // }
+
+// int	get_type(t_one *stru)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (stru->pars_tab[i])
+// 	{
+// 		if (stru->pars_tab[i][0] == 39)
+// 			return (3);
+// 		else if (stru->pars_tab[i][0] == 34)
+// 		{
+// 			if (check_c_in(stru->pars_tab[i], '$'))
+// 				return (2);
+// 			return (1);
+// 		}
+// 		else if (check_c_in(stru->pars_tab[i], '$'))
+// 			return (4);
+// 		i++;
+// 	}
+// 	return (0);
+// }
