@@ -12,7 +12,7 @@
 
 #include "../Includes/minishell.h"
 
-void	ft_exec(char *argv, char **envp)
+void	ft_exec(char **argv, char **envp)
 {
 	char	**cmd;
 

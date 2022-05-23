@@ -1,6 +1,6 @@
 #include "../Includes/minishell.h"
 
-// void	parent_process(char **tab, char **envpp, int *fd)
+// void	parent_process(char **tab, char **envp, int *fd)
 // {
 // 	int	fileout;
 
@@ -10,10 +10,10 @@
 // 	dup2(fd[0], STDIN_FILENO);
 // 	dup2(fileout, STDOUT_FILENO);
 // 	close(fd[1]);
-// 	ft_exec(tab[3], envpp);
+// 	ft_exec(tab[3], envp);
 // }
 
-// void	child_process(char **tab, char **envpp, int *fd)
+// void	child_process(char **tab, char **envp, int *fd)
 // {
 // 	int	filein;
 
@@ -21,7 +21,7 @@
 // 	dup2(fd[1], STDOUT_FILENO);
 // 	dup2(filein, STDIN_FILENO);
 // 	close(fd[0]);
-// 	ft_exec(tab[2], envpp);
+// 	ft_exec(tab[2], envp);
 // }
 
 int open_file(char *tab, int i)
@@ -52,7 +52,7 @@ int open_file(char *tab, int i)
 	return (file);
 }
 
-void	child_process(char *tab, char **envpp)
+void	child_process(char *tab, char **envp)
 {
 	pid_t pid;
 	int fd[2];
@@ -66,7 +66,7 @@ void	child_process(char *tab, char **envpp)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		ft_exec(tab, envpp);
+		ft_exec(tab, envp);
 	}
 	else
 	{
@@ -105,7 +105,7 @@ void	here_doc(char *limiter, int nb)
 	}
 }
 
-int ft_pipe(char **tab, t_data *d, char **envpp)
+int ft_pipe(char **tab, t_data *d, char **envp)
 {
 	int i;
 	int filein;
@@ -131,9 +131,9 @@ int ft_pipe(char **tab, t_data *d, char **envpp)
 		dup2(filein, STDIN_FILENO);
 	}
 	while (i < d->all->nb_cmd - 2)
-		child_process(tab[i++], envpp);
+		child_process(tab[i++], envp);
 	dup2(fileout, STDOUT_FILENO);
-	ft_exec(tab[d->all->nb_cmd - 2], envpp);
+	ft_exec(tab[d->all->nb_cmd - 2], envp);
 	// usage();
 	printf("C'est ici\n");
 	return (0);

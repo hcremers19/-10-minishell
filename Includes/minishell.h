@@ -31,7 +31,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-# include "../Sources/Libft/libft.h"
+# include "../Sources/libft/libft.h"
 
 
 /****************************************************/
