@@ -89,6 +89,9 @@ struct s_all
 struct s_one
 {
 	int				pos;
+	int				infile;
+	int				outfile;
+	char 			*cmd;
 	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
@@ -152,19 +155,19 @@ int		check_c_in(char *str, char c);
 int 	execpipe(t_data *d, char **env);
 
 // /*--	Pipe.c -------------------------*/
-// int 	ft_pipe(char **tab, t_data *d, char **env);
-// void	here_doc(char *limiter, int nb);
-// void	child_process(char *tab, char **envp);
-// int 	open_file(char *tab, int i);
-// // void	parent_process(char **argv, char **envp, int *fd);
+int 	ft_pipe(char **tab, t_data *d, char **env);
+void	here_doc(char *limiter, int nb);
+void	child_process(char *tab, char **envp);
+int 	open_file(char *tab, int i);
+void	parent_process(char **argv, char **envp, int *fd);
 
-// /*--	Pipe_utils.c -------------------*/
-// char	*get_cmd_path(char *cmd, char **envp);
-// void	ft_exec(char **argv, char **envp);
-// // char	**ft_split(char const *s, char c);
+/*--	Pipe_utils.c -------------------*/
+char	*get_cmd_path(char *cmd, char **envp);
+void	ft_exec(char **argv, char **envp);
+char	**ft_split(char const *s, char c);
 
 // /*--	Pipe_utils2.c ------------------*/
-// void 	usage(void);
-// int 	get_next_line(char **line);
+void 	usage(void);
+int 	get_next_line(char **line);
 
 #endif
