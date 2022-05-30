@@ -148,7 +148,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 	}
 	d->all->nb_cmd = i;
 	d->all->first = init_tmp;/////// utile ?
-	// if (init_cmds(d)) // envoit vers le dossier pars_end.c
-	// 	return (NULL);
+	if (init_cmds(d)) // envoit vers le dossier pars_end.c
+		return (NULL);
 	return (d->all->first);
 }
