@@ -31,7 +31,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-# include "../Sources/libft/libft.h"
+# include "../Sources/Libft/libft.h"
 
 
 /****************************************************/
@@ -116,10 +116,10 @@ char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
 /*--	Pars_end.c -----------------*/
-// int		init_cmds(t_data *d);
-// char	*env_or_not_env(char *str, t_data *d);
-// char	*join_mat(char **tab);
-// int		check_env_var(char *str, t_data *d);
+int		init_cmds(t_data *d);
+char	*env_or_not_env(char *str, t_data *d);
+char	*join_mat(char **tab);
+int		check_env_var(char *str, t_data *d);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
@@ -150,24 +150,25 @@ char	*keep_strt(char *str);
 /*---	Utils.c ------------------------*/
 size_t	ft_strcpy(char *dst, const char *src);
 int		check_c_in(char *str, char c);
+int		count_c_in(char *str, char c);
 
 /*--	Execpipe.c ---------------------*/
-int 	execpipe(t_data *d, char **env);
+// int 	execpipe(t_data *d, char **env);
 
 // /*--	Pipe.c -------------------------*/
-int 	ft_pipe(char **tab, t_data *d, char **env);
-void	here_doc(char *limiter, int nb);
-void	child_process(char *tab, char **envp);
-int 	open_file(char *tab, int i);
-void	parent_process(char **argv, char **envp, int *fd);
+// int 	ft_pipe(char **tab, t_data *d, char **env);
+// void	here_doc(char *limiter, int nb);
+// void	child_process(char *tab, char **envp);
+// int 	open_file(char *tab, int i);
+// void	parent_process(char **argv, char **envp, int *fd);
 
 /*--	Pipe_utils.c -------------------*/
-char	*get_cmd_path(char *cmd, char **envp);
-void	ft_exec(char **argv, char **envp);
-char	**ft_split(char const *s, char c);
+// char	*get_cmd_path(char *cmd, char **envp);
+// void	ft_exec(char **argv, char **envp);
+// char	**ft_split(char const *s, char c);
 
 // /*--	Pipe_utils2.c ------------------*/
-void 	usage(void);
-int 	get_next_line(char **line);
+// void 	usage(void);
+// int 	get_next_line(char **line);
 
 #endif

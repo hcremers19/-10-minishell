@@ -29,7 +29,6 @@ SRC_DIR	= 	./Sources/
 SRC		= 	main.c			\
 			init.c			\
 			prompt.c		\
-			ft_split.c		\
 			pars.c			\
 			pars_end.c		\
 			pars_utils.c	\

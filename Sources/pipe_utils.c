@@ -12,17 +12,17 @@
 
 #include "../Includes/minishell.h"
 
-void	ft_exec(char **argv, char **envp)
-{
-	char	**cmd;
+// void	ft_exec(char **argv, char **envp)
+// {
+// 	char	**cmd;
 
-	cmd = ft_split(*argv, ' ');
-	if (execve(get_cmd_path(cmd[0], envp), cmd, envp) == -1)
-	{
-		perror(strerror(8));
-		exit (127);
-	}
-}
+// 	cmd = ft_split(*argv, ' ');
+// 	if (execve(get_cmd_path(cmd[0], envp), cmd, envp) == -1)
+// 	{
+// 		perror(strerror(8));
+// 		exit (127);
+// 	}
+// }
 
 // char	*get_cmd_path(char *cmd, char **envp)
 // {

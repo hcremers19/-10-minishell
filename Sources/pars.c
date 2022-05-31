@@ -129,7 +129,7 @@ t_one	*ft_pars(char const *s, t_data *d)
 		return (NULL);
 	tmp = d->all->first;
 	init_tmp = d->all->first;/////// utile ?
-	while (tmp)
+	while (tmp) 
 	{
 		tmp->pars_tab = copy_line_tab(tmp->pars_tab, d, j);
 		if (!tmp->pars_tab)
