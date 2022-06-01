@@ -18,36 +18,23 @@ char	*join_mat(char **tab)
 	char	*str;
 
 	i = 0;
+	printf("%d\n", len_tab_string(tab));
+	str = (char *)malloc(sizeof(char) * (len_tab_string(tab) + 1));
+	if (!str)
+		return (NULL);
+	printf("mmmmmmmmmmmmmmmmmmmmmmm\n");
 	while (tab && tab[i])
 	{
-		str = ft_strjoin(str, tab[i]);
+		ft_strlcat(str, tab[i], ft_strlen(tab[i]));
 		if (!str)
 			return (NULL);
 		free(tab[i]);
 		i++;
 	}
+	free(tab);
 	return (str);
 }
 
-//check env_var avec lststr
-// char	*env_or_not_env(char *str, t_data *d)
-// {
-// 	t_list	*res;
-// 	char	*ret;
-
-// 	res = ft_lststr(d->env_list, str);
-// 	if (res)
-// 	{
-// 		ret = (char *)malloc(sizeof(char) * (ft_strlen(res->content + 1)));
-// 		if (!ret)
-// 			return (NULL);
-// 		ft_strlcpy(ret, res->content, ft_strlen(res->content));
-// 		return (ret);
-// 	}
-// 	return (NULL);
-// }
-
-//check env_var sans lststr
 char	*env_or_not_env(char *str, t_data *d)
 {
 	t_list	*tmp;
@@ -56,12 +43,14 @@ char	*env_or_not_env(char *str, t_data *d)
 	tmp = d->env_list;
 	while (d->env_list)
 	{
-		if (ft_strncmp(d->env_list->name, str, ft_strlen(d->env_list->name)))
+		if (!ft_strncmp(d->env_list->name, str, ft_strlen(str)))
 		{
-			ret = (char *)malloc(sizeof(char) * (ft_strlen(d->env_list->name) + 1));
+			printf("mggggggggggggggggg\n");
+			ret = (char *)malloc(sizeof(char) * (ft_strlen(d->env_list->content) + 1));
 			if (!ret)
 				return (NULL);
-			ft_strlcpy(ret, d->env_list->content, ft_strlen(d->env_list->content));
+			ret = d->env_list->content;
+			free(str);
 			return (ret);
 		}
 		d->env_list = d->env_list->next;
@@ -69,44 +58,54 @@ char	*env_or_not_env(char *str, t_data *d)
 	d->env_list = tmp;
 	return (str);
 }
-//regarder bon limiteur et envoyer bon limiteur a ci dessus
 
-int	check_env_var(char *str, t_data *d)
+char	*check_env_var(char *str, t_data *d)
 {
 	int		j;
 	int		k;
 	int		t;
+	char	*ret;
 	char	**tmp_tab;
 
 	tmp_tab = (char **)malloc(sizeof(char *) * 4);
 	if (!tmp_tab)
-		return (-19);
-	j = check_c_in(str, '$');
-	k = j;
+		return (NULL);
 	t = 0;
-	while (str[++j] && str[j] != '$' && str[j] != 9 && str[j] != 32)
-		;
-	if (j > k)
+	j = check_c_in(str, '$');
+	if (j)
 	{
-		tmp_tab[t] = ft_substr(str, 0, k - 1);
+		tmp_tab[t] = ft_substr(str, 0, j);
 		if (!tmp_tab[t])
-			return (-19);
+			return (NULL);
+		printf("===== %d - %s\n", t, tmp_tab[t]);
 		t++;
 	}
-	printf("%d - %s\n", t, tmp_tab[t]);
-	tmp_tab[t] = env_or_not_env(*str[k], d);
+	k = j;
+	j++;
+	while (str[j] && str[j] != '$' && str[j] != 9 && str[j] != 32 && str[j] != 34)
+		j++;
+	tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
 	if (!tmp_tab[t])
-		return (-19);
-	printf("%d - %s\n", t, tmp_tab[t]);
-	tmp_tab[++t] = ft_substr(str, j, ft_strlen(str));
+		return (NULL);
+	printf("===== %d - %s\n", t, tmp_tab[t]);
+	tmp_tab[t] = env_or_not_env(tmp_tab[t], d);
 	if (!tmp_tab[t])
-		return (-19);
-	printf("%d - %s\n", t, tmp_tab[t]);
-	str = join_mat(tmp_tab);
-	if (!str)
-		return (-19);
-	free(tmp_tab);
-	return (0);
+		return (NULL);
+	printf("===== %d - %s\n", t, tmp_tab[t]);
+	if (j < ft_strlen(str))
+	{
+		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str) - j);
+		if (!tmp_tab[t])
+			return (NULL);
+		printf("===== %d - %s\n", t, tmp_tab[t]);
+	}
+	// ret = (char *)malloc(sizeof(char) * (len_tab_string(tmp_tab) + 1));
+	// if (!ret)
+	// 	return (NULL);
+	ret = join_mat(tmp_tab);
+	if (!ret)
+		return (NULL);
+	return (ret);
 }
 
 int	init_cmds(t_data *d)
@@ -126,7 +125,8 @@ int	init_cmds(t_data *d)
 			if ((check_c_in(d->all->first->pars_tab[j], '$') && d->all->first->pars_tab[j][0] == '\"')
 				 || (check_c_in(d->all->first->pars_tab[j], '$') && d->all->first->pars_tab[j][0] != '\''))
 			{
-				if (check_env_var(d->all->first->pars_tab[j], d))
+				d->all->first->pars_tab[j] = check_env_var(d->all->first->pars_tab[j], d);
+				if (!d->all->first->pars_tab[j])
 					return (-19);
 			}
 			j++;

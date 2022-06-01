@@ -48,6 +48,28 @@ int	len_tab(char **tab)
 	return (i);
 }
 
+int	len_tab_string(char **tab)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (tab && tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			count++;
+			j++;
+		}
+		i++;
+	}
+	printf("%d\n", count);
+	return (count);
+}
+
 char	**copy_line_tab(char **tab, t_data *d, int i)
 {
 	int		j;

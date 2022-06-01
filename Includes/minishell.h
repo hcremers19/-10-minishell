@@ -31,7 +31,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-# include "../Sources/Libft/libft.h"
+# include "../Sources/libft/libft.h"
 
 
 /****************************************************/
@@ -119,12 +119,13 @@ t_one	*ft_pars(char const *s, t_data *d);
 int		init_cmds(t_data *d);
 char	*env_or_not_env(char *str, t_data *d);
 char	*join_mat(char **tab);
-int		check_env_var(char *str, t_data *d);
+char	*check_env_var(char *str, t_data *d);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
 int		len_tab(char **tab);
 char	**copy_line_tab(char **tab, t_data *d, int i);
+int		len_tab_string(char **tab);
 // char	**copy_tab(char **in);
 // int		nb_pipe(char **tab);
 

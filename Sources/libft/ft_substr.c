@@ -18,7 +18,7 @@ char	*ft_substr(char const *s, int start, int len)
 	int		j;
 	char	*str;
 
-	if (!s)
+	if (!s || len <= 0)
 		return (0);
 	if (len > (ft_strlen(s) - start - 1))
 		len = ft_strlen(s) - start;
