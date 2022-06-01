@@ -39,7 +39,7 @@ int	check_c_in(char *str, char c)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-19);
 }
 
 int	count_c_in(char *str, char c)
@@ -56,4 +56,23 @@ int	count_c_in(char *str, char c)
 		i++;
 	}
 	return (count);
+}
+
+char	*ft_strcat(char *dest, char *src)
+{
+	unsigned int		i;
+	unsigned int		j;
+	char				*destination;
+
+	i = ft_strlen(dest);
+	j = 0;
+	destination = dest;
+	while (src[j] != '\0')
+	{
+		destination[i] = src[j];
+		j++;
+		i++;
+	}
+	destination[i] = '\0';
+	return (destination);
 }

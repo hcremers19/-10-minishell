@@ -117,6 +117,7 @@ t_one	*ft_pars(char const *s, t_data *d);
 
 /*--	Pars_end.c -----------------*/
 int		init_cmds(t_data *d);
+int		loop_check_env(t_one *cmd, t_data *d);
 char	*env_or_not_env(char *str, t_data *d);
 char	*join_mat(char **tab);
 char	*check_env_var(char *str, t_data *d);
@@ -152,6 +153,14 @@ char	*keep_strt(char *str);
 size_t	ft_strcpy(char *dst, const char *src);
 int		check_c_in(char *str, char c);
 int		count_c_in(char *str, char c);
+char	*ft_strcat(char *dest, char *src);
+
+/*---	Ft_free.c ----------------------*/
+void	ft_free_tab(char **tab);
+
+/*---	Ft_error.c ---------------------*/
+int		ft_error(t_data *d, int e);
+int		ft_pre_malloc_error(int e);
 
 /*--	Execpipe.c ---------------------*/
 // int 	execpipe(t_data *d, char **env);

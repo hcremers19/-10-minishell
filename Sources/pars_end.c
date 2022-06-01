@@ -18,20 +18,17 @@ char	*join_mat(char **tab)
 	char	*str;
 
 	i = 0;
-	printf("%d\n", len_tab_string(tab));
 	str = (char *)malloc(sizeof(char) * (len_tab_string(tab) + 1));
 	if (!str)
 		return (NULL);
-	printf("mmmmmmmmmmmmmmmmmmmmmmm\n");
 	while (tab && tab[i])
 	{
-		ft_strlcat(str, tab[i], ft_strlen(tab[i]));
+		str = ft_strcat(str, tab[i]);
 		if (!str)
 			return (NULL);
-		free(tab[i]);
 		i++;
 	}
-	free(tab);
+	ft_free_tab(tab);
 	return (str);
 }
 
@@ -41,19 +38,20 @@ char	*env_or_not_env(char *str, t_data *d)
 	char	*ret;
 
 	tmp = d->env_list;
-	while (d->env_list)
+	while (d->env_list && str)
 	{
-		if (!ft_strncmp(d->env_list->name, str, ft_strlen(str)))
+		if (!ft_strncmp(str, d->env_list->name, ft_strlen(str)))
 		{
-			printf("mggggggggggggggggg\n");
 			ret = (char *)malloc(sizeof(char) * (ft_strlen(d->env_list->content) + 1));
 			if (!ret)
 				return (NULL);
 			ret = d->env_list->content;
-			free(str);
+			// free(str);
+			d->env_list = tmp;
 			return (ret);
 		}
-		d->env_list = d->env_list->next;
+		else
+			d->env_list = d->env_list->next;
 	}
 	d->env_list = tmp;
 	return (str);
@@ -72,7 +70,7 @@ char	*check_env_var(char *str, t_data *d)
 		return (NULL);
 	t = 0;
 	j = check_c_in(str, '$');
-	if (j)
+	if (j > 0)
 	{
 		tmp_tab[t] = ft_substr(str, 0, j);
 		if (!tmp_tab[t])
@@ -84,9 +82,14 @@ char	*check_env_var(char *str, t_data *d)
 	j++;
 	while (str[j] && str[j] != '$' && str[j] != 9 && str[j] != 32 && str[j] != 34)
 		j++;
-	tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
-	if (!tmp_tab[t])
-		return (NULL);
+	if (j - k - 1 > 0)
+	{
+		tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
+		if (!tmp_tab[t])
+			return (NULL);
+	}
+	else
+		return (str);
 	printf("===== %d - %s\n", t, tmp_tab[t]);
 	tmp_tab[t] = env_or_not_env(tmp_tab[t], d);
 	if (!tmp_tab[t])
@@ -94,24 +97,41 @@ char	*check_env_var(char *str, t_data *d)
 	printf("===== %d - %s\n", t, tmp_tab[t]);
 	if (j < ft_strlen(str))
 	{
-		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str) - j);
+		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str) - j + 1);
 		if (!tmp_tab[t])
 			return (NULL);
 		printf("===== %d - %s\n", t, tmp_tab[t]);
 	}
-	// ret = (char *)malloc(sizeof(char) * (len_tab_string(tmp_tab) + 1));
-	// if (!ret)
-	// 	return (NULL);
 	ret = join_mat(tmp_tab);
 	if (!ret)
 		return (NULL);
 	return (ret);
 }
 
+int	loop_check_env(t_one *cmd, t_data *d)
+{
+	int	j;
+
+	j = 0;
+	while (cmd->pars_tab[j])
+	{
+		if ((check_c_in(cmd->pars_tab[j], '$') >= 0
+			 && cmd->pars_tab[j][0] == '\"')
+			 || (check_c_in(cmd->pars_tab[j], '$') >= 0
+			  && cmd->pars_tab[j][0] != '\''))
+		{
+			cmd->pars_tab[j] = check_env_var(cmd->pars_tab[j], d);
+			if (!cmd->pars_tab[j])
+				return (-19);
+		}
+		j++;
+	}
+	return (0);
+}
+
 int	init_cmds(t_data *d)
 {
 	int	i;
-	int	j;
 	t_one	*tmp;
 
 	i = 0;
@@ -119,18 +139,8 @@ int	init_cmds(t_data *d)
 	while (d->all->first)
 	{
 		d->all->first->pos = d->all->nb_cmd - i - 1;
-		j = 0;
-		while (d->all->first->pars_tab[j])
-		{
-			if ((check_c_in(d->all->first->pars_tab[j], '$') && d->all->first->pars_tab[j][0] == '\"')
-				 || (check_c_in(d->all->first->pars_tab[j], '$') && d->all->first->pars_tab[j][0] != '\''))
-			{
-				d->all->first->pars_tab[j] = check_env_var(d->all->first->pars_tab[j], d);
-				if (!d->all->first->pars_tab[j])
-					return (-19);
-			}
-			j++;
-		}
+		if (loop_check_env(d->all->first, d))
+			return (-19);
 		d->all->first = d->all->first->next;
 		i++;
 	}

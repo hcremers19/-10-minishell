@@ -51,22 +51,15 @@ int	len_tab(char **tab)
 int	len_tab_string(char **tab)
 {
 	int	i;
-	int	j;
 	int	count;
 
 	i = 0;
 	count = 0;
 	while (tab && tab[i])
 	{
-		j = 0;
-		while (tab[i][j])
-		{
-			count++;
-			j++;
-		}
+		count += ft_strlen(tab[i]);
 		i++;
 	}
-	printf("%d\n", count);
 	return (count);
 }
 

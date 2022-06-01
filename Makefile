@@ -33,6 +33,8 @@ SRC		= 	main.c			\
 			pars_end.c		\
 			pars_utils.c	\
 			utils.c			\
+			ft_free.c		\
+			ft_error.c		\
 			builtins.c		\
 			enviro.c		\
 			signals.c		\

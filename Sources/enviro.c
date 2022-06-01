@@ -43,7 +43,7 @@ char	*keep_end(char *str)
 	s = 0;
 	while (str[s] != '=')
 		s++;
-	ret = (char *)malloc(sizeof(char) * (len - s));
+	ret = (char *)malloc(sizeof(char) * (len - s + 1));
 	if (!ret)
 		return (0);
 	r = 0;
