@@ -105,36 +105,36 @@
 // 	}
 // }
 
-// int ft_pipe(char **tab, t_data *d, char **envp)
-// {
-// 	int i;
-// 	int filein;
-// 	int fileout;
+int ft_pipe(char **tab, t_data *d, char **envp)
+{
+	int i;
+	int filein;
+	int fileout;
 
-// 	if (strncmp(tab[1], "here_doc", 8) == 0)
-// 	{
-// 		i = 3;
-// 		fileout = open_file(tab[d->all->nb_cmd - 1], 0);
-// 		if (!fileout)
-// 			return (-19);
-// 		here_doc(tab[2], d->all->nb_cmd);
-// 	}
-// 	else
-// 	{
-// 		i = 2;
-// 		fileout = open_file(tab[d->all->nb_cmd - 1], 1);
-// 		if (!fileout)
-// 			return (-19);
-// 		filein = open_file(tab[1], 2);
-// 		if (!filein)
-// 			return (-19);
-// 		dup2(filein, STDIN_FILENO);
-// 	}
-// 	while (i < d->all->nb_cmd - 2)
-// 		child_process(tab[i++], envp);
-// 	dup2(fileout, STDOUT_FILENO);
-// 	ft_exec(&tab[d->all->nb_cmd - 2], envp);
-// 	// usage();
-// 	printf("C'est ici\n");
-// 	return (0);
-// }
+	if (strncmp(tab[1], "here_doc", 8) == 0)
+	{
+		i = 3;
+		fileout = open_file(tab[d->all->nb_cmd - 1], 0);
+		if (!fileout)
+			return (-19);
+		here_doc(tab[2], d->all->nb_cmd);
+	}
+	else
+	{
+		i = 2;
+		fileout = open_file(tab[d->all->nb_cmd - 1], 1);
+		if (!fileout)
+			return (-19);
+		filein = open_file(tab[1], 2);
+		if (!filein)
+			return (-19);
+		dup2(filein, STDIN_FILENO);
+	}
+	while (i < d->all->nb_cmd - 2)
+		child_process(tab[i++], envp);
+	dup2(fileout, STDOUT_FILENO);
+	ft_exec(&tab[d->all->nb_cmd - 2], envp);
+	// usage();
+	printf("C'est ici\n");
+	return (0);
+}

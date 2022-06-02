@@ -37,6 +37,7 @@ int	main(int ac, char **av, char **env)
 				return (ft_error(d, 1));//code ?
 			////////////////////////////////////////////////
 			////// temporaire
+			///////////////////////////////////////////////
 			int i;
 			int j = 0;
 			while (d->all->first)
@@ -59,6 +60,7 @@ int	main(int ac, char **av, char **env)
 			// 	d->env_list = d->env_list->next;
 			// 	i++;
 			// }
+			/////////////////////////////////////////////
 			//////////// fin temporaire
 			/////////////////////////////////////////////
 			// if (execpipe(d, env))

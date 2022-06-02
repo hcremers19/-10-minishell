@@ -40,6 +40,7 @@
 
 /*--	Variables-----------------------*/
 
+# define BSN	"\n"
 # define SCREEN "\x1b[33m\
 * ************************************************************************ *\n\
 *                                                                          *\n\
@@ -115,12 +116,14 @@ char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char const *s, t_data *d);
 
-/*--	Pars_end.c -----------------*/
-int		init_cmds(t_data *d);
+/*--	Pars_end.c ---------------------*/
 int		loop_check_env(t_one *cmd, t_data *d);
+int		init_cmds(t_data *d);
+
+/*--	Pars_env_var.c -----------------*/
 char	*env_or_not_env(char *str, t_data *d);
-char	*join_mat(char **tab);
 char	*check_env_var(char *str, t_data *d);
+char	*join_mat(char **tab);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);

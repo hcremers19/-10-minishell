@@ -30,6 +30,7 @@ SRC		= 	main.c			\
 			init.c			\
 			prompt.c		\
 			pars.c			\
+			pars_env_var.c	\
 			pars_end.c		\
 			pars_utils.c	\
 			utils.c			\
