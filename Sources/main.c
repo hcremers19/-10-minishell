@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/14 13:13:57 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/07 10:24:01 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int ac, char **av, char **env)
 	{
 		ft_signal();
 		input = readline(prompt());
+		if (!input)
+			exit(EXIT_SUCCESS);
 		if (ft_strlen(input) != 0)
 		{
 			add_history(input);
