@@ -39,6 +39,7 @@
 /****************************************************/
 
 /*--	Variables-----------------------*/
+t_data	d;
 
 # define BSN	"\n"
 # define SCREEN "\x1b[33m\
@@ -72,6 +73,9 @@ struct s_data
 	int				pid;
 	int				s_free;
 	struct s_all	*all;
+	struct termios	old;
+	struct termios	new;
+	char			**env_tab;
 	t_list			*env_list;
 	t_list			*tmp_list;
 };
@@ -103,7 +107,7 @@ struct s_one
 /****************************************************/
 
 /*---	Init.c -------------------------*/
-t_data	*init_data(void);
+int		init_data(char **env, t_data *d);
 
 /*--	Prompt.c -----------------------*/
 char	*prompt(void);
@@ -127,9 +131,7 @@ char	*join_mat(char **tab);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
-int		len_tab(char **tab);
 char	**copy_line_tab(char **tab, t_data *d, int i);
-int		len_tab_string(char **tab);
 // char	**copy_tab(char **in);
 // int		nb_pipe(char **tab);
 
@@ -152,17 +154,24 @@ t_list	*create_env(char **env);
 char	*keep_end(char *str);
 char	*keep_strt(char *str);
 
+/*---	Tab_utils.c --------------------*/
+int		len_tab(char **tab);
+int		len_tab_string(char **tab);
+char	**cpy_tab(char **in, int nb_line);
+
 /*---	Utils.c ------------------------*/
 size_t	ft_strcpy(char *dst, const char *src);
 int		check_c_in(char *str, char c);
 int		count_c_in(char *str, char c);
+int		only_space(char *s);
 char	*ft_strcat(char *dest, char *src);
 
 /*---	Ft_free.c ----------------------*/
 void	ft_free_tab(char **tab);
+void	ft_free_lst(t_list *env_list);
 
 /*---	Ft_error.c ---------------------*/
-int		ft_error(t_data *d, int e);
+int		ft_basic_exit(void);
 int		ft_pre_malloc_error(int e);
 
 /*--	Execpipe.c ---------------------*/

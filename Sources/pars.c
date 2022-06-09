@@ -112,7 +112,7 @@ char	**ft_pars_line(char const *s)
 	return (tab);
 }
 
-t_one	*ft_pars(char const *s, t_data *d)
+t_one	*ft_pars(char const *s)
 {
 	int		j;
 	int		i;
@@ -121,14 +121,14 @@ t_one	*ft_pars(char const *s, t_data *d)
 
 	i = 0;
 	j = 0;
-	d->all->init_tab = ft_pars_line(s);
+	d.all->init_tab = ft_pars_line(s);
 	if (!d->all->init_tab)
 		return (NULL);
-	d->all->first = (t_one *)malloc(sizeof(t_one));
-	if (!d->all->first)
+	d.all->first = (t_one *)malloc(sizeof(t_one));
+	if (!d.all->first)
 		return (NULL);
-	tmp = d->all->first;
-	init_tmp = d->all->first;/////// utile ?
+	tmp = d.all->first;
+	init_tmp = d.all->first;/////// utile ?
 	while (tmp) 
 	{
 		tmp->pars_tab = copy_line_tab(tmp->pars_tab, d, j);
@@ -146,8 +146,8 @@ t_one	*ft_pars(char const *s, t_data *d)
 		tmp = tmp->next;
 		i++;
 	}
-	d->all->nb_cmd = i;
-	d->all->first = init_tmp;/////// utile ?
+	d.all->nb_cmd = i;
+	d.all->first = init_tmp;/////// utile ?
 	if (init_cmds(d)) // envoit vers le dossier pars_end.c
 		return (NULL);
 	return (d->all->first);

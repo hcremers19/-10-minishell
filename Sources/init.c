@@ -12,23 +12,28 @@
 
 #include "../Includes/minishell.h"
 
-t_data	*init_data(void)
+int	init_data(char **env, t_data *d)
 {
-	t_data	*d;
-
-	d = (t_data *)malloc(sizeof(t_data));
-	if (!d)
-		return (NULL);
 	d->s_free = -1;
+	tcgetattr(0, &d->old);
+	tcgetattr(0, &d->new);
+	d->new.c_lflag &= ~(ECHOCTL);
+	tcsetattr(0, TCSANOW, &d->new);
+	d->env_tab = copy_tab(env, len_tab);
+	if (!d->env_tab)
+		return (-19);
+	d->env_list = create_env(env);
+	d->tmp_list = ft_lstnew(NULL, NULL);
 	d->all = (t_all *)malloc(sizeof(t_all *));
 	if (!d->all)
-		return (NULL);
+		return (-19);
 	d->s_free = 1;
 	d->all->init_tab = (char **)malloc(sizeof(char *));
 	if (!d->all->init_tab)
-		return (NULL);
-	d->s_free = 2;
-	printf("\033[H\033[J");
-	printf(SCREEN);
-	return (d);
+		return (-19);
+	d->s_free = 3;
+	d->pid = 0;
+	ft_putstr_fd("\033[H\033[J", 1);
+	ft_putstr_fd(SCREEN, 1);
+	return (0);
 }

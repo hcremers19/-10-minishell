@@ -58,6 +58,16 @@ int	count_c_in(char *str, char c)
 	return (count);
 }
 
+int	only_space(char *s)
+{
+	int	i;
+
+	i = ft_strlen(str) - 1;
+	while (x >= 0  && (s[i] == 9 || s[i] == 32))
+		i--;
+	return (i);
+}
+
 char	*ft_strcat(char *dest, char *src)
 {
 	unsigned int		i;

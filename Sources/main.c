@@ -15,60 +15,52 @@
 int	main(int ac, char **av, char **env)
 {
 	char	*input;
-	t_data	*d;
 
+	(void)av;
 	if (ac != 1)
 		return (ft_pre_malloc_error(7));
-	(void)av;
-	// (void)env;
-	d = init_data();
-	if (!d)
-		ft_error(d, 12);
-	d->env_list = create_env(env);
-	d->tmp_list = ft_lstnew(NULL, NULL);
+	if (init_data(env, &d))
+		return (ft_exit(12));
 	while (19)
 	{
 		ft_signal();
+		rl_on_new_line();
 		input = readline(prompt());
-		if (!input)
-			exit(EXIT_SUCCESS);
-		if (ft_strlen(input) != 0)
+		add_history(input);
+		if (input && only_space(input) && ft_strlen(input) != 0)
 		{
-			add_history(input);
-			if (!ft_pars(input, d))
-				return (ft_error(d, 1));//code ?
-			////////////////////////////////////////////////
-			////// temporaire
-			///////////////////////////////////////////////
-			int i;
-			int j = 0;
-			while (d->all->first)
-			{
-				printf("==============\n");
-				i = 0;
-				while (d->all->first->pars_tab[i])
-				{
-					printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
-					i++;
-				}
-				printf("---------------\n");
-				d->all->first = d->all->first->next;
-				j++;
-			}
-			// int i = 0;
-			// while (d->env_list)
-			// {
-			// 	printf("[%d] = %s = %s\n", i, d->env_list->name, d->env_list->content);
-			// 	d->env_list = d->env_list->next;
-			// 	i++;
-			// }
-			/////////////////////////////////////////////
-			//////////// fin temporaire
-			/////////////////////////////////////////////
-			// if (execpipe(d, env))
-			// 	return (ft_error(d, 0));//code ?
+			if (!ft_pars(input))
+				return (ft_exit(1));
+			// if (execpipe(env))
+			// 	return (ft_exit(0));
+			free(input);
 		}
-		free(input);
+		else
+			return (ft_basic_exit());
 	}
 	return (0);
 }
+
+
+			// int i;
+			// int j = 0;
+			// while (d->all->first)
+			// {
+			// 	printf("==============\n");
+			// 	i = 0;
+			// 	while (d->all->first->pars_tab[i])
+			// 	{
+			// 		printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
+			// 		i++;
+			// 	}
+			// 	printf("---------------\n");
+			// 	d->all->first = d->all->first->next;
+			// 	j++;
+			// }
+			// // int i = 0;
+			// // while (d->env_list)
+			// // {
+			// // 	printf("[%d] = %s = %s\n", i, d->env_list->name, d->env_list->content);
+			// // 	d->env_list = d->env_list->next;
+			// // 	i++;
+			// // }

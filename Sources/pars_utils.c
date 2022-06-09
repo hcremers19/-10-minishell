@@ -38,31 +38,6 @@ int	nb_spec_char(char **tab, int c, int len)
 	return (count);
 }
 
-int	len_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab && tab[i])
-		i++;
-	return (i);
-}
-
-int	len_tab_string(char **tab)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (tab && tab[i])
-	{
-		count += ft_strlen(tab[i]);
-		i++;
-	}
-	return (count);
-}
-
 char	**copy_line_tab(char **tab, t_data *d, int i)
 {
 	int		j;

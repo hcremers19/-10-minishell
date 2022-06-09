@@ -24,3 +24,26 @@ void	ft_free_tab(char **tab)
 	}
 	free(tab);
 }
+
+void	ft_free_lst(t_list *list)
+{
+	t_list	*tmp;
+
+	while (list->next)
+	{
+		tmp = list;
+		if (tmp->content)
+			free(tmp->content);
+		if (tmp->name)
+			free(tmp->name);
+		list = tmp->next;
+		if (tmp)
+			free(tmp);
+	}
+	if (list->content)
+		free(list->content);
+	if (list->name)
+		free(list->name);
+	if (list)
+		free(list);
+}
