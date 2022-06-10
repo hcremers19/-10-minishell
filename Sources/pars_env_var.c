@@ -54,7 +54,7 @@ char	*env_or_not_env(char *str)
 			d.env_list = d.env_list->next;
 	}
 	d.env_list = tmp;
-	return (BSN);
+	return ("");
 }
 
 char	*check_env_var(char *str)

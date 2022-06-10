@@ -31,6 +31,7 @@ int	init_data(char **env, t_data *d)
 	d->all->init_tab = (char **)malloc(sizeof(char *));
 	if (!d->all->init_tab)
 		return (-19);
+	d->s_err = 12;
 	d->s_free = 3;
 	d->pid = 0;
 	printf("\033[H\033[J");

@@ -24,9 +24,12 @@ int	loop_check_env(t_one *cmd)
 			 || (check_c_in(cmd->pars_tab[j], '$') >= 0
 			  && cmd->pars_tab[j][0] != '\''))
 		{
-			cmd->pars_tab[j] = check_env_var(cmd->pars_tab[j]);
-			if (!cmd->pars_tab[j])
-				return (-19);
+			while (check_c_in(cmd->pars_tab[j], '$') >= 0)
+			{
+				cmd->pars_tab[j] = check_env_var(cmd->pars_tab[j]);
+				if (!cmd->pars_tab[j])
+					return (-19);
+			}
 		}
 		j++;
 	}

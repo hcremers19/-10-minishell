@@ -29,32 +29,6 @@ void	ft_env_lstdelone(t_env *lst, void (*del)(void*))
 	free(lst);
 }
 
-t_env	*ft_env_lstnew(char *name, char *content)
-{
-	t_env	*elmt;
-
-	elmt = (t_env *)malloc(sizeof(t_env));
-	if (!elmt)
-		return (0);
-	elmt->name = name;
-	elmt->content = content;
-	elmt->next = 0;
-	return (elmt);
-}
-
-t_env	*ft_env_lstlast(t_env *lst)
-{
-	if (!lst)
-		return (0);
-	while (lst)
-	{
-		if (lst->next == 0)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
-}
-
 void	ft_env_lstadd_back(t_env **lst, t_env *new)
 {
 	t_env	*temp;
@@ -68,19 +42,3 @@ void	ft_env_lstadd_back(t_env **lst, t_env *new)
 		*lst = new;
 }
 
-t_env	*ft_env_lststr(t_env *lst, char *name) // À tester !
-{
-	t_env	*tmp;
-
-	tmp = lst;
-	while (lst->next)
-	{
-		if (ft_strlen(lst->name) == ft_strlen(name)
-			&& !ft_strncmp(lst->name, name, ft_strlen(lst->name)))
-			return (lst);
-		else
-			lst = lst->next;
-	}
-	lst = tmp;
-	return (0);
-}

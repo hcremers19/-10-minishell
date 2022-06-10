@@ -35,6 +35,7 @@ SRC		= 	main.c			\
 			pars_utils.c	\
 			tab_utils.c 	\
 			lst_env.c		\
+			lst_env1.c		\
 			utils.c			\
 			ft_free.c		\
 			ft_error.c		\

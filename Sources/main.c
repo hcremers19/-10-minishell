@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **env)
 	if (ac != 1)
 		return (ft_pre_malloc_error(7));
 	if (init_data(env, &d))
-		return (ft_free_exit(12));
+		return (ft_free_exit());
 	while (19)
 	{
 		ft_signal();
@@ -30,7 +30,8 @@ int	main(int ac, char **av, char **env)
 		if (input && only_space(input) && ft_strlen(input) != 0)
 		{
 			if (!ft_pars(input))
-				return (ft_free_exit(1));
+				return (ft_free_exit());
+			free(input);
 //////////////////////////////////////////////////////////////////////////////////////////////
 			int i;
 			int j = 0;
@@ -54,10 +55,9 @@ int	main(int ac, char **av, char **env)
 			// 	d.env_list = d.env_list->next;
 			// 	i++;
 			// }
+//////////////////////////////////////////////////////////////////////////////////////////////
 			// if (execpipe(env))
 			// 	return (ft_free_exit(0));
-//////////////////////////////////////////////////////////////////////////////////////////////
-			free(input);
 		}
 		else
 			return (ft_basic_exit());

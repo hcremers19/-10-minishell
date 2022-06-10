@@ -27,22 +27,18 @@ int pars_len(char const *s, int i)
 			stat = 2;
 		else if ((s[i + len] == 39 || s[i + len] == 34) && stat != 0)
 			stat = 0;
-		if (stat == 0 && (s[i + len] == 60 || s[i + len] == 62 || s[i + len] == 124))
-		{// 60 = plus petit ; 62 = plus grand ; 124 = pipe
-			if (s[i + len] == s[i + len + 1])
-			{
-				if (len == 0)
+		if (stat == 0 && (s[i + len] == 60 || s[i + len] == 62 || s[i + len] == 124))// 60 = plus petit ; 62 = plus grand ; 124 = pipe
+		{
+			if (s[i + len] == s[i + len + 1] && len == 0)
 					len += 2;
-			}
-			else
-			{
-				if (len == 0)
-					len ++;
-			}
+			else if (len == 0)
+					len++;
 			break ;
 		}
 		len++;
 	}
+	if (stat != 0)
+		return (-19);
 	return (len);
 }
 
@@ -62,6 +58,8 @@ int	pars_count(char const *s)
 		len = pars_len(s, i);
 		if (len != 0)
 			count++;
+		else if ((int)len == -19)
+			return (-19);
 		i += len;
 	}
 	return (count);
@@ -97,8 +95,11 @@ char	**ft_pars_line(char const *s)
 	char	**tab;
 
 	i = 0;
-	if (!s)
+	if (pars_count(s) == -19)
+	{
+		d.s_err = 22;
 		return (NULL);
+	}
 	tab = (char **)malloc(sizeof(char *) * (pars_count(s) + 1));
 	if (!tab)
 		return (NULL);

@@ -34,24 +34,22 @@
 
 # include "../Sources/libft/libft.h"
 
-
 /****************************************************/
 /*		DEFINES										*/
 /****************************************************/
 
 /*--	Variables-----------------------*/
 
-# define BSN	"\n"
 # define SCREEN "\x1b[33m\
 * ************************************************************************ *\n\
 *                                                                          *\n\
 *                                                      :::      ::::::::   *\n\
 *   MINI_SHEH                                        :+:      :+:    :+:   *\n\
 *                                                  +:+ +:+         +:+     *\n\
-*   By: acaillea, agoloube & hcremers            +#+  +:+       +#+        *\n\
+*   By: acaillea & hcremers                      +#+  +:+       +#+        *\n\
 *                                              +#+#+#+#+#+   +#+           *\n\
 *   Created: 2022/04/11                             #+#    #+#             *\n\
-*   Updated: ?                                     ###   ###########       *\n\
+*   Updated:                                       ###   ###########       *\n\
 *                                                                          *\n\
 * ************************************************************************ *\n\
 \033[0;39m"
@@ -73,6 +71,7 @@ struct s_data
 {
 	int				pid;
 	int				s_free;
+	int				s_err;
 	struct s_all	*all;
 	struct termios	old;
 	struct termios	new;
@@ -97,7 +96,6 @@ struct s_one
 	int				pos;
 	int				infile;
 	int				outfile;
-	// char 			*cmd;
 	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
@@ -174,28 +172,16 @@ void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
 
 /*---	Ft_error.c ---------------------*/
-int		ft_free_exit(int e);
+int		ft_free_exit(void);
 int		ft_basic_exit(void);
 int		ft_pre_malloc_error(int e);
 
 /*--	Execpipe.c ---------------------*/
 // int 	execpipe(t_data *d, char **env);
 
-// /*--	Pipe.c -------------------------*/
-// int 	ft_pipe(char **tab, t_data *d, char **env);
-// void	here_doc(char *limiter, int nb);
-// void	child_process(char *tab, char **envp);
-// int 	open_file(char *tab, int i);
-// void	parent_process(char **argv, char **envp, int *fd);
-
+/*--	Pipe.c -------------------------*/
 /*--	Pipe_utils.c -------------------*/
-// char	*get_cmd_path(char *cmd, char **envp);
-// void	ft_exec(char **argv, char **envp);
-// char	**ft_split(char const *s, char c);
-
-// /*--	Pipe_utils2.c ------------------*/
-// void 	usage(void);
-// int 	get_next_line(char **line);
+/*--	Pipe_utils2.c ------------------*/
 
 /*---	Tab_utils.c --------------------*/
 int		len_tab(char **tab);
@@ -206,6 +192,8 @@ char	**cpy_tab(char **in, int nb_line);
 void	ft_env_lstadd_front(t_env **lst, t_env *new);
 void	ft_env_lstdelone(t_env *lst, void (*del)(void*));
 void	ft_env_lstadd_back(t_env **lst, t_env *new);
+
+/*---	Lst_env1.c ----------------------*/
 t_env	*ft_env_lstnew(char *name, char *content);
 t_env	*ft_env_lstlast(t_env *lst);
 t_env	*ft_env_lststr(t_env *lst, char *name);

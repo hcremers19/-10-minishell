@@ -28,7 +28,7 @@ int	ft_basic_exit(void)
 	return (0);
 }
 
-int	ft_free_exit(int e)
+int	ft_free_exit(void)
 {
 	ft_basic_exit();
 	if (d.s_free > 0)
@@ -39,6 +39,7 @@ int	ft_free_exit(int e)
 			ft_free_tab(d.all->init_tab);
 		}
 	}
-	perror(strerror(e));
+	printf("%d\n", d.s_err);
+	perror(strerror(d.s_err));
 	return (0);
 }
