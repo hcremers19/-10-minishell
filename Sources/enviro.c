@@ -53,19 +53,19 @@ char	*keep_end(char *str)
 	return (ret);
 }
 
-t_list	*create_env(char **env)
+t_env	*create_env(char **env)
 {
 	int		i;
-	t_list	*env_list;
+	t_env	*env_list;
 
 	i = 0;
-	env_list = ft_lstnew(keep_strt(env[i]), keep_end(env[i]));
+	env_list = ft_env_lstnew(keep_strt(env[i]), keep_end(env[i]));
 	i++;
 	while (env[i])
 	{
-		ft_lstadd_back(&env_list, ft_lstnew(keep_strt(env[i]), keep_end(env[i])));
+		ft_env_lstadd_back(&env_list, ft_env_lstnew(keep_strt(env[i]), keep_end(env[i])));
 		i++;
 	}
-	ft_lstadd_back(&env_list, ft_lstnew(NULL, NULL));
+	ft_env_lstadd_back(&env_list, ft_env_lstnew(NULL, NULL));
 	return (env_list);
 }

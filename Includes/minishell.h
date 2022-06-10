@@ -65,6 +65,7 @@
 typedef struct s_data	t_data;
 typedef struct s_all	t_all;
 typedef struct s_one	t_one;
+typedef struct s_env	t_env;
 
 /*----- All datas-----------------------*/
 
@@ -76,8 +77,8 @@ struct s_data
 	struct termios	old;
 	struct termios	new;
 	char			**env_tab;
-	t_list			*env_list;
-	t_list			*tmp_list;
+	struct s_env	*env_list;
+	struct s_env	*tmp_list;
 };
 
 /*-----	All commandes datas-------------*/
@@ -100,6 +101,15 @@ struct s_one
 	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
+};
+
+/*-----	Environnement-------------------*/
+
+struct s_env
+{
+	char			*name;
+	char			*content;
+	struct s_env	*next;
 };
 
 /****************************************************/
@@ -146,34 +156,22 @@ void	handler(int sig);
 
 /*--	Builtins.c ---------------------*/
 void	ft_exit(void);
-void	ft_unset(t_list *env_list, char *name);
-void	ft_export(t_list *env_list, t_list *tmp_list, char *name);
-void	tmp_var(t_list *tmp_list, char *name, char *content);
-void	ft_env(t_list *env_list);
+void	ft_unset(t_env *env_list, char *name);
+void	ft_export(t_env *env_list, t_env *tmp_list, char *name);
+void	tmp_var(t_env *tmp_list, char *name, char *content);
+void	ft_env(t_env *env_list);
 void	ft_cd(char *path);
 void	ft_pwd(void);
 void	ft_echo(char *str, int n);
 
 /*---	Enviro.c -----------------------*/
-t_list	*create_env(char **env);
+t_env	*create_env(char **env);
 char	*keep_end(char *str);
 char	*keep_strt(char *str);
 
-/*---	Tab_utils.c --------------------*/
-int		len_tab(char **tab);
-int		len_tab_string(char **tab);
-char	**cpy_tab(char **in, int nb_line);
-
-/*---	Utils.c ------------------------*/
-size_t	ft_strcpy(char *dst, const char *src);
-int		check_c_in(char *str, char c);
-int		count_c_in(char *str, char c);
-int		only_space(char *s);
-char	*ft_strcat(char *dest, char *src);
-
 /*---	Ft_free.c ----------------------*/
 void	ft_free_tab(char **tab);
-void	ft_free_lst(t_list *env_list);
+void	ft_free_lst(t_env *env_list);
 
 /*---	Ft_error.c ---------------------*/
 int		ft_free_exit(int e);
@@ -198,5 +196,25 @@ int		ft_pre_malloc_error(int e);
 // /*--	Pipe_utils2.c ------------------*/
 // void 	usage(void);
 // int 	get_next_line(char **line);
+
+/*---	Tab_utils.c --------------------*/
+int		len_tab(char **tab);
+int		len_tab_string(char **tab);
+char	**cpy_tab(char **in, int nb_line);
+
+/*---	Lst_env.c -----------------------*/
+void	ft_env_lstadd_front(t_env **lst, t_env *new);
+void	ft_env_lstdelone(t_env *lst, void (*del)(void*));
+void	ft_env_lstadd_back(t_env **lst, t_env *new);
+t_env	*ft_env_lstnew(char *name, char *content);
+t_env	*ft_env_lstlast(t_env *lst);
+t_env	*ft_env_lststr(t_env *lst, char *name);
+
+/*---	Utils.c ------------------------*/
+size_t	ft_strcpy(char *dst, const char *src);
+int		check_c_in(char *str, char c);
+int		count_c_in(char *str, char c);
+int		only_space(char *s);
+char	*ft_strcat(char *dest, char *src);
 
 #endif

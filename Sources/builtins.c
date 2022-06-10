@@ -17,23 +17,23 @@
 // 	exit(EXIT_SUCCESS);
 // } // À élaborer
 
-// void	ft_unset(t_list *env_list, char *name)
+// void	ft_unset(t_env *env_list, char *name)
 // {
 // 	ft_lstdelone(env_list, ft_lststr(env_list, name));
 // }
 
-// void	ft_export(t_list *env_list, t_list *tmp_list, char *name)
+// void	ft_export(t_env *env_list, t_env *tmp_list, char *name)
 // {
 // 	ft_lstadd_back(&env_list, ft_lststr(tmp_list, name));
 // 	ft_lstdelone(tmp_list, ft_lststr(tmp_list, name));
 // }
 
-// void	tmp_var(t_list *tmp_list, char *name, char *content)
+// void	tmp_var(t_env *tmp_list, char *name, char *content)
 // {
 // 	ft_lstadd_front(&tmp_list, ft_lstnew(name, content));
 // }
 
-// void	ft_env(t_list *env_list)
+// void	ft_env(t_env *env_list)
 // {
 // 	while (env_list->next)
 // 	{

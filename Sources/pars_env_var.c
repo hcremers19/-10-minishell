@@ -34,7 +34,7 @@ char	*join_mat(char **tab)
 
 char	*env_or_not_env(char *str)
 {
-	t_list	*tmp;
+	t_env	*tmp;
 	char	*ret;
 
 	tmp = d.env_list;

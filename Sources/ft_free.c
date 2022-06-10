@@ -25,9 +25,9 @@ void	ft_free_tab(char **tab)
 	free(tab);
 }
 
-void	ft_free_lst(t_list *list)
+void	ft_free_lst(t_env *list)
 {
-	t_list	*tmp;
+	t_env	*tmp;
 
 	while (list->next)
 	{
