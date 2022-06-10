@@ -16,11 +16,11 @@ void	ft_free_tab(char **tab)
 {
 	int	i;
 
-	i = 0;
+	i = len_tab(tab) - 1;
 	while (tab && tab[i])
 	{
 		free(tab[i]);
-		i++;
+		i--;
 	}
 	free(tab);
 }

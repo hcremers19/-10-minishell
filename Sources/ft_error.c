@@ -20,7 +20,7 @@ int	ft_pre_malloc_error(int e)
 
 int	ft_basic_exit(void)
 {
-	ft_free_tab(d.env);
+	ft_free_tab(d.env_tab);
 	ft_free_lst(d.env_list);
 	if (d.tmp_list)
 		ft_free_lst(d.tmp_list);
@@ -28,7 +28,7 @@ int	ft_basic_exit(void)
 	return (0);
 }
 
-int	ft_exit(int e)
+int	ft_free_exit(int e)
 {
 	ft_basic_exit();
 	if (d.s_free > 0)
@@ -39,4 +39,6 @@ int	ft_exit(int e)
 			ft_free_tab(d.all->init_tab);
 		}
 	}
+	perror(strerror(e));
+	return (0);
 }

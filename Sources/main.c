@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **env)
 	if (ac != 1)
 		return (ft_pre_malloc_error(7));
 	if (init_data(env, &d))
-		return (ft_exit(12));
+		return (ft_free_exit(12));
 	while (19)
 	{
 		ft_signal();
@@ -30,9 +30,33 @@ int	main(int ac, char **av, char **env)
 		if (input && only_space(input) && ft_strlen(input) != 0)
 		{
 			if (!ft_pars(input))
-				return (ft_exit(1));
+				return (ft_free_exit(1));
+//////////////////////////////////////////////////////////////////////////////////////////////
+			int i;
+			int j = 0;
+			while (d.all->first)
+			{
+				printf("==============\n");
+				i = 0;
+				while (d.all->first->pars_tab[i])
+				{
+					printf("PARS[%d] -> %d = %s\n", j, i, d.all->first->pars_tab[i]);
+					i++;
+				}
+				printf("---------------\n");
+				d.all->first = d.all->first->next;
+				j++;
+			}
+			// int i = 0;
+			// while (d.env_list)
+			// {
+			// 	printf("[%d] = %s = %s\n", i, d.env_list->name, d.env_list->content);
+			// 	d.env_list = d.env_list->next;
+			// 	i++;
+			// }
 			// if (execpipe(env))
-			// 	return (ft_exit(0));
+			// 	return (ft_free_exit(0));
+//////////////////////////////////////////////////////////////////////////////////////////////
 			free(input);
 		}
 		else
@@ -42,25 +66,4 @@ int	main(int ac, char **av, char **env)
 }
 
 
-			// int i;
-			// int j = 0;
-			// while (d->all->first)
-			// {
-			// 	printf("==============\n");
-			// 	i = 0;
-			// 	while (d->all->first->pars_tab[i])
-			// 	{
-			// 		printf("PARS[%d] -> %d = %s\n", j, i, d->all->first->pars_tab[i]);
-			// 		i++;
-			// 	}
-			// 	printf("---------------\n");
-			// 	d->all->first = d->all->first->next;
-			// 	j++;
-			// }
-			// // int i = 0;
-			// // while (d->env_list)
-			// // {
-			// // 	printf("[%d] = %s = %s\n", i, d->env_list->name, d->env_list->content);
-			// // 	d->env_list = d->env_list->next;
-			// // 	i++;
-			// // }
+

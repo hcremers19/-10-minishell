@@ -62,8 +62,8 @@ int	only_space(char *s)
 {
 	int	i;
 
-	i = ft_strlen(str) - 1;
-	while (x >= 0  && (s[i] == 9 || s[i] == 32))
+	i = ft_strlen(s) - 1;
+	while (i >= 0  && (s[i] == 9 || s[i] == 32))
 		i--;
 	return (i);
 }

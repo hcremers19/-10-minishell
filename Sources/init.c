@@ -19,7 +19,7 @@ int	init_data(char **env, t_data *d)
 	tcgetattr(0, &d->new);
 	d->new.c_lflag &= ~(ECHOCTL);
 	tcsetattr(0, TCSANOW, &d->new);
-	d->env_tab = copy_tab(env, len_tab);
+	d->env_tab = cpy_tab(env, len_tab(env));
 	if (!d->env_tab)
 		return (-19);
 	d->env_list = create_env(env);
@@ -33,7 +33,7 @@ int	init_data(char **env, t_data *d)
 		return (-19);
 	d->s_free = 3;
 	d->pid = 0;
-	ft_putstr_fd("\033[H\033[J", 1);
-	ft_putstr_fd(SCREEN, 1);
+	printf("\033[H\033[J");
+	printf(SCREEN);
 	return (0);
 }

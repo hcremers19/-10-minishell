@@ -38,7 +38,7 @@ int	nb_spec_char(char **tab, int c, int len)
 	return (count);
 }
 
-char	**copy_line_tab(char **tab, t_data *d, int i)
+char	**copy_line_tab(char **tab, int i)
 {
 	int		j;
 	int		k;
@@ -46,7 +46,7 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 
 	j = i;
 	k = 0;
-	init = d->all->init_tab;
+	init = d.all->init_tab;
 	while (init[j] && init[j][0] != '|') //&& ft_strlen(init[j]) != 1)
 		j++;
 	if (!j)
@@ -83,34 +83,6 @@ char	**copy_line_tab(char **tab, t_data *d, int i)
 // 		i++;
 // 	}
 // 	return (count);
-// }
-
-// char	**copy_tab(char **in)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	**out;
-
-// 	i = 0;
-// 	j = 0;
-// 	out = (char **)malloc(sizeof(char *) * (len_tab(in) + 1));
-// 	if (!out)
-// 		return (NULL);
-// 	while (i < len_tab(in))
-// 	{
-// 		if (in[i][0] != '|' && ft_strlen(in[i]) != 1)
-// 		{
-// 			out[j] = (char *)malloc(sizeof(char) * (ft_strlen(in[i]) + 1));
-// 			if (!out[j])
-// 				return (NULL);
-// 			ft_strlcpy(out[j], in[i], ft_strlen(in[i]));
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// //	free matrice in ici ??????
-// 	out[j] = 0;
-// 	return (out);
 // }
 
 // int	get_type(t_one *stru)

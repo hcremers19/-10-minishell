@@ -48,7 +48,7 @@ char	**cpy_tab(char **in, int nb_line)
 	i = 0;
 	while (i < nb_line)
 	{
-		out[i] = (char *)malloc(sizeof(char) * (ft_strlen(int[i]) + 1));
+		out[i] = (char *)malloc(sizeof(char) * (ft_strlen(in[i]) + 1));
 		if (!out)
 			return (NULL);
 		ft_strcpy(out[i], in[i]);

@@ -28,6 +28,7 @@
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <termios.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 
@@ -39,7 +40,6 @@
 /****************************************************/
 
 /*--	Variables-----------------------*/
-t_data	d;
 
 # define BSN	"\n"
 # define SCREEN "\x1b[33m\
@@ -96,11 +96,17 @@ struct s_one
 	int				pos;
 	int				infile;
 	int				outfile;
-	char 			*cmd;
+	// char 			*cmd;
 	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
 };
+
+/****************************************************/
+/*		TOAO GLOBAL VARIABLE						*/
+/****************************************************/
+
+t_data	d;
 
 /****************************************************/
 /*		PROTOTYPES									*/
@@ -118,21 +124,20 @@ int 	pars_len(char const *s, int i);
 int		pars_count(char const *s);
 char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
-t_one	*ft_pars(char const *s, t_data *d);
+t_one	*ft_pars(char const *s);
 
 /*--	Pars_end.c ---------------------*/
-int		loop_check_env(t_one *cmd, t_data *d);
-int		init_cmds(t_data *d);
+int		loop_check_env(t_one *cmd);
+int		init_cmds(void);
 
 /*--	Pars_env_var.c -----------------*/
-char	*env_or_not_env(char *str, t_data *d);
-char	*check_env_var(char *str, t_data *d);
+char	*env_or_not_env(char *str);
+char	*check_env_var(char *str);
 char	*join_mat(char **tab);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
-char	**copy_line_tab(char **tab, t_data *d, int i);
-// char	**copy_tab(char **in);
+char	**copy_line_tab(char **tab, int i);
 // int		nb_pipe(char **tab);
 
 /*--	Signal.c -----------------------*/
@@ -171,6 +176,7 @@ void	ft_free_tab(char **tab);
 void	ft_free_lst(t_list *env_list);
 
 /*---	Ft_error.c ---------------------*/
+int		ft_free_exit(int e);
 int		ft_basic_exit(void);
 int		ft_pre_malloc_error(int e);
 

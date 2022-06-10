@@ -32,32 +32,32 @@ char	*join_mat(char **tab)
 	return (str);
 }
 
-char	*env_or_not_env(char *str, t_data *d)
+char	*env_or_not_env(char *str)
 {
 	t_list	*tmp;
 	char	*ret;
 
-	tmp = d->env_list;
-	while (d->env_list && str)
+	tmp = d.env_list;
+	while (d.env_list && str)
 	{
-		if (!ft_strncmp(str, d->env_list->name, ft_strlen(str)))
+		if (!ft_strncmp(str, d.env_list->name, ft_strlen(str)))
 		{
-			ret = (char *)malloc(sizeof(char) * (ft_strlen(d->env_list->content) + 1));
+			ret = (char *)malloc(sizeof(char) * (ft_strlen(d.env_list->content) + 1));
 			if (!ret)
 				return (NULL);
-			ret = d->env_list->content;
+			ret = d.env_list->content;
 			// free(str);
-			d->env_list = tmp;
+			d.env_list = tmp;
 			return (ret);
 		}
 		else
-			d->env_list = d->env_list->next;
+			d.env_list = d.env_list->next;
 	}
-	d->env_list = tmp;
+	d.env_list = tmp;
 	return (BSN);
 }
 
-char	*check_env_var(char *str, t_data *d)
+char	*check_env_var(char *str)
 {
 	int		j;
 	int		k;
@@ -91,7 +91,7 @@ char	*check_env_var(char *str, t_data *d)
 	else
 		return (str);
 	// printf("===== %d - %s\n", t, tmp_tab[t]);
-	tmp_tab[t] = env_or_not_env(tmp_tab[t], d);
+	tmp_tab[t] = env_or_not_env(tmp_tab[t]);
 	if (!tmp_tab[t])
 		return (NULL);
 	// printf("===== %d - %s\n", t, tmp_tab[t]);
