@@ -14,20 +14,19 @@
 
 int pars_len(char const *s, int i)
 {
-	int	stat;
 	int	len;
 
 	len = 0;
-	stat = 0;
-	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) || stat != 0))
+	d.all->in_stat = 0;
+	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) || d.all->in_stat != 0))
 	{// 9 = tab, 32 = space
-		if (stat == 0 && s[i + len] == 39)// 39 = simple guillemet
-			stat = 1;
-		else if (stat == 0 && s[i + len] == 34)// 34 = double guillemet
-			stat = 2;
-		else if ((s[i + len] == 39 || s[i + len] == 34) && stat != 0)
-			stat = 0;
-		if (stat == 0 && (s[i + len] == 60 || s[i + len] == 62 || s[i + len] == 124))// 60 = plus petit ; 62 = plus grand ; 124 = pipe
+		if (d.all->in_stat == 0 && s[i + len] == 39)// 39 = simple guillemet
+			d.all->in_stat = 1;
+		else if (d.all->in_stat == 0 && s[i + len] == 34)// 34 = double guillemet
+			d.all->in_stat = 2;
+		else if ((s[i + len] == 39 || s[i + len] == 34) && d.all->in_stat != 0)
+			d.all->in_stat = 0;
+		if (d.all->in_stat == 0 && (s[i + len] == 60 || s[i + len] == 62 || s[i + len] == 124))// 60 = plus petit ; 62 = plus grand ; 124 = pipe
 		{
 			if (s[i + len] == s[i + len + 1] && len == 0)
 					len += 2;
@@ -37,8 +36,6 @@ int pars_len(char const *s, int i)
 		}
 		len++;
 	}
-	if (stat != 0)
-		return (-19);
 	return (len);
 }
 
@@ -58,8 +55,6 @@ int	pars_count(char const *s)
 		len = pars_len(s, i);
 		if (len != 0)
 			count++;
-		else if ((int)len == -19)
-			return (-19);
 		i += len;
 	}
 	return (count);
@@ -95,11 +90,6 @@ char	**ft_pars_line(char const *s)
 	char	**tab;
 
 	i = 0;
-	if (pars_count(s) == -19)
-	{
-		d.s_err = 22;
-		return (NULL);
-	}
 	tab = (char **)malloc(sizeof(char *) * (pars_count(s) + 1));
 	if (!tab)
 		return (NULL);
@@ -113,7 +103,7 @@ char	**ft_pars_line(char const *s)
 	return (tab);
 }
 
-t_one	*ft_pars(char const *s)
+t_one	*ft_pars(char *s)
 {
 	int		j;
 	int		i;

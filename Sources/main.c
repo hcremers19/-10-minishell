@@ -12,27 +12,27 @@
 
 #include "../Includes/minishell.h"
 
-int	main(int ac, char **av, char **env)
+int	main_loop(void)
 {
 	char	*input;
 
-	(void)av;
-	if (ac != 1)
-		return (ft_pre_malloc_error(7));
-	if (init_data(env, &d))
-		return (ft_free_exit());
 	while (19)
 	{
 		ft_signal();
 		rl_on_new_line();
 		input = readline(prompt());
 		add_history(input);
+		// free(prompt);
 		if (input && only_space(input) && ft_strlen(input) != 0)
 		{
-			if (!ft_pars(input))
-				return (ft_free_exit());
+			d.all->first = ft_pars(input);
 			free(input);
-//////////////////////////////////////////////////////////////////////////////////////////////
+			if (!d.all->first)
+				return (ft_free_exit());
+			printf("%d\n", d.s_err);
+			/*else if*/if (d.all->in_stat != 0)
+				printf("Input/output error: Non closed quotes\n");
+	//////////////////////////////////////////////////////////////////////////////////////////////
 			int i;
 			int j = 0;
 			while (d.all->first)
@@ -56,14 +56,22 @@ int	main(int ac, char **av, char **env)
 			// 	i++;
 			// }
 //////////////////////////////////////////////////////////////////////////////////////////////
-			// if (execpipe(env))
+			//else if (execpipe(env))
 			// 	return (ft_free_exit(0));
 		}
-		else
+		else if (!input)
 			return (ft_basic_exit());
 	}
 	return (0);
 }
 
-
-
+int	main(int ac, char **av, char **env)
+{
+	(void)av;
+	if (ac != 1)
+		return (ft_pre_malloc_error(7));
+	if (init_data(env, &d))
+		return (ft_free_exit());
+	main_loop();
+	return (0);
+}

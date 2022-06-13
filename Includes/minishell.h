@@ -85,6 +85,7 @@ struct s_data
 struct s_all
 {
 	int				nb_cmd;
+	int				in_stat;
 	char			**init_tab;
 	struct s_one	*first;
 };
@@ -132,7 +133,7 @@ int 	pars_len(char const *s, int i);
 int		pars_count(char const *s);
 char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
-t_one	*ft_pars(char const *s);
+t_one	*ft_pars(char *s);
 
 /*--	Pars_end.c ---------------------*/
 int		loop_check_env(t_one *cmd);

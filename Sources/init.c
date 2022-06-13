@@ -24,7 +24,7 @@ int	init_data(char **env, t_data *d)
 		return (-19);
 	d->env_list = create_env(env);
 	d->tmp_list = ft_env_lstnew(NULL, NULL);
-	d->all = (t_all *)malloc(sizeof(t_all *));
+	d->all = (t_all *)malloc(sizeof(t_all));
 	if (!d->all)
 		return (-19);
 	d->s_free = 1;

@@ -39,7 +39,6 @@ int	ft_free_exit(void)
 			ft_free_tab(d.all->init_tab);
 		}
 	}
-	printf("%d\n", d.s_err);
 	perror(strerror(d.s_err));
 	return (0);
 }
