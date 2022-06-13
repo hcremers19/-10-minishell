@@ -17,7 +17,7 @@ void	ft_free_tab(char **tab)
 	int	i;
 
 	i = len_tab(tab) - 1;
-	while (tab && tab[i])
+	while (i >= 0)
 	{
 		free(tab[i]);
 		i--;

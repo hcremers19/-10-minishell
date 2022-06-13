@@ -115,9 +115,11 @@ t_one	*ft_pars(char *s)
 	d.all->init_tab = ft_pars_line(s);
 	if (!d.all->init_tab)
 		return (NULL);
+	d.s_free = 5;////////////////////////////////////////////////////
 	d.all->first = (t_one *)malloc(sizeof(t_one));
 	if (!d.all->first)
 		return (NULL);
+	d.s_free = 7;
 	tmp = d.all->first;
 	init_tmp = d.all->first;/////// utile ?
 	while (tmp) 

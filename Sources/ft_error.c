@@ -37,8 +37,17 @@ int	ft_free_exit(void)
 		if (d.s_free > 2)
 		{
 			ft_free_tab(d.all->init_tab);
+			if (d.s_free > 4)
+			{
+				free(d.all->frist);
+				if (d.s_free > 6)
+				{
+					
+				}
+			}
 		}
 	}
-	perror(strerror(d.s_err));
+	if (d.s_err)
+		perror(strerror(d.s_err));
 	return (0);
 }

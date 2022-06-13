@@ -34,6 +34,8 @@
 
 # include "../Sources/libft/libft.h"
 
+// # include "../wraloc/wraloc.h"
+
 /****************************************************/
 /*		DEFINES										*/
 /****************************************************/
@@ -123,10 +125,6 @@ t_data	d;
 
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *d);
-
-/*--	Prompt.c -----------------------*/
-char	*prompt(void);
-// void print_dir(void);
 
 /*--	Pars.c -------------------------*/
 int 	pars_len(char const *s, int i);
