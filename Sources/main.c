@@ -36,11 +36,11 @@ int	main_loop(void)
 				printf("Input/output error: Non closed quotes\n");
 				ft_free_exit();
 			}
-			// else if (execpipe())
-			// {
-			// 	d.s_err = 0;
-			// 	ft_free_exit();
-			// }
+			else if (execpipe())
+			{
+				d.s_err = 0;
+				ft_free_exit();
+			}
 		}
 		else if (!input)
 		{

@@ -99,8 +99,10 @@ struct s_all
 struct s_one
 {
 	int				pos;
+	int				level;
 	int				infile;
 	int				outfile;
+	char			*cmd;
 	char			**pars_tab;
 	struct s_one	*next;
 	struct s_all	*all;
@@ -138,6 +140,7 @@ t_one	*ft_pars(char *s);
 /*--	Pars_end.c ---------------------*/
 int		loop_check_env(t_one *cmd);
 int		init_cmds(void);
+int		get_level(t_one *cmd, int i);
 
 /*--	Pars_env_var.c -----------------*/
 char	*env_or_not_env(char *str);
@@ -178,11 +181,31 @@ int		ft_basic_exit(void);
 int		ft_pre_malloc_error(int e);
 
 /*--	Execpipe.c ---------------------*/
-// int 	execpipe(t_data *d, char **env);
+int 	execpipe(void);
+int 	check_builtin(t_one *cmd);
+int 	builtin_cmds_env(t_one *cmd);
 
+////////////////////////////////////////////////////////////////
 /*--	Pipe.c -------------------------*/
+void	process(char *envp[], char **all_cmd, t_one *cmd, int to_exec);
+void	child_process(t_all *all, t_one *cmd, int next_fd[2], int pre_fd[2]);
+void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2]);
+void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd);
+
 /*--	Pipe_utils.c -------------------*/
+char	**get_path(char *env[]);
+void	close_pipe(int fd[2]);
+void	ft_free(char **paths, char **cmd);
+void	perror_cnf(char *str, char *cmd, int fd);
+void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str);
+
 /*--	Pipe_utils2.c ------------------*/
+int		no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex);
+char	*find_cmd_path(char **paths, t_one *cmd, char **all_cmd);
+void	ft_redirection(int fd_in, int fd_out, int simple, int first);
+void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd);
+void	clean_mat_and_exit(char **paths);
+////////////////////////////////////////////////////////////////////
 
 /*---	Tab_utils.c --------------------*/
 int		len_tab(char **tab);

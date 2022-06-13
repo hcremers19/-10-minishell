@@ -12,35 +12,22 @@
 
 #include "../Includes/minishell.h"
 
-// int execpipe(t_data *d, char **env)
-// {
-//     t_one   *tmp;
-//     char *tab;
-//     int i;
+int execpipe(void)
+{
+    int 	i;
+	int		fd[2];
 
-//     i = 0;
-//     tmp = d->all->first;
-//     while (d->all->first)
-//     {
-//         d->all->first == copy_line_tab(tab, d->all->first, i);
-//         if (builtin_cmds != 0)
-//         {
-
-//         }
-
-
-//         // if (ft_pipe(d->all->first->pars_tab, d, env))
-//         //     return (-19);
-//         // d->all->first = d->all->first->next;
-//     }
-//     d->all->first = tmp;
-//     return (0);
-// }
+    i = 0;
+	fd[0] = 6;
+	fd[1] = 6;
+    pipe_rec(d.all, d.env_tab, fd, d.all->first);
+    return (0);
+}
 
 // int builtin_cmds_env(t_one *cmd)
 // {
 //     if (!ft_strncmp("export", cmd->cmd, 6))
-//         ft_export(ft_pars(cmd->all), cmd->all);
+//         ft_export(d.all->env_list, d.all->tmp_list, cmd->pars_tab[1]);
 //     else if(!ft_strncmp("cd", cmd->cmd, 2))
 //         ft_cd(ft_pars(cmd->all), cmd->all);
 //     else if(!ft_strncmp("unset", cmd->cmd, 5))
@@ -66,13 +53,13 @@
 //     return (0);
 // }
 
-// int check_builtin(t_one *cmd)
-// {
-//     return (!ft_strncmp("export", cmd->cmd, 6))
-//         || (!ft_strncmp("cd", cmd->cmd, 2))
-//         || (!ft_strncmp("unset", cmd->cmd, 5))
-//         || (!ft_strncmp("exit", cmd->cmd, 4))
-//         || (!ft_strncmp("pwd", cmd->cmd, 3))
-//         || (!ft_strncmp("env", cmd->cmd, 3))
-//         || (!ft_strncmp("echo", cmd->cmd, 4)));
-// }
+int check_builtin(t_one *cmd)
+{
+    return (!ft_strncmp("export", cmd->cmd, 6))
+        || (!ft_strncmp("cd", cmd->cmd, 2))
+        || (!ft_strncmp("unset", cmd->cmd, 5))
+        || (!ft_strncmp("exit", cmd->cmd, 4))
+        || (!ft_strncmp("pwd", cmd->cmd, 3))
+        || (!ft_strncmp("env", cmd->cmd, 3))
+        || (!ft_strncmp("echo", cmd->cmd, 4));
+}

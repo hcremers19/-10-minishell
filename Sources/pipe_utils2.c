@@ -18,7 +18,7 @@ int	no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex)
 	{
 		if (access(cmd->pars_tab[0], F_OK) == 0)
 		{
-			ft_clean_mat(paths);
+			ft_free_tab(paths);
 			execve(cmd->pars_tab[0], all_cmd, d.env_tab);
 		}
 		else if (!check_builtin(cmd))
@@ -92,20 +92,20 @@ void	ft_redirection(int fd_in, int fd_out, int simple, int first)
 
 void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd)
 {
-	if (cmd->type_next == 2)
+	if (cmd->level == 2)
 	{
 		if (cmd->infile == 0)
 			ft_redirection(next_fd[0], next_fd[1], 1, 1);
 		else
 			ft_redirection(cmd->infile, next_fd[1], 0, 1);
 	}
-	else if (all->nb_cmd > 1 && cmd->type_next != 0)
+	else if (all->nb_cmd > 1 && cmd->level != 0)
 	{
 		close(pre_fd[1]);
 		close(next_fd[0]);
 		ft_redirection(pre_fd[0], next_fd[1], 0, 0);
 	}
-	else if (all->nb_cmd > 1 && cmd->type_next == 0)
+	else if (all->nb_cmd > 1 && cmd->level == 0)
 	{
 		if (cmd->outfile == 1)
 			ft_redirection(pre_fd[0], pre_fd[1], 1, 0);
@@ -119,6 +119,6 @@ void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd)
 
 void	clean_mat_and_exit(char **paths)
 {
-	ft_clean_mat(paths);
+	ft_free_tab(paths);
 	exit (1);
 }

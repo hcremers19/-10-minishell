@@ -39,7 +39,7 @@ int	ft_free_exit(void)
 			ft_free_tab(d.all->init_tab);
 			if (d.s_free > 4)
 			{
-				free(d.all->frist);
+				free(d.all->first);
 				if (d.s_free > 6)
 				{
 					

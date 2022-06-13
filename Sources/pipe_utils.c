@@ -22,12 +22,12 @@ char	**get_path(char *env[])
 	while (env[++i])
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
 			break ;
-	if (i == ft_matrixlen(env))
+	if (i == len_tab(env))
 		return (NULL);
 	all_path = ft_substr(env[i], 5, ft_strlen(env[i]) - 5);
 	if (!all_path)
 		return (NULL);
-	split_path = ft_split_pipex(all_path, ':');
+	split_path = ft_split(all_path, ':');
 	if (!split_path)
 	{
 		free(all_path);
@@ -48,8 +48,8 @@ void	ft_free(char **paths, char **cmd)
 	int	path_len;
 	int	cmd_len;
 
-	path_len = ft_matrixlen(paths);
-	cmd_len = ft_matrixlen(cmd);
+	path_len = len_tab(paths);
+	cmd_len = len_tab(cmd);
 	while (paths && (path_len >= 0))
 		free(paths[path_len--]);
 	while (cmd && (cmd_len >= 0))

@@ -44,7 +44,7 @@
 
 // void	ft_cd(char *path)
 // {
-// 	//if (chdir(path) == -1)
+// 	if (chdir(path) == -1)
 // 		perror("chdir()");
 // }
 
