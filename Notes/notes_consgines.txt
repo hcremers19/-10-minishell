@@ -40,7 +40,7 @@ a) Fonctions autorisées :
 	•	execve : execute le programme correspondant au fichier (exécutable ou script).
 	•	dup : duplique un fd en utilisant le plus petit numéro inutilisé pour le nouveau fd.
 	•	dup2(oldfd, newfd) : idem sauf qu’il transforme le nerfs en une copie de oldfd fermant auparavant newfd si besoin.
-	•	pipe (pipefd[2]) : crée un tube, un canal unidirectionnel de données qui peut être utilisé pour la communication entre processus. Le tableau pipefd est utilisé pour renvoyé deux descripteurs de fichier faisant référence aux extrémités du tube.
+	•	pipe (pipefd[2]) : crée un tube, un canal unidirectionnel de données qui peut être utilisé pour la communication entre processus. Le tableau pipefd est utilisé pour renvoyer deux descripteurs de fichier faisant référence aux extrémités du tube.
 	•	opendir (name) : la fonction opendir() ouvre un flux répertoire correspondant au répertoire name, et renvoie un pointeur sur ce flux. Le flux est positionné sur la première entrée du répertoire.
 	•	readdir : consulter un repertoire, renvoie un pointeur sur une structure dirent représentant l'entrée suivante du flux répertoire pointé par dir, renvoie NULL à la fin du répertoire, ou en cas d'erreur.
 	•	closedir : ferme un repertoire, ferme le flux de répertoire associé à dir, après le descripteur dir du flux de répertoire n'est plus disponible.

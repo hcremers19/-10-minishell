@@ -1,46 +1,124 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_utils3.c                                      :+:      :+:    :+:   */
+/*   pipe_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:22 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/19 12:19:25 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:12:26 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-// int get_next_line(char **line)
-// {
-//     char *buffer;
-//     int i;
-//     int r;
-//     int c;
+int	no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex)
+{
+	if (!paths && to_ex)
+	{
+		if (access(cmd->pars_tab[0], F_OK) == 0)
+		{
+			ft_clean_mat(paths);
+			execve(cmd->pars_tab[0], all_cmd, d.env_tab);
+		}
+		else if (!check_builtin(cmd))
+		{
+			perror_cnf("command not found: ", all_cmd[0], 2);
+			d.last_command_status = 127;
+			exit (127);
+		}
+		return (1);
+	}
+	else if (!paths && !to_ex)
+		return (1);
+	return (0);
+}
 
-//     i = 0;
-//     r = 0;
-//     buffer = (char *)malloc(100000);
-//     if (!buffer)
-// 		return (-1);
-// 	r = read(0, &c, 1);
-// 	while (r && c != '\n' && c != '\0')
-// 	{
-// 		if (c != '\n' && c != '\0')
-// 			buffer[i] = c;
-// 		i++;
-// 		r = read(0, &c, 1);
-// 	}
-// 	buffer[i] = '\n';
-// 	buffer[++i] = '\0';
-// 	*line = buffer;
-// 	free(buffer);
-// 	return (r);
-// }
+char	*find_cmd_path(char **paths, t_one *cmd, char **all_cmd)
+{
+	int		i;
+	char	*tmp;
+	char	*cmd_path;
 
-// void usage(void)
-// {
-// 	ft_putstr_fd("Error: Bad argument", 2);
-// 	exit(EXIT_SUCCESS);
-// }
+	i = -1;
+	while (cmd->pars_tab[0] && paths && paths[++i])
+	{
+		cmd_path = ft_strjoin(paths[i], "/");
+		if (!cmd_path)
+			clean_mat_and_exit(paths);
+		if (ft_strncmp(cmd_path, all_cmd[0], ft_strlen(cmd_path)) == 0)
+			break ;
+		tmp = ft_strjoin(cmd_path, all_cmd[0]);
+		free(cmd_path);
+		if (!tmp)
+			clean_mat_and_exit(paths);
+		cmd_path = tmp;
+		if (!access(cmd_path, F_OK))
+			break ;
+		if (paths[i + 1])
+			free(cmd_path);
+	}
+	return (cmd_path);
+}
+
+void	ft_redirection(int fd_in, int fd_out, int simple, int first)
+{
+	if (simple == 1 && first == 1)
+	{
+		close(fd_in);
+		if (dup2(fd_out, 1) < 0)
+			return (perror("fd"));
+		close(fd_out);
+	}
+	else if (simple == 1 && first == 0)
+	{
+		close(fd_out);
+		if (dup2(fd_in, 0) < 0)
+			return (perror("fd"));
+		close(fd_in);
+	}
+	else
+	{
+		if (dup2(fd_out, 1) < 0 || dup2(fd_in, 0) < 0)
+		{
+			ft_putnbr_fd(fd_out, 1);
+			ft_putnbr_fd(fd_in, 1);
+			return (perror("fd"));
+		}
+		close(fd_out);
+		close(fd_in);
+	}
+}
+
+void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd)
+{
+	if (cmd->type_next == 2)
+	{
+		if (cmd->infile == 0)
+			ft_redirection(next_fd[0], next_fd[1], 1, 1);
+		else
+			ft_redirection(cmd->infile, next_fd[1], 0, 1);
+	}
+	else if (all->nb_cmd > 1 && cmd->type_next != 0)
+	{
+		close(pre_fd[1]);
+		close(next_fd[0]);
+		ft_redirection(pre_fd[0], next_fd[1], 0, 0);
+	}
+	else if (all->nb_cmd > 1 && cmd->type_next == 0)
+	{
+		if (cmd->outfile == 1)
+			ft_redirection(pre_fd[0], pre_fd[1], 1, 0);
+		else
+		{
+			close(pre_fd[1]);
+			ft_redirection(pre_fd[0], cmd->outfile, 0, 0);
+		}
+	}
+}
+
+void	clean_mat_and_exit(char **paths)
+{
+	ft_clean_mat(paths);
+	exit (1);
+}

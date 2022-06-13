@@ -3,126 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:10 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/19 12:19:14 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/13 15:06:33 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-// void	ft_exec(char **argv, char **envp)
-// {
-// 	char	**cmd;
+char	**get_path(char *env[])
+{
+	char	*all_path;
+	char	**split_path;
+	int		i;
 
-// 	cmd = ft_split(*argv, ' ');
-// 	if (execve(get_cmd_path(cmd[0], envp), cmd, envp) == -1)
-// 	{
-// 		perror(strerror(8));
-// 		exit (127);
-// 	}
-// }
+	i = -1;
+	while (env[++i])
+		if (ft_strncmp(env[i], "PATH=", 5) == 0)
+			break ;
+	if (i == ft_matrixlen(env))
+		return (NULL);
+	all_path = ft_substr(env[i], 5, ft_strlen(env[i]) - 5);
+	if (!all_path)
+		return (NULL);
+	split_path = ft_split_pipex(all_path, ':');
+	if (!split_path)
+	{
+		free(all_path);
+		return (NULL);
+	}
+	free(all_path);
+	return (split_path);
+}
 
-// char	*get_cmd_path(char *cmd, char **envp)
-// {
-// 	char		**path_str;
-// 	char		*path;
-// 	char		*split_path;
-// 	int			i;
+void	close_pipe(int fd[2])
+{
+	close(fd[1]);
+	close(fd[0]);
+}
 
-// 	i = 0;
-// 	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
-// 		i++;
-// 	if (!envp[i])
-// 		perror(strerror(14));
-// 	path_str = ft_split(envp[i] + 5, ':');
-// 	i = 0;
-// 	while (path_str[i])
-// 	{
-// 		split_path = ft_strjoin(path_str[i], "/");
-// 		path = ft_strjoin(split_path, cmd);
-// 		free(split_path);
-// 		if (access(path, F_OK) == 0)
-// 			return (path);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+void	ft_free(char **paths, char **cmd)
+{
+	int	path_len;
+	int	cmd_len;
 
-// static int	word_count(char const *s, char c)
-// {
-// 	size_t	count;
-// 	size_t	i;
+	path_len = ft_matrixlen(paths);
+	cmd_len = ft_matrixlen(cmd);
+	while (paths && (path_len >= 0))
+		free(paths[path_len--]);
+	while (cmd && (cmd_len >= 0))
+		free(cmd[cmd_len--]);
+	if (paths)
+		free(paths);
+	if (cmd)
+		free(cmd);
+}
 
-// 	i = 0;
-// 	count = 0;
-// 	while (s[i] == c && s[i])
-// 		i++;
-// 	while (s[i])
-// 	{
-// 		if (s[i] == c)
-// 			count++;
-// 		while (s[i] == c && s[i])
-// 			i++;
-// 		if (s[i] != c && s[i])
-// 			i++;
-// 	}
-// 	if (!s[0])
-// 		count = 0;
-// 	else if (s[i - 1] != c)
-// 		count++;
-// 	return (count);
-// }
+void	perror_cnf(char *str, char *cmd, int fd)
+{
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd(cmd, fd);
+	ft_putstr_fd("\n", fd);
+}
 
-// static char	**free_malloc(char **tab, int count)
-// {
-// 	while (tab[--count])
-// 		free(tab[count]);
-// 	free (tab);
-// 	return (NULL);
-// }
-
-// static char	**ft_word(char *s, char c, char **tab, size_t count)
-// {
-// 	size_t	str_i;
-// 	size_t	word_i;
-// 	size_t	y_i;
-
-// 	str_i = 0;
-// 	word_i = 0;
-// 	y_i = 0;
-// 	while (y_i < count)
-// 	{
-// 		while (s[str_i] == c)
-// 			str_i++;
-// 		word_i = str_i;
-// 		while (s[word_i + 1] != c && s[word_i + 1])
-// 			word_i++;
-// 		tab[y_i] = ft_substr(s, str_i, word_i - str_i + 1);
-// 		if (!tab[y_i])
-// 			return (free_malloc(tab, y_i));
-// 		str_i = word_i + 1;
-// 		y_i++;
-// 	}
-// 	tab[y_i] = 0;
-// 	return (tab);
-// }
-
-// char	**ft_split(char const *s, char c)
-// {
-// 	char	**tab;
-// 	char	**tab2;
-// 	char	*new_s;
-// 	size_t	count;
-
-// 	new_s = (char *)s;
-// 	if (!new_s)
-// 		return (NULL);
-// 	count = word_count(s, c);
-// 	tab = malloc(sizeof(char *) * (count + 1));
-// 	if (!tab)
-// 		return (NULL);
-// 	tab2 = ft_word(new_s, c, tab, count);
-// 	return (tab2);
-// }
+void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
+{
+	if (ft_strncmp(cmd_p, cmd[0], ft_strlen(cmd_p)) == 0)
+		cmd_p = cmd[0];
+	if (!check_builtin(cmd_str))
+		execve(cmd_p, cmd, d.env_tab);	 // Quand même présente ?
+	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd_str))
+	{
+		d.last_command_status = 127;
+		perror_cnf("command not found: ", cmd[0], 2);
+	}
+	free(cmd_p);
+	ft_free(path, cmd);
+	exit(d.last_command_status);
+}
