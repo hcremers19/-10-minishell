@@ -31,7 +31,7 @@ int	main_loop(void)
 			free(input);
 			if (!d.all->first)
 				return (ft_free_exit());
-			/*else if*/if (d.all->in_stat != 0)
+			/*else if*/if (d.all->close_stat != 0)
 			{
 				printf("Input/output error: Non closed quotes\n");
 				ft_free_exit();
@@ -45,7 +45,7 @@ int	main_loop(void)
 		else if (!input)
 		{
 			d.s_err = 5;
-			return (ft_basic_exit());
+			return (ft_init_exit());
 		}
 	}
 	return (0);
@@ -54,10 +54,14 @@ int	main_loop(void)
 int	main(int ac, char **av, char **env)
 {
 	(void)av;
+	d.s_free = -1;
 	if (ac != 1)
-		return (ft_pre_malloc_error(7));
+	{
+		perror(strerror(7));
+		return (0);
+	}
 	if (init_data(env, &d))
-		return (ft_free_exit());
+		return (ft_init_exit());
 	main_loop();
 	return (0);
 }

@@ -33,9 +33,11 @@ t_env	*ft_env_lstnew(char *name, char *content)
 {
 	t_env	*elmt;
 
+	if (!name || !content)
+		return (NULL);
 	elmt = (t_env *)malloc(sizeof(t_env));
 	if (!elmt)
-		return (0);
+		return (NULL);
 	elmt->name = name;
 	elmt->content = content;
 	elmt->next = 0;
@@ -45,7 +47,7 @@ t_env	*ft_env_lstnew(char *name, char *content)
 t_env	*ft_env_lstlast(t_env *lst)
 {
 	if (!lst)
-		return (0);
+		return (NULL);
 	while (lst)
 	{
 		if (lst->next == 0)

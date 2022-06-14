@@ -89,7 +89,7 @@ struct s_data
 struct s_all
 {
 	int				nb_cmd;
-	int				in_stat;
+	int				close_stat;
 	char			**init_tab;
 	struct s_one	*first;
 };
@@ -118,7 +118,8 @@ struct s_env
 };
 
 /****************************************************/
-/*		TOAO GLOBAL VARIABLE						*/
+/*		THE ONE AND ONLY 							*/
+/*		GLOBAL VARIABLE								*/
 /****************************************************/
 
 t_data	d;
@@ -175,10 +176,10 @@ char	*keep_strt(char *str);
 void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
 
-/*---	Ft_error.c ---------------------*/
+///////////////////////////////////////////////////
+/*---	Ft_exit.c ----------------------*/
+int		ft_init_exit(void);
 int		ft_free_exit(void);
-int		ft_basic_exit(void);
-int		ft_pre_malloc_error(int e);
 
 /*--	Execpipe.c ---------------------*/
 int 	execpipe(void);

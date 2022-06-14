@@ -19,7 +19,8 @@ void	ft_free_tab(char **tab)
 	i = len_tab(tab) - 1;
 	while (i >= 0)
 	{
-		free(tab[i]);
+		if (tab[i])
+			free(tab[i]);
 		i--;
 	}
 	free(tab);
@@ -47,3 +48,5 @@ void	ft_free_lst(t_env *list)
 	if (list)
 		free(list);
 }
+
+// void	ft_free_one()/////////////////////// free one commande

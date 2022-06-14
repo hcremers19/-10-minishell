@@ -60,10 +60,15 @@ t_env	*create_env(char **env)
 
 	i = 0;
 	env_list = ft_env_lstnew(keep_strt(env[i]), keep_end(env[i]));
+	if (!env_list)
+		return (NULL);
 	i++;
 	while (env[i])
 	{
-		ft_env_lstadd_back(&env_list, ft_env_lstnew(keep_strt(env[i]), keep_end(env[i])));
+		if (!keep_strt(env[i]) || !keep_end(env[i]))
+			return (NULL);
+		ft_env_lstadd_back(&env_list, \
+		ft_env_lstnew(keep_strt(env[i]), keep_end(env[i])));
 		i++;
 	}
 	ft_env_lstadd_back(&env_list, ft_env_lstnew(NULL, NULL));

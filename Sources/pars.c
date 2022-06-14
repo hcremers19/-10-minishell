@@ -17,16 +17,16 @@ int pars_len(char const *s, int i)
 	int	len;
 
 	len = 0;
-	d.all->in_stat = 0;
-	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) || d.all->in_stat != 0))
+	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) || d.all->close_stat != 0))
 	{// 9 = tab, 32 = space
-		if (d.all->in_stat == 0 && s[i + len] == 39)// 39 = simple guillemet
-			d.all->in_stat = 1;
-		else if (d.all->in_stat == 0 && s[i + len] == 34)// 34 = double guillemet
-			d.all->in_stat = 2;
-		else if ((s[i + len] == 39 || s[i + len] == 34) && d.all->in_stat != 0)
-			d.all->in_stat = 0;
-		if (d.all->in_stat == 0 && (s[i + len] == 60 || s[i + len] == 62 || s[i + len] == 124))// 60 = plus petit ; 62 = plus grand ; 124 = pipe
+		if (d.all->close_stat == 0 && s[i + len] == 39)// 39 = simple guillemet
+			d.all->close_stat = 1;
+		else if (d.all->close_stat == 0 && s[i + len] == 34)// 34 = double guillemet
+			d.all->close_stat = 2;
+		else if ((s[i + len] == 39 || s[i + len] == 34) && d.all->close_stat != 0)
+			d.all->close_stat = 0;
+		if (d.all->close_stat == 0 && (s[i + len] == 60
+			 || s[i + len] == 62 || s[i + len] == 124))// 60 = plus petit ; 62 = plus grand ; 124 = pipe
 		{
 			if (s[i + len] == s[i + len + 1] && len == 0)
 					len += 2;
