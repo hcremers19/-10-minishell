@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:16:31 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/07 16:16:34 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:17:38 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	init_data(char **env, t_data *d)
 	tcsetattr(0, TCSANOW, &d->new);
 //////////////////////////////////////////////////
 	d->env_tab = cpy_tab(env, len_tab(env));
-	d.s_free = 1;
+	d->s_free = 1;
 	if (!d->env_tab)
 		return (-19);
 /////////////////////////////////////////////////
 	d->env_list = create_env(env);
-	d.s_free = 3;
-	if (!env_list)
+	d->s_free = 3;
+	if (!d->env_list)
 		return (-19);
 ////////////////////////////////////////////////
 	d->tmp_list = ft_env_lstnew(NULL, NULL);
