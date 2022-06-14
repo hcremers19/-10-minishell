@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-/*   Updated: 2022/05/06 11:14:47 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:41:14 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,4 @@ t_env	*create_env(char **env)
 	ft_env_lstadd_back(&env_list, ft_env_lstnew(NULL, NULL));
 	return (env_list);
 }
+// Il semble manquer une ligne à l'environnement, vérifier si c'est normal

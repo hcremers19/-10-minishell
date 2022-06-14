@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/05/06 14:20:50 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:41:52 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 // 	ft_lstadd_front(&tmp_list, ft_lstnew(name, content));
 // }
 
-// void	ft_env(t_env *env_list)
-// {
-// 	while (env_list->next)
-// 	{
-// 		printf("%s=%s\n", env_list->name, env_list->content);
-// 		env_list = env_list->next;
-// 	}
-// }
+void	ft_env(t_env *env_list)
+{
+	while (env_list->next)
+	{
+		printf("%s=%s\n", env_list->name, env_list->content);
+		env_list = env_list->next;
+	}
+}
 
 // void	ft_cd(char *path)
 // {
@@ -63,4 +63,4 @@
 // 	ft_putstr_fd(str, 1);
 // 	if (!n)
 // 		ft_putchar_fd('\n', 1);
-// } // Ne supporte pas encore les variables d'environnement, si c'est ici qu'il faut les gérer
+// }
