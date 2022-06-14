@@ -132,6 +132,7 @@ t_data	d;
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *d);
 void	init_data_bis(t_data *d);
+void	init_sreen(void);
 
 /*--	Pars.c -------------------------*/
 int 	pars_len(char const *s, int i);
@@ -180,9 +181,9 @@ void	ft_free_lst(t_env *env_list);
 
 ///////////////////////////////////////////////////
 /*---	Ft_exit.c ----------------------*/
-int		init_exit(void);
-int		loop_exit(void);
-int		global_exit(void);
+void	init_exit(void);
+void	loop_exit(void);
+void	global_exit(void);
 
 /*--	Execpipe.c ---------------------*/
 int 	execpipe(void);

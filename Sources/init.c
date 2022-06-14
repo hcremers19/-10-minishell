@@ -35,7 +35,8 @@ int	init_data(char **env, t_data *d)
 	if (!d->all->init_tab)
 		return (-19);
 	init_data_bis(d);
-	return (0)
+	init_sreen();
+	return (0);
 }
 
 void	init_data_bis(t_data *d)
@@ -43,6 +44,11 @@ void	init_data_bis(t_data *d)
 	d->s_free = 7;
 	d->pid = 0;
 	d->all->close_stat = 0;
-	printf("\033[H\033[J");
-	printf(SCREEN);
+	d->s_err = 12;
+}
+
+void	init_sreen(void)
+{
+	ft_putstr_fd("\033[H\033[J", 1);
+	ft_putstr_fd(SCREEN, 1);
 }

@@ -17,7 +17,8 @@ int pars_len(char const *s, int i)
 	int	len;
 
 	len = 0;
-	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) || d.all->close_stat != 0))
+	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32)
+		 || d.all->close_stat != 0))
 	{// 9 = tab, 32 = space
 		if (d.all->close_stat == 0 && s[i + len] == 39)// 39 = simple guillemet
 			d.all->close_stat = 1;
@@ -31,7 +32,7 @@ int pars_len(char const *s, int i)
 			if (s[i + len] == s[i + len + 1] && len == 0)
 					len += 2;
 			else if (len == 0)
-					len++;
+					len++; 
 			break ;
 		}
 		len++;
@@ -115,11 +116,11 @@ t_one	*ft_pars(char *s)
 	d.all->init_tab = ft_pars_line(s);
 	if (!d.all->init_tab)
 		return (NULL);
-	// d.s_free = 5;////////////////////////////////////////////////////
+	d.s_free = 11;
 	d.all->first = (t_one *)malloc(sizeof(t_one));
 	if (!d.all->first)
 		return (NULL);
-	// d.s_free = 7;
+	d.s_free = 13;
 	tmp = d.all->first;
 	init_tmp = d.all->first;/////// utile ?
 	while (tmp) 

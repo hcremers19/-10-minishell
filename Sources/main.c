@@ -23,7 +23,8 @@ void	main_loop(void)
 		rl_on_new_line();
 		prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
 		if (!prompt)
-			return (init_exit());
+			init_exit();
+		d.s_free = 9;
 		input = readline(prompt);
 		add_history(input);
 		free(prompt);
@@ -32,22 +33,16 @@ void	main_loop(void)
 			d.all->first = ft_pars(input);
 			free(input);
 			if (!d.all->first)
-				return (global_exit());
-			else if (d.all->close_stat != 0)
-			{
-				printf("Input/output error: Non closed quotes\n");
-				loop_exit();
-			}
-			else if (execpipe())
-			{
-				d.s_err = 0;
 				global_exit();
-			}
+			else if (d.all->close_stat != 0)
+				loop_exit();
+			else if (execpipe())
+				global_exit();
 		}
 		else if (!input)
 		{
 			d.s_err = 5;
-			return (init_exit());
+			global_exit();
 		}
 	}
 }
@@ -63,7 +58,7 @@ int	main(int ac, char **av, char **env)
 		return (0);
 	}
 	if (init_data(env, &d))
-		return (init_exit());
+		init_exit();
 	main_loop();
 	return (0);
 }

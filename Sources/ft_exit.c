@@ -12,7 +12,7 @@
 
 #include "../Includes/minishell.h"
 
-int	init_exit(void)
+void	init_exit(void)
 {
 	tcsetattr(0, TCSANOW, &d.new);
 	if (d.s_free > 0)
@@ -25,28 +25,32 @@ int	init_exit(void)
 				ft_free_lst(d.tmp_list);
 			if (d.s_free > 4)
 			{
-				free(d.all)
+				free(d.all);
 				if (d.s_free > 6)
 					free(d.all->init_tab);
 			}
 			
 		}
 	}
-	if (d.s_err && d.all->close_stat == 0)
+	if (d.s_free < 8)
+	{
 		perror(strerror(d.s_err));
-	return (0);
+		exit (1);
+	}
 }
 
-int	loop_exit(void)
+void	loop_exit(void)
 {
-	if (d.s_err && d.all->close_stat == 0)
+	if (d.s_free > 8 && d.all->close_stat == 0)
 		perror(strerror(d.s_err));
-	return (0);
+	else if (d.all->close_stat != 0)
+		ft_putstr_fd("Input/output error: Non closed quotes\n", 1);
+	init_data_bis(&d);
 }
 
-int	global_exit(void)
+void	global_exit(void)
 {
 	init_exit();
-	lopp_exit();
-	return (0);
+	loop_exit();
+	exit (1);
 }
