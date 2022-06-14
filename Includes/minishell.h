@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/13 15:46:22 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:13:12 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ struct s_data
 	int				pid;
 	int				s_free;
 	int				s_err;
-	int				last_command_status;
-	int				last_command_status_tmp;
+	int				error_code;
+	int				error_code_tmp;
 	struct s_all	*all;
 	struct termios	old;
 	struct termios	new;

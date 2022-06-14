@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:00 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/13 15:35:21 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:13:14 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static void	i_find_a_signal(int this_signal) // ???
 	if (this_signal == SIGQUIT)
 	{
 		ft_putstr_fd("^\\QUIT: 3", 1);
-		d.last_command_status_tmp = 131;
+		d.error_code_tmp = 131;
 		kill(d.pid, SIGKILL);
 	}
 	else
 	{
 		ft_putstr_fd("^C", 1);
-		d.last_command_status_tmp = 130;
+		d.error_code_tmp = 130;
 	}
 	ft_putstr_fd("\n", 1);
 }
@@ -67,11 +67,11 @@ void	child_process(t_all *all, t_one *cmd, int next_fd[2], int pre_fd[2])
 
 void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2])
 {
-	if ((d.last_command_status_tmp == 130
-			|| d.last_command_status_tmp == 131))
-		d.last_command_status = d.last_command_status_tmp;
+	if ((d.error_code_tmp == 130
+			|| d.error_code_tmp == 131))
+		d.error_code = d.error_code_tmp;
 	else
-		d.last_command_status = tmp / 255;		// ?
+		d.error_code = tmp / 255;		// ?
 	// if (cmd->pars_tab[0])
 	// 	builtin_cmds_env(cmd);
 	if (cmd->next)
@@ -88,7 +88,7 @@ void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd)
 	int		tmp;
 
 	(void)envp;
-	d.last_command_status_tmp = 0;
+	d.error_code_tmp = 0;
 	if (!(!ft_strlen(cmd->pars_tab[0]) || ft_strncmp(cmd->pars_tab[0], "exit", 4)))
 		exit(1);///////////// fonction ft_exit here
 	if (pipe(next_fd) == -1)

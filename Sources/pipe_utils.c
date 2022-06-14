@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:10 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/13 15:06:33 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:13:17 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
 		execve(cmd_p, cmd, d.env_tab);	 // Quand même présente ?
 	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd_str))
 	{
-		d.last_command_status = 127;
+		d.error_code = 127;
 		perror_cnf("command not found: ", cmd[0], 2);
 	}
 	free(cmd_p);
 	ft_free(path, cmd);
-	exit(d.last_command_status);
+	exit(d.error_code);
 }

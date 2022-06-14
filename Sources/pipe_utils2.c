@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:22 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/13 15:12:26 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:13:16 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex)
 		else if (!check_builtin(cmd))
 		{
 			perror_cnf("command not found: ", all_cmd[0], 2);
-			d.last_command_status = 127;
+			d.error_code = 127;
 			exit (127);
 		}
 		return (1);
