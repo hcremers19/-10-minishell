@@ -42,6 +42,7 @@
 
 /*--	Variables-----------------------*/
 
+# define MINI_PRPT "\033[0;31m.minishell >> \033[0;39m"
 # define SCREEN "\x1b[33m\
 * ************************************************************************ *\n\
 *                                                                          *\n\
@@ -51,7 +52,7 @@
 *   By: acaillea & hcremers                         +#+     +#+#+#+        *\n\
 *                                                  +#+        +#+          *\n\
 *   Created: 2022/04/11                           #+#       #+#            *\n\
-*   Updated:                                     ###     ###               *\n\
+*   Updated:                                     ###      ###              *\n\
 *                                                                          *\n\
 * ************************************************************************ *\n\
 \033[0;39m"
@@ -130,6 +131,7 @@ t_data	d;
 
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *d);
+void	init_data_bis(t_data *d);
 
 /*--	Pars.c -------------------------*/
 int 	pars_len(char const *s, int i);
@@ -178,8 +180,9 @@ void	ft_free_lst(t_env *env_list);
 
 ///////////////////////////////////////////////////
 /*---	Ft_exit.c ----------------------*/
-int		ft_init_exit(void);
-int		ft_free_exit(void);
+int		init_exit(void);
+int		loop_exit(void);
+int		global_exit(void);
 
 /*--	Execpipe.c ---------------------*/
 int 	execpipe(void);

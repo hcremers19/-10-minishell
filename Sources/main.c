@@ -12,7 +12,7 @@
 
 #include "../Includes/minishell.h"
 
-int	main_loop(void)
+void	main_loop(void)
 {
 	char	*input;
 	char	*prompt;
@@ -21,7 +21,9 @@ int	main_loop(void)
 	{
 		ft_signal();
 		rl_on_new_line();
-		prompt = ft_strjoin(getenv("USER="), "\033[0;31m.minishell >> \033[0;39m");
+		prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
+		if (!prompt)
+			return (init_exit());
 		input = readline(prompt);
 		add_history(input);
 		free(prompt);
@@ -30,38 +32,38 @@ int	main_loop(void)
 			d.all->first = ft_pars(input);
 			free(input);
 			if (!d.all->first)
-				return (ft_free_exit());
-			/*else if*/if (d.all->close_stat != 0)
+				return (global_exit());
+			else if (d.all->close_stat != 0)
 			{
 				printf("Input/output error: Non closed quotes\n");
-				ft_free_exit();
+				loop_exit();
 			}
 			else if (execpipe())
 			{
 				d.s_err = 0;
-				ft_free_exit();
+				global_exit();
 			}
 		}
 		else if (!input)
 		{
 			d.s_err = 5;
-			return (ft_init_exit());
+			return (init_exit());
 		}
 	}
-	return (0);
 }
 
 int	main(int ac, char **av, char **env)
 {
 	(void)av;
 	d.s_free = -1;
+	d.s_err = 12;
 	if (ac != 1)
 	{
 		perror(strerror(7));
 		return (0);
 	}
 	if (init_data(env, &d))
-		return (ft_init_exit());
+		return (init_exit());
 	main_loop();
 	return (0);
 }
