@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:14:46 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/10 17:14:48 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:25:47 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	ft_env_lstadd_front(t_env **lst, t_env *new)
 	*lst = new;
 }
 
-void	ft_env_lstdelone(t_env *lst, void (*del)(void*))
+void	ft_env_lstdelone(t_env *lst, void (*del)(void *))
 {
 	if (!lst || !del)
 		return ;
+	(del)(lst->name);
 	(del)(lst->content);
 	free(lst);
 }
@@ -41,4 +42,3 @@ void	ft_env_lstadd_back(t_env **lst, t_env *new)
 	else
 		*lst = new;
 }
-

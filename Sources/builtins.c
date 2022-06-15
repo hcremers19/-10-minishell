@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/15 10:28:11 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:26:14 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 // 	ft_lstdelone(env_list, ft_lststr(env_list, name));
 // }
 
-// void	ft_export(t_env *env_list, t_env *tmp_list, char *name)
-// {
-// 	ft_lstadd_back(&env_list, ft_lststr(tmp_list, name));
-// 	ft_lstdelone(tmp_list, ft_lststr(tmp_list, name));
-// }
+void	ft_export(char *name)
+{
+	ft_env_lstadd_back(&d.env_list, ft_env_lststr(d.tmp_list, name));
+	ft_env_lstdelone(ft_env_lststr(d.tmp_list, name), free);
+}	// Normalement pas d'erreur à gérer mais attention de ne pas ajouter une variable vide à l'environnement
 
 // void	tmp_var(t_env *tmp_list, char *name, char *content)
 // {

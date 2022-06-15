@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_env1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:33:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/10 19:33:56 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:42:32 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_env	*ft_env_lststr(t_env *lst, char *name) // À tester !
 	tmp = lst;
 	while (lst->next)
 	{
-		if (ft_strlen(lst->name) == ft_strlen(name)
-			&& !ft_strncmp(lst->name, name, ft_strlen(lst->name)))
+		if (!ft_strncmp(lst->name, name, ft_strlen(lst->name)))
 			return (lst);
 		else
 			lst = lst->next;

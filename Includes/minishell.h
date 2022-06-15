@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 10:44:47 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 11:43:51 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	handler(int sig);
 /*--	Builtins.c ---------------------*/
 void	ft_exit(void);
 void	ft_unset(t_env *env_list, char *name);
-void	ft_export(t_env *env_list, t_env *tmp_list, char *name);
+void	ft_export(char *name);
 void	tmp_var(t_env *tmp_list, char *name, char *content);
 void	ft_env(void);
 int		ft_cd(char *path);
