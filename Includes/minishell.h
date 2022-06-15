@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 11:43:51 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:15:47 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,9 +162,9 @@ void	handler(int sig);
 
 /*--	Builtins.c ---------------------*/
 void	ft_exit(void);
-void	ft_unset(t_env *env_list, char *name);
+void	ft_unset(char *name);
 void	ft_export(char *name);
-void	tmp_var(t_env *tmp_list, char *name, char *content);
+void	tmp_var(char *name, char *content);
 void	ft_env(void);
 int		ft_cd(char *path);
 void	ft_pwd(void);
@@ -221,6 +221,7 @@ char	**cpy_tab(char **in, int nb_line);
 void	ft_env_lstadd_front(t_env **lst, t_env *new);
 void	ft_env_lstdelone(t_env *lst, void (*del)(void*));
 void	ft_env_lstadd_back(t_env **lst, t_env *new);
+void	ft_env_lstfreenull(t_env *env_list);
 
 /*---	Lst_env1.c ----------------------*/
 t_env	*ft_env_lstnew(char *name, char *content);

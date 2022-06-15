@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/15 12:26:14 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:17:12 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,51 @@
 // 	exit(EXIT_SUCCESS);
 // } // À élaborer
 
-// void	ft_unset(t_env *env_list, char *name)
-// {
-// 	ft_lstdelone(env_list, ft_lststr(env_list, name));
-// }
+void	ft_unset(char *name)
+{
+	ft_env_lstdelone(ft_env_lststr(d.env_list, name), free);
+	ft_env_lstfreenull(d.env_list);
+}	// Normalement pas de gestion d'erreur parce que la fonction ne devrait juste rien faire si elle ne trouve pas ce qu'elle cherche
 
 void	ft_export(char *name)
 {
 	ft_env_lstadd_back(&d.env_list, ft_env_lststr(d.tmp_list, name));
 	ft_env_lstdelone(ft_env_lststr(d.tmp_list, name), free);
-}	// Normalement pas d'erreur à gérer mais attention de ne pas ajouter une variable vide à l'environnement
+	ft_env_lstfreenull(d.tmp_list);
+}	// Normalement pas de gestion d'erreur parce que la fonction ne devrait juste rien faire si elle ne trouve pas ce qu'elle cherche
 
-// void	tmp_var(t_env *tmp_list, char *name, char *content)
-// {
-// 	ft_lstadd_front(&tmp_list, ft_lstnew(name, content));
-// }
+void	tmp_var(char *name, char *content)
+{
+	ft_env_lstadd_front(&d.tmp_list, ft_env_lstnew(name, content));
+}
 
 void	ft_env(void)
 {
-	while (d.env_list->name || d.env_list->content)
+	t_env	*tmp;
+
+	tmp = d.env_list;
+	while (d.env_list->next)
 	{
-		printf("%s=%s\n", d.env_list->name, d.env_list->content);
+		if (d.env_list->name || d.env_list->content)
+		{
+			ft_putstr_fd(d.env_list->name, 1);
+			ft_putchar_fd('=', 1);
+			ft_putstr_fd(d.env_list->content, 1);
+			ft_putchar_fd(10, 1);
+		}
 		d.env_list = d.env_list->next;
 	}
+	ft_putstr_fd(d.env_list->name, 1);
+	ft_putchar_fd('=', 1);
+	ft_putstr_fd(d.env_list->content, 1);
+	ft_putchar_fd(10, 1);
+	d.env_list = tmp;
 }
 
-// void	ft_cd(char *path)
-// {
-// 	if (chdir(path) == -1)
-// 		perror("chdir()");
-// }
-
-// void	ft_pwd(void)
-// {
-// 	char	cwd[PATH_MAX];
-
-// 	if (getcwd(cwd, sizeof(cwd)) != NULL)
-// 		printf("%s\n", cwd);
-// 	// else
-// 	// 	perror("getcwd()");
-// }
+void	ft_pwd(void)
+{
+	printf("%s\n", getcwd(NULL, 0));
+}	// Aller voir le pwd d'Hugo si ça vaut la peine d'en faire un plus complexe
 
 // void	ft_echo(char *str, int n)
 // {

@@ -6,7 +6,7 @@
 #    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/05/14 13:14:16 by hcremers         ###   ########.fr        #
+#    Updated: 2022/06/15 16:18:10 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC		= 	main.c			\
 			pipe_utils.c	\
 			pipe_utils2.c	\
 			execpipe.c		\
+			ft_cd.c			\
 
 INC		= 	./Includes/minishell.h
 

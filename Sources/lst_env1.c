@@ -6,13 +6,13 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:33:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 11:42:32 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 16:00:57 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-t_env	*ft_env_lststr(t_env *lst, char *name) // À tester !
+t_env	*ft_env_lststr(t_env *lst, char *name)
 {
 	t_env	*tmp;
 
