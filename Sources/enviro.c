@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/15 10:24:45 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:44:07 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,24 @@ char	*keep_end(char *str)
 	return (ret);
 }
 
-t_env	*create_env(char **env)
+int create_env(char **env)
 {
 	int		i;
-	t_env	*env_list;
 
 	i = 0;
-	env_list = ft_env_lstnew(keep_strt(env[i]), keep_end(env[i]));
-	if (!env_list)
-		return (NULL);
+	d.env_list = ft_env_lstnew(keep_strt(env[i]), keep_end(env[i]));
+	if (!d.env_list)
+		return (1);
 	i++;
 	while (env[i])
 	{
 		if (!keep_strt(env[i]) || !keep_end(env[i]))
-			return (NULL);
-		ft_env_lstadd_back(&env_list,
+			return (1);
+		ft_env_lstadd_back(&d.env_list,
 			ft_env_lstnew(keep_strt(env[i]), keep_end(env[i])));
 		i++;
 	}
-	ft_env_lstadd_back(&env_list, ft_env_lstnew(NULL, NULL));
-	return (env_list);
+	ft_env_lstadd_back(&d.env_list, ft_env_lstnew(NULL, NULL));
+	return (0);
 }
-// Il semble manquer une ligne à l'environnement, vérifier si c'est normal
+// Il semble manquer une ligne à l'environnement, vérifier si ça vient de la récupération de l'environnement ou juste de son impression

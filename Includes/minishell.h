@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 10:29:25 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:44:47 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	ft_pwd(void);
 void	ft_echo(char *str, int n);
 
 /*---	Enviro.c -----------------------*/
-t_env	*create_env(char **env);
+int		create_env(char **env);
 char	*keep_end(char *str);
 char	*keep_strt(char *str);
 
