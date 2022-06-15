@@ -49,6 +49,7 @@ int	init_cmds(void)
 		d.all->first->pos = d.all->nb_cmd - i - 1;
 		d.all->first->cmd = d.all->first->pars_tab[0];
 		d.all->first->level = get_level(d.all->first, i);
+		// ici : check (avant check_env) pour $? = lst_cmd_stat
 		if (loop_check_env(d.all->first))
 			return (-19);
 		d.all->first = d.all->first->next;

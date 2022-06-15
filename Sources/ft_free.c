@@ -16,6 +16,8 @@ void	ft_free_tab(char **tab)
 {
 	int	i;
 
+	if (!tab)
+		return ;
 	i = len_tab(tab) - 1;
 	while (i >= 0)
 	{

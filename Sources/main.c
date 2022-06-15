@@ -50,13 +50,13 @@ void	main_loop(void)
 int	main(int ac, char **av, char **env)
 {
 	(void)av;
-	d.s_free = -1;
-	d.s_err = 12;
 	if (ac != 1)
 	{
 		perror(strerror(7));
 		return (0);
 	}
+	d.s_free = -1;
+	d.s_err = 12;
 	if (init_data(env, &d))
 		init_exit();
 	main_loop();

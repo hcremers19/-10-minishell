@@ -41,6 +41,19 @@ void	init_exit(void)
 
 void	loop_exit(void)
 {
+	if (d.s_free == 11)
+		free(d.all->init_tab);
+	else if (d.s_free > 12)
+	{
+		ft_free_tab(d.all->init_tab);
+		if (d.s_free > 14)
+			free(d.all->first);
+		else if (d.s_free > 16)
+		{
+			ft_free_one(d.all->first);
+		}
+	}
+/////////////////////////////////////////////////////////
 	if (d.s_free > 8 && d.all->close_stat == 0)
 		perror(strerror(d.s_err));
 	else if (d.all->close_stat != 0)
@@ -48,6 +61,14 @@ void	loop_exit(void)
 	init_data_bis(&d);
 }
 
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////
 void	global_exit(void)
 {
 	init_exit();

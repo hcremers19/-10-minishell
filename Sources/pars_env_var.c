@@ -24,8 +24,6 @@ char	*join_mat(char **tab)
 	while (tab && tab[i])
 	{
 		str = ft_strcat(str, tab[i]);
-		// if (!str)//pas specialement necessaire
-		// 	return (NULL);
 		i++;
 	}
 	// ft_free_tab(tab);
@@ -46,7 +44,7 @@ char	*env_or_not_env(char *str)
 			if (!ret)
 				return (NULL);
 			ret = d.env_list->content;
-			// free(str);
+			free(str);
 			d.env_list = tmp;
 			return (ret);
 		}
@@ -75,7 +73,6 @@ char	*check_env_var(char *str)
 		tmp_tab[t] = ft_substr(str, 0, j);
 		if (!tmp_tab[t])
 			return (NULL);
-		// printf("===== %d - %s\n", t, tmp_tab[t]);
 		t++;
 	}
 	k = j;
@@ -90,17 +87,14 @@ char	*check_env_var(char *str)
 	}
 	else
 		return (str);
-	// printf("===== %d - %s\n", t, tmp_tab[t]);
 	tmp_tab[t] = env_or_not_env(tmp_tab[t]);
 	if (!tmp_tab[t])
 		return (NULL);
-	// printf("===== %d - %s\n", t, tmp_tab[t]);
 	if (j < ft_strlen(str))
 	{
 		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str) - j + 1);
 		if (!tmp_tab[t])
 			return (NULL);
-		// printf("===== %d - %s\n", t, tmp_tab[t]);
 	}
 	ret = join_mat(tmp_tab);
 	if (!ret)

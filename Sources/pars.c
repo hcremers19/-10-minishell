@@ -84,7 +84,7 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 	}
 	return (tab);
 }
-
+// -----------> 9
 char	**ft_pars_line(char const *s)
 {
 	int		i;
@@ -94,12 +94,11 @@ char	**ft_pars_line(char const *s)
 	tab = (char **)malloc(sizeof(char *) * (pars_count(s) + 1));
 	if (!tab)
 		return (NULL);
+	d.s_free = 11;
 	tab = ft_pars_word(s, tab, pars_count(s));
+	d.s_free = 13;
 	if (!tab)
-	{
-		free(tab);
 		return (NULL);
-	}
 	tab[pars_count(s)] = NULL;
 	return (tab);
 }
@@ -116,16 +115,17 @@ t_one	*ft_pars(char *s)
 	d.all->init_tab = ft_pars_line(s);
 	if (!d.all->init_tab)
 		return (NULL);
-	d.s_free = 11;
 	d.all->first = (t_one *)malloc(sizeof(t_one));
 	if (!d.all->first)
 		return (NULL);
-	d.s_free = 13;
+	d.s_free = 15;
+////////////////////////////////////////////////////////////
 	tmp = d.all->first;
 	init_tmp = d.all->first;/////// utile ?
 	while (tmp) 
 	{
 		tmp->pars_tab = copy_line_tab(tmp->pars_tab, j);
+		d.s_free = 17;
 		if (!tmp->pars_tab)
 			return (NULL);
 		j += len_tab(tmp->pars_tab) + 1;
