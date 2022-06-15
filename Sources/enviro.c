@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/14 11:41:14 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:24:45 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ t_env	*create_env(char **env)
 	{
 		if (!keep_strt(env[i]) || !keep_end(env[i]))
 			return (NULL);
-		ft_env_lstadd_back(&env_list, \
-		ft_env_lstnew(keep_strt(env[i]), keep_end(env[i])));
+		ft_env_lstadd_back(&env_list,
+			ft_env_lstnew(keep_strt(env[i]), keep_end(env[i])));
 		i++;
 	}
 	ft_env_lstadd_back(&env_list, ft_env_lstnew(NULL, NULL));

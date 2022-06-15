@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:34:05 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/14 15:42:54 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:27:24 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ch_oldpwd_env(void)
 	t_env	*tmp;
 
 	tmp = d.env_list;
-	while (d.env_list->name && d.env_list->content)
+	while (d.env_list->name || d.env_list->content)
 	{
 		if (!ft_strncmp("OLDPWD", d.env_list->name, 6))
 		{
@@ -42,7 +42,7 @@ int	ch_pwd_env(void)
 	t_env	*tmp;
 
 	tmp = d.env_list;
-	while (d.env_list->name && d.env_list->content)
+	while (d.env_list->name || d.env_list->content)
 	{
 		if (!ft_strncmp("PWD", d.env_list->name, 3))
 		{

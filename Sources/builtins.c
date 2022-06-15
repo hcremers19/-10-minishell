@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/14 11:41:52 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/15 10:28:11 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@
 // 	ft_lstadd_front(&tmp_list, ft_lstnew(name, content));
 // }
 
-void	ft_env(t_env *env_list)
+void	ft_env(void)
 {
-	while (env_list->next)
+	while (d.env_list->name || d.env_list->content)
 	{
-		printf("%s=%s\n", env_list->name, env_list->content);
-		env_list = env_list->next;
+		printf("%s=%s\n", d.env_list->name, d.env_list->content);
+		d.env_list = d.env_list->next;
 	}
 }
 
