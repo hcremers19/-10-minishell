@@ -125,7 +125,6 @@ t_one	*ft_pars(char *s)
 	while (tmp) 
 	{
 		tmp->pars_tab = copy_line_tab(tmp->pars_tab, j);
-		d.s_free = 17;
 		if (!tmp->pars_tab)
 			return (NULL);
 		j += len_tab(tmp->pars_tab) + 1;
@@ -140,6 +139,7 @@ t_one	*ft_pars(char *s)
 		tmp = tmp->next;
 		i++;
 	}
+	d.s_free = 17;
 	d.all->nb_cmd = i;
 	d.all->first = init_tmp;/////// utile ? 
 	if (init_cmds()) // envoit vers le dossier pars_end.c

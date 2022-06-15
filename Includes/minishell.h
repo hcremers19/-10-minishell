@@ -34,7 +34,7 @@
 
 # include "../Sources/libft/libft.h"
 
-// # include "../wraloc/wraloc.h"
+# include "../wraloc/wraloc.h"///////// !!!!!!!
 
 /****************************************************/
 /*		DEFINES										*/
@@ -106,7 +106,6 @@ struct s_one
 	char			*cmd;
 	char			**pars_tab;
 	struct s_one	*next;
-	struct s_all	*all;
 };
 
 /*-----	Environnement-------------------*/
@@ -178,8 +177,8 @@ char	*keep_strt(char *str);
 /*---	Ft_free.c ----------------------*/
 void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
+void	ft_free_cmd_lst(t_one *cmd);
 
-///////////////////////////////////////////////////
 /*---	Ft_exit.c ----------------------*/
 void	init_exit(void);
 void	loop_exit(void);
@@ -190,7 +189,6 @@ int 	execpipe(void);
 int 	check_builtin(t_one *cmd);
 int 	builtin_cmds_env(t_one *cmd);
 
-////////////////////////////////////////////////////////////////
 /*--	Pipe.c -------------------------*/
 void	process(char *envp[], char **all_cmd, t_one *cmd, int to_exec);
 void	child_process(t_all *all, t_one *cmd, int next_fd[2], int pre_fd[2]);

@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include "../../Includes/minishell.h"
+# include "../../wraloc/wraloc.h"
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

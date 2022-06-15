@@ -25,7 +25,8 @@ void	ft_free_tab(char **tab)
 			free(tab[i]);
 		i--;
 	}
-	free(tab);
+	if (tab)
+		free(tab);
 }
 
 void	ft_free_lst(t_env *list)
@@ -49,6 +50,23 @@ void	ft_free_lst(t_env *list)
 		free(list->name);
 	if (list)
 		free(list);
+}
+
+void	ft_free_cmd_lst(t_one *cmd)
+{
+	int		i;
+	t_one	*tmp;
+
+	i = 0;
+	while (cmd->next)
+	{
+		tmp = cmd;
+		if (cmd->pars_tab)
+			ft_free_tab(cmd->pars_tab);
+		cmd = tmp->next;
+		if (tmp)
+			free(tmp);
+	}
 }
 
 // void	ft_free_one()/////////////////////// free one commande

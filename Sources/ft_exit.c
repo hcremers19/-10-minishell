@@ -17,16 +17,18 @@ void	init_exit(void)
 	tcsetattr(0, TCSANOW, &d.new);
 	if (d.s_free > 0)
 	{
-		ft_free_tab(d.env_tab);
+		if (d.env_tab)
+			ft_free_tab(d.env_tab);
 		if (d.s_free > 2)
 		{
-			ft_free_lst(d.env_list);
+			if (d.env_list)
+				ft_free_lst(d.env_list);
 			if (d.tmp_list)
 				ft_free_lst(d.tmp_list);
 			if (d.s_free > 4)
 			{
 				free(d.all);
-				if (d.s_free > 6)
+				if (d.s_free > 6 && d.all->init_tab)
 					free(d.all->init_tab);
 			}
 			
@@ -50,7 +52,7 @@ void	loop_exit(void)
 			free(d.all->first);
 		else if (d.s_free > 16)
 		{
-			ft_free_one(d.all->first);
+			ft_free_cmd_lst(d.all->first);
 		}
 	}
 /////////////////////////////////////////////////////////
@@ -60,8 +62,6 @@ void	loop_exit(void)
 		ft_putstr_fd("Input/output error: Non closed quotes\n", 1);
 	init_data_bis(&d);
 }
-
-
 
 
 
