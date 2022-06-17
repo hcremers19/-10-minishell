@@ -57,12 +57,12 @@ void	child_process(t_all *all, t_one *cmd, int next_fd[2], int pre_fd[2])
 		multi_pipe(all, next_fd, pre_fd, cmd);
 	if (!check_builtin(cmd))
 		process(d.env_tab, cmd->pars_tab, cmd, 1);
-	// else
-	// {
-	// 	find_builtin(cmd);
-	// 	process(d.env_tab, cmd->pars_tab, cmd, 0);
-	// 	exit(0);
-	// }
+	else
+	{
+		builtin_cmds(cmd);
+		process(d.env_tab, cmd->pars_tab, cmd, 0);
+		exit(0);
+	}
 }
 
 void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2])
@@ -71,9 +71,9 @@ void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2])
 			|| d.error_code_tmp == 131))
 		d.error_code = d.error_code_tmp;
 	else
-		d.error_code = tmp / 255;		// ?
-	// if (cmd->pars_tab[0])
-	// 	builtin_cmds_env(cmd);
+		d.error_code = tmp / 255;
+	if (cmd->pars_tab[0])
+		builtin_cmds_env(cmd);
 	if (cmd->next)
 		pipe_rec(all, d.env_tab, next_fd, cmd->next);
 	else
@@ -84,8 +84,8 @@ void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2])
 void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd)
 {
 	int		next_fd[2];
-	pid_t	pid;
 	int		tmp;
+	pid_t	pid;
 
 	(void)envp;
 	d.error_code_tmp = 0;

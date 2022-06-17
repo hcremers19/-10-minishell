@@ -44,12 +44,12 @@ void	ft_free_lst(t_env *list)
 		if (tmp)
 			free(tmp);
 	}
-	if (list->content)
-		free(list->content);
-	if (list->name)
-		free(list->name);
-	if (list)
-		free(list);
+	// if (list->content)
+	// 	free(list->content);
+	// if (list->name)
+	// 	free(list->name);
+	// if (list)
+	// 	free(list);
 }
 
 void	ft_free_cmd_lst(t_one *cmd)

@@ -36,6 +36,15 @@ int	loop_check_env(t_one *cmd)
 	return (0);
 }
 
+int	get_level(t_one *cmd, int i)
+{
+	if (cmd->next == NULL)
+		return (0);
+	else if (i == 0)
+		return (2);
+	return (1);
+}
+
 int	init_cmds(void)
 {
 	int	i;
@@ -49,7 +58,10 @@ int	init_cmds(void)
 		d.all->first->pos = d.all->nb_cmd - i - 1;
 		d.all->first->cmd = d.all->first->pars_tab[0];
 		d.all->first->level = get_level(d.all->first, i);
-		// ici : check (avant check_env) pour $? = lst_cmd_stat
+		d.all->first->infile = 0;
+		d.all->first->outfile = 1;
+		if (check_lst_stat(d.all->first))
+			return (-19);
 		if (loop_check_env(d.all->first))
 			return (-19);
 		d.all->first = d.all->first->next;
@@ -57,13 +69,4 @@ int	init_cmds(void)
 	}
 	d.all->first = tmp;
 	return (0);
-}
-
-int	get_level(t_one *cmd, int i)
-{
-	if (cmd->next == NULL)
-		return (0);
-	else if (i == 0)
-		return (2);
-	return (1);
 }

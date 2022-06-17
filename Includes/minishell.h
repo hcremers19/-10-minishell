@@ -34,7 +34,7 @@
 
 # include "../Sources/libft/libft.h"
 
-# include "../wraloc/wraloc.h"///////// !!!!!!!
+// # include "../wraloc/wraloc.h"///////// !!!!!!!
 
 /****************************************************/
 /*		DEFINES										*/
@@ -150,6 +150,11 @@ char	*env_or_not_env(char *str);
 char	*check_env_var(char *str);
 char	*join_mat(char **tab);
 
+/*--	Pars_dols_int.c ----------------*/
+int		check_lst_stat(t_one *cmd);
+char	*fill_lst_stat(char *str);
+char	*replace_lst_stat(char *str, int pos);
+
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
 char	**copy_line_tab(char **tab, int i);
@@ -188,6 +193,7 @@ void	global_exit(void);
 int 	execpipe(void);
 int 	check_builtin(t_one *cmd);
 int 	builtin_cmds_env(t_one *cmd);
+int 	builtin_cmds(t_one *cmd);
 
 /*--	Pipe.c -------------------------*/
 void	process(char *envp[], char **all_cmd, t_one *cmd, int to_exec);
