@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:34:05 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/15 16:18:40 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:04:12 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,13 @@ int	ft_cd(char *path)
 {
 	if (ch_oldpwd_env())
 		return (1);
-	if (chdir(&path[1]))
+	if (chdir(path))
+	{
+		ft_putstr_fd("Incorrect path : ", 1);
+		ft_putstr_fd(path, 1);
+		ft_putchar_fd(10, 1);
 		return (1);
+	}
 	if (ch_pwd_env())
 		return (1);
 	return (0);

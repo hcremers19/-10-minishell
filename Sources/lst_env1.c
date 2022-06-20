@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:33:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 16:00:57 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:16:54 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_env	*ft_env_lststr(t_env *lst, char *name)
 			lst = lst->next;
 	}
 	lst = tmp;
-	return (0);
+	return (NULL);
 }
 
 t_env	*ft_env_lstnew(char *name, char *content)

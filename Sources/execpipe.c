@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:59:47 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 16:14:52 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/20 11:37:56 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ int builtin_cmds_env(t_one *cmd)
 	if (!ft_strncmp("export", cmd->cmd, 6))
 		ft_export(cmd->pars_tab[1]);
 	else if (!ft_strncmp("cd", cmd->cmd, 2))
-		ft_cd(cmd->pars_tab[1]);
+	{
+		if (cmd->pars_tab[1])
+		{
+			ft_putstr_fd("path : ", 1);
+			ft_putstr_fd(cmd->pars_tab[1], 1);
+			ft_putchar_fd(10, 1);
+			ft_cd(cmd->pars_tab[1]);
+		}
+		else
+			ft_cd(ft_env_lststr(d.env_list, "HOME")->content);
+	}
 	else if (!ft_strncmp("unset", cmd->cmd, 5))
 		ft_unset(cmd->pars_tab[1]);
 	else
@@ -45,8 +55,13 @@ int builtin_cmds(t_one *cmd)
 	// 	ft_exit();
 	else if (!ft_strncmp("pwd", cmd->cmd, 3))
 		ft_pwd();
-	// else if (!ft_strncmp("echo", cmd->cmd, 4))
-	// 	ft_echo();
+	else if (!ft_strncmp("echo", cmd->cmd, 4))
+	{
+		if (cmd->pars_tab[1])
+			ft_echo(cmd->pars_tab);
+		else
+			ft_putstr_fd("\n", 1);
+	}
 	else 
 		return (1);
 	return (0);
