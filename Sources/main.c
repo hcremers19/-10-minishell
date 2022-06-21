@@ -34,30 +34,6 @@ void	main_loop(void)
 			free(input);
 			if (!g_d.all->first)
 				global_exit();
-// 	/////////////////////////////////////////////////////////////////
-			// int i;
-			// int j = 0;
-			// while (g_d.all->first)
-			// {
-			// 	printf("==============\n");
-			// 	i = 0;
-			// 	while (g_d.all->first->pars_tab[i])
-			// 	{
-			// 		printf("PARS[%d] -> %d = %s\n", j, i, g_d.all->first->pars_tab[i]);
-			// 		i++;
-			// 	}
-			// 	printf("---------------\n");
-			// 	g_d.all->first = g_d.all->first->next;
-			// 	j++;
-			// }
-			// int i = 0;
-			// while (g_d.env_list)
-			// {
-			// 	printf("[%d] = %s = %s\n", i, g_d.env_list->name, g_d.env_list->content);
-			// 	g_d.env_list = g_d.env_list->next;
-			// 	i++;
-			// }
-// /////////////////////////////////////////////////////////////////
 			else if (g_d.all->close_stat != 0)
 				loop_exit();
 			else if (execpipe())//// aucun retour != 0 pr le mmt
@@ -86,3 +62,30 @@ int	main(int ac, char **av, char **env)
 	main_loop();
 	return (0);
 }
+
+// 	/////////////////////////////////////////////////////////////////
+			// int i;
+			// int j = 0;
+			// t_one *cmd = g_d.all->first;
+			// while (g_d.all->first)
+			// {
+			// 	printf("==============\n");
+			// 	i = 0;
+			// 	while (g_d.all->first->pars_tab[i])
+			// 	{
+			// 		printf("PARS[%d] -> %d = %s\n", j, i, g_d.all->first->pars_tab[i]);
+			// 		i++;
+			// 	}
+			// 	printf("---------------\n");
+			// 	g_d.all->first = g_d.all->first->next;
+			// 	j++;
+			// }
+			// g_d.all->first = cmd;
+			// i = 0;
+			// while (g_d.env_list)
+			// {
+			// 	printf("[%d] = %s = %s\n", i, g_d.env_list->name, g_d.env_list->content);
+			// 	g_d.env_list = g_d.env_list->next;
+			// 	i++;
+			// }
+// /////////////////////////////////////////////////////////////////

@@ -20,30 +20,19 @@ int	check_lst_stat(t_one *cmd)
 	i = 1;
 	while (cmd->pars_tab[i])
 	{
-		pos = check_c_in(cmd->pars_tab[i], '$') >= 0;
-		if (pos >= 0 && cmd->pars_tab[i][pos + 1] == '?')
+		pos = check_c_in(cmd->pars_tab[i], '$');
+		if (pos >= 0)
 		{
-			cmd->pars_tab[i] = replace_lst_stat(cmd->pars_tab[i], pos);
-			if (cmd->pars_tab[i])
-				return (-19);
+			if (cmd->pars_tab[i][pos + 1] == '?')
+			{
+				cmd->pars_tab[i] = replace_lst_stat(cmd->pars_tab[i], pos);
+				if (cmd->pars_tab[i])
+					return (-19);
+			}
 		}
 		i++;
 	}
 	return (0);
-}
-
-char	*fill_lst_stat(char *str)
-{
-	char	*tmp;
-
-	tmp = ft_itoa(g_d.error_code);
-	if (!tmp)
-		return (NULL);
-	str = (char *)malloc(sizeof(char) * 4);
-	if (!str)
-		return (NULL);
-	ft_strcpy(str, tmp);
-	return (str);
 }
 
 char	*replace_lst_stat(char *str, int pos)
@@ -58,17 +47,17 @@ char	*replace_lst_stat(char *str, int pos)
 	t = 0;
 	if (pos > 0)
 	{
-		tmp_tab[t] = ft_substr(str, 0, pos + 1);
+		tmp_tab[t] = ft_substr(str, 0, pos);
 		if (!tmp_tab[t])
 			return (NULL);
 		t++;
 	}
-	tmp_tab[t] = fill_lst_stat(tmp_tab[t]);
+	tmp_tab[t] = ft_itoa(g_d.error_code);;
 	if (!tmp_tab[t])
 		return (NULL);
-	if (pos + 2 + 1 < ft_strlen(str))
+	if (pos + 1 < ft_strlen(str))
 	{
-		tmp_tab[++t] = ft_substr(str, pos + 2, ft_strlen(str) - pos + 2);
+		tmp_tab[++t] = ft_substr(str, pos + 2, ft_strlen(str) - pos + 1);
 		if (!tmp_tab[t])
 			return (NULL);
 	}

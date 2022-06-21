@@ -120,6 +120,7 @@ struct s_env
 /****************************************************/
 /*		THE ONE AND ONLY 							*/
 /*		GLOBAL VARIABLE								*/
+/*		 -> Global_Datas							*/
 /****************************************************/
 
 t_data					g_d;
@@ -141,18 +142,17 @@ char	**ft_pars_line(char const *str);
 t_one	*ft_pars(char *s);
 
 /*--	Pars_end.c ---------------------*/
-int		loop_check_env(t_one *cmd);
 int		init_cmds(void);
 int		get_level(t_one *cmd, int i);
 
 /*--	Pars_env_var.c -----------------*/
+int		loop_check_env(t_one *cmd);
 char	*env_or_not_env(char *str);
 char	*check_env_var(char *str);
 char	*join_mat(char **tab);
 
 /*--	Pars_dols_int.c ----------------*/
 int		check_lst_stat(t_one *cmd);
-char	*fill_lst_stat(char *str);
 char	*replace_lst_stat(char *str, int pos);
 
 /*--	Pars_utils.c -------------------*/

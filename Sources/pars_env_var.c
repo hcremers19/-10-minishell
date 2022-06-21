@@ -44,8 +44,8 @@ char	*env_or_not_env(char *str)
 			if (!ret)
 				return (NULL);
 			ret = g_d.env_list->content;
-			free(str);
 			g_d.env_list = tmp;
+			free(str);
 			return (ret);
 		}
 		else
@@ -79,14 +79,9 @@ char	*check_env_var(char *str)
 	j++;
 	while (str[j] && str[j] != '$' && str[j] != 9 && str[j] != 32 && str[j] != 34)
 		j++;
-	if (j - k - 1 > 0)
-	{
-		tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
+	tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
 		if (!tmp_tab[t])
 			return (NULL);
-	}
-	else
-		return (str);
 	tmp_tab[t] = env_or_not_env(tmp_tab[t]);
 	if (!tmp_tab[t])
 		return (NULL);
@@ -100,4 +95,28 @@ char	*check_env_var(char *str)
 	if (!ret)
 		return (NULL);
 	return (ret);
+}
+
+int	loop_check_env(t_one *cmd)
+{
+	int	j;
+
+	j = 0;
+	while (cmd->pars_tab[j])
+	{
+		if ((check_c_in(cmd->pars_tab[j], '$') >= 0 \
+			&& cmd->pars_tab[j][0] == '\"') \
+			|| (check_c_in(cmd->pars_tab[j], '$') >= 0 \
+			&& cmd->pars_tab[j][0] != '\''))
+		{
+			while (check_c_in(cmd->pars_tab[j], '$') >= 0)
+			{
+				cmd->pars_tab[j] = check_env_var(cmd->pars_tab[j]);
+				if (!cmd->pars_tab[j])
+					return (-19);
+			}
+		}
+		j++;
+	}
+	return (0);
 }

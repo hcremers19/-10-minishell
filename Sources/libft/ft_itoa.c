@@ -12,83 +12,50 @@
 
 #include "libft.h"
 
-static int	ft_intlen(int n)
+static int	ft_lenint(int n)
 {
-	int	count;
+	int	len;
 
-	count = 0;
-	while (n)
+	len = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
 	{
-		n = n / 10;
-		count++;
+		len++;
+		n *= -1;
 	}
-	return (count);
-}
-
-static char	*ft_putzero(void)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * 2);
-	if (!str)
-		return (NULL);
-	str[0] = '0';
-	str[1] = 0;
-	return (str);
-}
-
-static char	*ft_positoa(long int n, int i)
-{
-	char	*p;
-
-	p = malloc(sizeof(char) * (ft_intlen(n) + 1));
-	if (!p)
-		return (0);
-	i = ft_intlen(n);
-	p[i] = 0;
-	i--;
-	while (i >= 0)
+	while (n > 0)
 	{
-		p[i] = (n % 10) + 48;
-		n = n / 10;
-		i--;
+		len++;
+		n /= 10;
 	}
-	return (p);
-}
-
-static char	*ft_negitoa(long int n, int i)
-{
-	char	*p;
-
-	p = malloc(sizeof(char) * (ft_intlen(n) + 2));
-	if (!p)
-		return (0);
-	i = ft_intlen(n) + 1;
-	n = -n;
-	p[i] = 0;
-	i--;
-	while (i >= 1)
-	{
-		p[i] = (n % 10) + 48;
-		n = n / 10;
-		i--;
-	}
-	p[i] = '-';
-	return (p);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	int			i;
-	long int	nb;
+	char	*str;
+	int		i;
 
-	i = 0;
-	nb = n;
-	if (nb == 0)
-		return (ft_putzero());
-	else if (nb > 0)
-		return (ft_positoa(nb, i));
-	else if (nb < 0)
-		return (ft_negitoa(nb, i));
-	return (0);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	str = malloc(sizeof(char) * (ft_lenint(n) + 1));
+	if (!str)
+		return (NULL);
+	if (n == 0)
+		str[0] = 48;
+	i = ft_lenint(n);
+	if (n < 0)
+	{
+		str[0] = '-';
+		n *= -1;
+	}
+	str[i] = '\0';
+	while (n > 0)
+	{
+		i--;
+		str[i] = (n % 10) + 48;
+		n /= 10;
+	}
+	return (str);
 }
