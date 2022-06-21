@@ -35,23 +35,23 @@ char	*env_or_not_env(char *str)
 	t_env	*tmp;
 	char	*ret;
 
-	tmp = d.env_list;
-	while (d.env_list && str)
+	tmp = g_d.env_list;
+	while (g_d.env_list && str)
 	{
-		if (!ft_strncmp(str, d.env_list->name, ft_strlen(str)))
+		if (!ft_strncmp(str, g_d.env_list->name, ft_strlen(str)))
 		{
-			ret = (char *)malloc(sizeof(char) * (ft_strlen(d.env_list->content) + 1));
+			ret = (char *)malloc(sizeof(char) * (ft_strlen(g_d.env_list->content) + 1));
 			if (!ret)
 				return (NULL);
-			ret = d.env_list->content;
+			ret = g_d.env_list->content;
 			free(str);
-			d.env_list = tmp;
+			g_d.env_list = tmp;
 			return (ret);
 		}
 		else
-			d.env_list = d.env_list->next;
+			g_d.env_list = g_d.env_list->next;
 	}
-	d.env_list = tmp;
+	g_d.env_list = tmp;
 	return ("");
 }
 

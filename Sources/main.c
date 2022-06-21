@@ -24,48 +24,48 @@ void	main_loop(void)
 		prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
 		if (!prompt)
 			init_exit();
-		d.s_free = 9;
+		g_d.s_free = 9;
 		input = readline(prompt);
 		add_history(input);
 		free(prompt);
 		if (input && only_space(input) && ft_strlen(input) != 0)
 		{
-			d.all->first = ft_pars(input);
+			g_d.all->first = ft_pars(input);
 			free(input);
-			if (!d.all->first)
+			if (!g_d.all->first)
 				global_exit();
-// 	//////////////////////////////////////////////////////////////////////////////////////////////
+// 	/////////////////////////////////////////////////////////////////
 			// int i;
 			// int j = 0;
-			// while (d.all->first)
+			// while (g_d.all->first)
 			// {
 			// 	printf("==============\n");
 			// 	i = 0;
-			// 	while (d.all->first->pars_tab[i])
+			// 	while (g_d.all->first->pars_tab[i])
 			// 	{
-			// 		printf("PARS[%d] -> %d = %s\n", j, i, d.all->first->pars_tab[i]);
+			// 		printf("PARS[%d] -> %d = %s\n", j, i, g_d.all->first->pars_tab[i]);
 			// 		i++;
 			// 	}
 			// 	printf("---------------\n");
-			// 	d.all->first = d.all->first->next;
+			// 	g_d.all->first = g_d.all->first->next;
 			// 	j++;
 			// }
 			// int i = 0;
-			// while (d.env_list)
+			// while (g_d.env_list)
 			// {
-			// 	printf("[%d] = %s = %s\n", i, d.env_list->name, d.env_list->content);
-			// 	d.env_list = d.env_list->next;
+			// 	printf("[%d] = %s = %s\n", i, g_d.env_list->name, g_d.env_list->content);
+			// 	g_d.env_list = g_d.env_list->next;
 			// 	i++;
 			// }
-// //////////////////////////////////////////////////////////////////////////////////////////////
-			else if (d.all->close_stat != 0)
+// /////////////////////////////////////////////////////////////////
+			else if (g_d.all->close_stat != 0)
 				loop_exit();
 			else if (execpipe())//// aucun retour != 0 pr le mmt
 				global_exit();
 		}
 		else if (!input)
 		{
-			d.s_err = 5;
+			g_d.s_err = 5;
 			global_exit();
 		}
 	}
@@ -79,11 +79,10 @@ int	main(int ac, char **av, char **env)
 		perror(strerror(7));
 		return (0);
 	}
-	d.s_free = -1;
-	d.s_err = 12;
+	g_d.s_free = -1;
+	g_d.s_err = 12;
 	if (init_data(env, &d))
 		init_exit();
 	main_loop();
 	return (0);
 }
-

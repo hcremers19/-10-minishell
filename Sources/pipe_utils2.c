@@ -19,12 +19,12 @@ int	no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex)
 		if (access(cmd->pars_tab[0], F_OK) == 0)
 		{
 			ft_free_tab(paths);
-			execve(cmd->pars_tab[0], all_cmd, d.env_tab);
+			execve(cmd->pars_tab[0], all_cmd, g_d.env_tab);
 		}
 		else if (!check_builtin(cmd))
 		{
 			perror_cnf("command not found: ", all_cmd[0], 2);
-			d.error_code = 127;
+			g_d.error_code = 127;
 			exit (127);
 		}
 		return (1);

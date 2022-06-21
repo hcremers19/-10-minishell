@@ -72,7 +72,7 @@ void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
 	if (ft_strncmp(cmd_p, cmd[0], ft_strlen(cmd_p)) == 0)
 		cmd_p = cmd[0];
 	if (!check_builtin(cmd_str))
-		execve(cmd_p, cmd, d.env_tab);	 // Quand même présente ?
+		execve(cmd_p, cmd,g_d.env_tab);// Quand même présente ?
 	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd_str))
 	{
 		d.error_code = 127;

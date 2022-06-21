@@ -44,7 +44,6 @@ void	init_data_bis(t_data *d)
 	d->pid = 0;
 	d->all->close_stat = 0;
 	d->s_err = 12;
-	
 }
 
 void	init_sreen(void)

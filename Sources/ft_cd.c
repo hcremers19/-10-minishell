@@ -16,24 +16,24 @@ int	ch_oldpwd_env(void)
 {
 	t_env	*tmp;
 
-	tmp = d.env_list;
-	while (d.env_list->name || d.env_list->content)
+	tmp = g_d.env_list;
+	while (g_d.env_list->name || g_d.env_list->content)
 	{
-		if (!ft_strncmp("OLDPWD", d.env_list->name, 6))
+		if (!ft_strncmp("OLDPWD", g_d.env_list->name, 6))
 		{
-			free(d.env_list->content);
-			d.env_list->content = (char *)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0)) + 1));
-			if (!d.env_list->content)
+			free(g_d.env_list->content);
+			g_d.env_list->content = (char *)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0)) + 1));
+			if (!g_d.env_list->content)
 				return (1);
-			d.env_list->content = getcwd(NULL, 0);
-			d.env_list->content[ft_strlen(getcwd(NULL, 0)) + 1] = 0;
-			d.env_list = tmp;
+			g_d.env_list->content = getcwd(NULL, 0);
+			g_d.env_list->content[ft_strlen(getcwd(NULL, 0)) + 1] = 0;
+			g_d.env_list = tmp;
 			return (0);
 		}
 		else
-			d.env_list = d.env_list->next;
+			g_d.env_list = g_d.env_list->next;
 	}
-	d.env_list = tmp;
+	g_d.env_list = tmp;
 	return (1);
 }
 
@@ -41,24 +41,24 @@ int	ch_pwd_env(void)
 {
 	t_env	*tmp;
 
-	tmp = d.env_list;
-	while (d.env_list->name || d.env_list->content)
+	tmp = g_d.env_list;
+	while (g_d.env_list->name || g_d.env_list->content)
 	{
-		if (!ft_strncmp("PWD", d.env_list->name, 3))
+		if (!ft_strncmp("PWD", g_d.env_list->name, 3))
 		{
-			free(d.env_list->content);
-			d.env_list->content = (char *)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0)) + 1));
-			if (!d.env_list->content)
+			free(g_d.env_list->content);
+			g_d.env_list->content = (char *)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0)) + 1));
+			if (!g_d.env_list->content)
 				return (1);
-			d.env_list->content = getcwd(NULL, 0);
-			d.env_list->content[ft_strlen(getcwd(NULL, 0)) + 1] = 0;
-			d.env_list = tmp;
+			g_d.env_list->content = getcwd(NULL, 0);
+			g_d.env_list->content[ft_strlen(getcwd(NULL, 0)) + 1] = 0;
+			g_d.env_list = tmp;
 			return (0);
 		}
 		else
-			d.env_list = d.env_list->next;
+			g_d.env_list = g_d.env_list->next;
 	}
-	d.env_list = tmp;
+	g_d.env_list = tmp;
 	return (1);
 }
 

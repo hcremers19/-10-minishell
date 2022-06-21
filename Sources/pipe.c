@@ -35,13 +35,13 @@ static void	i_find_a_signal(int this_signal) // ???
 	if (this_signal == SIGQUIT)
 	{
 		ft_putstr_fd("^\\QUIT: 3", 1);
-		d.error_code_tmp = 131;
-		kill(d.pid, SIGKILL);
+		g_d.error_code_tmp = 131;
+		kill(g_d.pid, SIGKILL);
 	}
 	else
 	{
 		ft_putstr_fd("^C", 1);
-		d.error_code_tmp = 130;
+		g_d.error_code_tmp = 130;
 	}
 	ft_putstr_fd("\n", 1);
 }
@@ -56,28 +56,28 @@ void	child_process(t_all *all, t_one *cmd, int next_fd[2], int pre_fd[2])
 	else
 		multi_pipe(all, next_fd, pre_fd, cmd);
 	if (!check_builtin(cmd))
-		process(d.env_tab, cmd->pars_tab, cmd, 1);
+		process(g_d.env_tab, cmd->pars_tab, cmd, 1);
 	else
 	{
 		builtin_cmds(cmd);
-		process(d.env_tab, cmd->pars_tab, cmd, 0);
+		process(g_d.env_tab, cmd->pars_tab, cmd, 0);
 		exit(0);
 	}
 }
 
 void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2])
 {
-	if ((d.error_code_tmp == 130
-			|| d.error_code_tmp == 131))
-		d.error_code = d.error_code_tmp;
+	if ((g_d.error_code_tmp == 130
+			|| g_d.error_code_tmp == 131))
+		g_d.error_code = g_d.error_code_tmp;
 	else
-		d.error_code = tmp / 255;
+		g_d.error_code = tmp / 255;
 	if (cmd->pars_tab[0])
 		builtin_cmds_env(cmd);
 	if (cmd->next)
-		pipe_rec(all, d.env_tab, next_fd, cmd->next);
+		pipe_rec(all, g_d.env_tab, next_fd, cmd->next);
 	else
-		process(d.env_tab, cmd->pars_tab, cmd, 0);
+		process(g_d.env_tab, cmd->pars_tab, cmd, 0);
 	close_pipe(next_fd);
 }
 
@@ -88,13 +88,13 @@ void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd)
 	pid_t	pid;
 
 	(void)envp;
-	d.error_code_tmp = 0;
+	g_d.error_code_tmp = 0;
 	if (!(!ft_strlen(cmd->pars_tab[0]) || ft_strncmp(cmd->pars_tab[0], "exit", 4)))
 		exit(1);///////////// fonction ft_exit here
 	if (pipe(next_fd) == -1)
 		return (perror("pipe"));
 	pid = fork();
-	d.pid = pid;
+	g_d.pid = pid;
 	if (pid < 0)
 		return (perror("fork"));
 	if (pid == 0)
@@ -111,4 +111,3 @@ void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd)
 
 // Demander à Lisa un tour du propriétaire
 // Ne pas copier ce comportement parce que c'est une récursive (voir lignes 108 et 78) et qu'on pourrait faire moins compliqué
-

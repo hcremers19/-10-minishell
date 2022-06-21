@@ -122,19 +122,19 @@ struct s_env
 /*		GLOBAL VARIABLE								*/
 /****************************************************/
 
-t_data	d;
+t_data					g_d;
 
 /****************************************************/
 /*		PROTOTYPES									*/
 /****************************************************/
 
 /*---	Init.c -------------------------*/
-int		init_data(char **env, t_data *d);
-void	init_data_bis(t_data *d);
+int		init_data(char **env, t_data *g_d);
+void	init_data_bis(t_data *g_d);
 void	init_sreen(void);
 
 /*--	Pars.c -------------------------*/
-int 	pars_len(char const *s, int i);
+int		pars_len(char const *s, int i);
 int		pars_count(char const *s);
 char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
@@ -190,10 +190,10 @@ void	loop_exit(void);
 void	global_exit(void);
 
 /*--	Execpipe.c ---------------------*/
-int 	execpipe(void);
-int 	check_builtin(t_one *cmd);
-int 	builtin_cmds_env(t_one *cmd);
-int 	builtin_cmds(t_one *cmd);
+int		execpipe(void);
+int		check_builtin(t_one *cmd);
+int		builtin_cmds_env(t_one *cmd);
+int		builtin_cmds(t_one *cmd);
 
 /*--	Pipe.c -------------------------*/
 void	process(char *envp[], char **all_cmd, t_one *cmd, int to_exec);

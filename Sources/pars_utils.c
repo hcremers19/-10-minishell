@@ -46,7 +46,7 @@ char	**copy_line_tab(char **tab, int i)
 
 	j = i;
 	k = 0;
-	init = d.all->init_tab;
+	init = g_d.all->init_tab;
 	while (init[j] && init[j][0] != '|') //&& ft_strlen(init[j]) != 1)
 		j++;
 	if (!j)

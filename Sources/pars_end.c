@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_end.c                                         :+:      :+:    :+:   */
+/*   pars_eng_d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,10 +19,10 @@ int	loop_check_env(t_one *cmd)
 	j = 0;
 	while (cmd->pars_tab[j])
 	{
-		if ((check_c_in(cmd->pars_tab[j], '$') >= 0
-			 && cmd->pars_tab[j][0] == '\"')
-			 || (check_c_in(cmd->pars_tab[j], '$') >= 0
-			  && cmd->pars_tab[j][0] != '\''))
+		if ((check_c_in(cmd->pars_tab[j], '$') >= 0 \
+			&& cmd->pars_tab[j][0] == '\"') \
+			|| (check_c_in(cmd->pars_tab[j], '$') >= 0 \
+			&& cmd->pars_tab[j][0] != '\''))
 		{
 			while (check_c_in(cmd->pars_tab[j], '$') >= 0)
 			{
@@ -47,26 +47,26 @@ int	get_level(t_one *cmd, int i)
 
 int	init_cmds(void)
 {
-	int	i;
+	int		i;
 	t_one	*tmp;
 
 	i = 0;
-	d.all->first->level = 0;
-	tmp = d.all->first;
-	while (d.all->first)
+	g_d.all->first->level = 0;
+	tmp = g_d.all->first;
+	while (g_d.all->first)
 	{
-		d.all->first->pos = d.all->nb_cmd - i - 1;
-		d.all->first->cmd = d.all->first->pars_tab[0];
-		d.all->first->level = get_level(d.all->first, i);
-		d.all->first->infile = 0;
-		d.all->first->outfile = 1;
-		if (check_lst_stat(d.all->first))
+		g_d.all->first->pos = g_d.all->nb_cmd - i - 1;
+		g_d.all->first->cmd = g_d.all->first->pars_tab[0];
+		g_d.all->first->level = get_level(g_d.all->first, i);
+		g_d.all->first->infile = 0;
+		g_d.all->first->outfile = 1;
+		if (check_lst_stat(g_d.all->first))
 			return (-19);
-		if (loop_check_env(d.all->first))
+		if (loop_check_env(g_d.all->first))
 			return (-19);
-		d.all->first = d.all->first->next;
+		g_d.all->first = g_d.all->first->next;
 		i++;
 	}
-	d.all->first = tmp;
+	g_d.all->first = tmp;
 	return (0);
 }

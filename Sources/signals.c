@@ -19,7 +19,7 @@ void	handler(int sig)
 	ft_putstr_fd("\n", 1);
 	rl_on_new_line();
 	rl_redisplay();
-	d.error_code = 1;
+	g_d.error_code = 1;
 }
 
 void	ft_signal(void)

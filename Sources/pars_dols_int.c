@@ -36,7 +36,7 @@ char	*fill_lst_stat(char *str)
 {
 	char	*tmp;
 
-	tmp = ft_itoa(d.error_code);
+	tmp = ft_itoa(g_d.error_code);
 	if (!tmp)
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * 4);
