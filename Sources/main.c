@@ -81,7 +81,7 @@ int	main(int ac, char **av, char **env)
 	}
 	g_d.s_free = -1;
 	g_d.s_err = 12;
-	if (init_data(env, &d))
+	if (init_data(env, &g_d))
 		init_exit();
 	main_loop();
 	return (0);

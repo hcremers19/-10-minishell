@@ -60,7 +60,7 @@ void	loop_exit(void)
 		perror(strerror(g_d.s_err));
 	else if (g_d.all->close_stat != 0)
 		ft_putstr_fd("Input/output error: Non closed quotes\n", 1);
-	init_data_bis(&d);
+	init_data_bis(&g_d);
 }
 
 

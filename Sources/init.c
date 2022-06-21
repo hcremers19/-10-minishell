@@ -12,38 +12,38 @@
 
 #include "../Includes/minishell.h"
 
-int	init_data(char **env, t_data *d)
+int	init_data(char **env, t_data *g_d)
 {
-	tcgetattr(0, &d->old);
-	tcgetattr(0, &d->new);
-	d->new.c_lflag &= ~(ECHOCTL);
-	tcsetattr(0, TCSANOW, &d->new);
-	d->env_tab = cpy_tab(env, len_tab(env));
-	if (!d->env_tab)
+	tcgetattr(0, &g_d->old);
+	tcgetattr(0, &g_d->new);
+	g_d->new.c_lflag &= ~(ECHOCTL);
+	tcsetattr(0, TCSANOW, &g_d->new);
+	g_d->env_tab = cpy_tab(env, len_tab(env));
+	if (!g_d->env_tab)
 		return (-19);
-	d->s_free = 1;
+	g_d->s_free = 1;
 	if (create_env(env))
 		return (-19);
-	d->s_free = 3;
-	d->tmp_list = ft_env_lstnew(NULL, NULL);
-	d->all = (t_all *)malloc(sizeof(t_all));
-	if (!d->all)
+	g_d->s_free = 3;
+	g_d->tmp_list = ft_env_lstnew(NULL, NULL);
+	g_d->all = (t_all *)malloc(sizeof(t_all));
+	if (!g_d->all)
 		return (-19);
-	d->s_free = 5;
-	d->all->init_tab = (char **)malloc(sizeof(char *));
-	if (!d->all->init_tab)
+	g_d->s_free = 5;
+	g_d->all->init_tab = (char **)malloc(sizeof(char *));
+	if (!g_d->all->init_tab)
 		return (-19);
-	init_data_bis(d);
+	init_data_bis(g_d);
 	init_sreen();
 	return (0);
 }
 
-void	init_data_bis(t_data *d)
+void	init_data_bis(t_data *g_d)
 {
-	d->s_free = 7;
-	d->pid = 0;
-	d->all->close_stat = 0;
-	d->s_err = 12;
+	g_d->s_free = 7;
+	g_d->pid = 0;
+	g_d->all->close_stat = 0;
+	g_d->s_err = 12;
 }
 
 void	init_sreen(void)

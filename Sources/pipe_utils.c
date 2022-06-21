@@ -75,10 +75,10 @@ void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
 		execve(cmd_p, cmd,g_d.env_tab);// Quand même présente ?
 	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd_str))
 	{
-		d.error_code = 127;
+		g_d.error_code = 127;
 		perror_cnf("command not found: ", cmd[0], 2);
 	}
 	free(cmd_p);
 	ft_free(path, cmd);
-	exit(d.error_code);
+	exit(g_d.error_code);
 }
