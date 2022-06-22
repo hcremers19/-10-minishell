@@ -90,7 +90,7 @@ struct s_data
 struct s_all
 {
 	int				nb_cmd;
-	int				close_stat;
+	int				c_s;
 	char			**init_tab;
 	struct s_one	*first;
 };
@@ -175,6 +175,15 @@ void	tmp_var(char *name, char *content);
 void	ft_env(void);
 int		ft_cd(char *path);
 void	ft_pwd(void);
+void	ft_echo(char **pars_tab);
+
+/*--	Ft_CD.c ------------------------*/
+int		ch_oldpwd_env(void);
+int		ch_pwd_env(void);
+int		ft_cd(char *path);
+
+/*--	Ft_echo.c ----------------------*/
+void	write_w_quotes(char *str);
 void	ft_echo(char **pars_tab);
 
 /*---	Enviro.c -----------------------*/

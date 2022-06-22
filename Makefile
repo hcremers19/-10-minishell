@@ -48,6 +48,7 @@ SRC		= 	main.c				\
 			pipe_utils2.c		\
 			execpipe.c			\
 			ft_cd.c				\
+			ft_echo.c			\
 
 INC		= 	./Includes/minishell.h
 

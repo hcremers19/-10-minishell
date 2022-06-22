@@ -49,7 +49,7 @@ static int	ft_elen(char const *s, char c, int i)
 	return (len);
 }
 
-static char	**ft_free(char **tab, int j)
+static char	**ft_free_split(char **tab, int j)
 {
 	int	i;
 
@@ -84,7 +84,7 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[++j] = ft_substr(s, i + 1, ft_elen(s, c, i + 1));
 			if (!tab[j])
-				return (ft_free(tab, j));
+				return (ft_free_split(tab, j));
 			i += ft_elen(s, c, i + 1);
 		}
 	}

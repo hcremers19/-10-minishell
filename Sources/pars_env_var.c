@@ -96,6 +96,7 @@ char	*check_env_var(char *str)
 int	loop_check_env(t_one *cmd)
 {
 	int	j;
+	int	pos;
 
 	j = 0;
 	while (cmd->pars_tab[j])
@@ -105,7 +106,9 @@ int	loop_check_env(t_one *cmd)
 			|| (check_c_in(cmd->pars_tab[j], '$') >= 0 \
 			&& cmd->pars_tab[j][0] != '\''))
 		{
-			while (check_c_in(cmd->pars_tab[j], '$') >= 0)
+			pos = check_c_in(cmd->pars_tab[j], '$');
+			while (check_c_in(cmd->pars_tab[j], '$') >= 0 && \
+				ft_isalpha(cmd->pars_tab[j][pos + 1]))
 			{
 				cmd->pars_tab[j] = check_env_var(cmd->pars_tab[j]);
 				if (!cmd->pars_tab[j])

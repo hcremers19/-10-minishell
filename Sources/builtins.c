@@ -66,20 +66,3 @@ void	ft_pwd(void)
 	printf("%s\n", getcwd(NULL, 0));
 }	// Aller voir le pwd d'Hugo si ça vaut la peine d'en faire un plus complexe
 
-void	ft_echo(char **pars_tab)
-{
-	int i;
-
-	i = 1;
-	while (!ft_strncmp(pars_tab[i], "-n", 2))
-		i++;
-	while (pars_tab[i])
-	{
-		ft_putstr_fd(pars_tab[i], 1);
-		i++;
-		if (pars_tab[i])
-			ft_putchar_fd(' ', 1);
-	}
-	if (ft_strncmp(pars_tab[1], "-n", 2))
-		ft_putchar_fd('\n', 1);
-}

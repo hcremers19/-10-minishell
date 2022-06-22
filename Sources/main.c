@@ -34,7 +34,7 @@ void	main_loop(void)
 			free(input);
 			if (!g_d.all->first)
 				global_exit();
-			else if (g_d.all->close_stat != 0)
+			else if (g_d.all->c_s != 0)
 				loop_exit();
 			else if (execpipe())//// aucun retour != 0 pr le mmt
 				global_exit();
@@ -62,6 +62,7 @@ int	main(int ac, char **av, char **env)
 	main_loop();
 	return (0);
 }
+
 
 // 	/////////////////////////////////////////////////////////////////
 			// int i;

@@ -76,7 +76,7 @@ void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
 	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd_str))
 	{
 		g_d.error_code = 127;
-		perror_cnf("command not found: ", cmd[0], 2);
+		perror_cnf("command not found: ", cmd[0], 1);
 	}
 	free(cmd_p);
 	ft_free(path, cmd);

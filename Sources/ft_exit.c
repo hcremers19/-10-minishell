@@ -27,7 +27,8 @@ void	init_exit(void)
 				ft_free_lst(g_d.tmp_list);
 			if (g_d.s_free > 4)
 			{
-				free(g_d.all);
+				if (g_d.all)
+					free(g_d.all);
 				if (g_d.s_free > 6 && g_d.all->init_tab)
 					free(g_d.all->init_tab);
 			}
@@ -47,18 +48,20 @@ void	loop_exit(void)
 		free(g_d.all->init_tab);
 	else if (g_d.s_free > 12)
 	{
-		ft_free_tab(g_d.all->init_tab);
+		if (g_d.all->init_tab)
+			ft_free_tab(g_d.all->init_tab);
 		if (g_d.s_free > 14)
 			free(g_d.all->first);
 		else if (g_d.s_free > 16)
 		{
-			ft_free_cmd_lst(g_d.all->first);
+			if (g_d.all->first)
+				ft_free_cmd_lst(g_d.all->first);
 		}
 	}
 /////////////////////////////////////////////////////////
-	if (g_d.s_free > 8 && g_d.all->close_stat == 0)
+	if (g_d.s_free > 8 && g_d.all->c_s == 0)
 		perror(strerror(g_d.s_err));
-	else if (g_d.all->close_stat != 0)
+	else if (g_d.all->c_s != 0)
 		ft_putstr_fd("Input/output error: Non closed quotes\n", 1);
 	init_data_bis(&g_d);
 }
