@@ -12,77 +12,82 @@
 
 #include "libft.h"
 
-static char	**ft_clean(char **s, int i)
-{
-	while (i--)
-		free(s[i]);
-	return (0);
-}
-
-static int	wrdnbr(char const *s, char c)
+static int	ft_wolloc(char const *s, char c)
 {
 	int	i;
-	int	j;
-	int	count;
+	int	nb;
+	int	size;
 
 	i = 0;
-	count = 0;
+	nb = 0;
+	if (s[0] == '\0')
+		return (0);
+	size = ft_strlen(s) - 1;
 	while (s[i])
 	{
-		while (s[i] && (s[i] == c))
-			i++;
-		j = 0;
-		while (s[i + j] && (s[i + j] != c))
-			j++;
-		if (j)
-			count++;
-		i = i + j;
-	}
-	return (count);
-}
-
-static char	**ft_split2(char const *s, char c, char **tab, unsigned int w)
-{
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	m;
-
-	i = 0;
-	j = 0;
-	while (i < w)
-	{
-		while (s[j] && (s[j] == c))
-			j++;
-		m = 0;
-		while (s[j + m] && (s[j + m] != c))
-			m++;
-		tab[i] = malloc(sizeof(char) * (m + 1));
-		if (!tab[i])
-			return (ft_clean(tab, i));
-		ft_strlcpy(tab[i], &s[j], m + 1);
-		j = j + m;
+		if (s[i] == c && s[i + 1] != c)
+			nb++;
 		i++;
 	}
-	return (tab);
+	if (s[0] == c && s[size] == c)
+		nb--;
+	else if (s[0] != c && s[size] != c)
+		nb++;
+	return (nb);
+}
+
+static int	ft_elen(char const *s, char c, int i)
+{
+	int	len;
+
+	len = 0;
+	while (s[i] != c && s[i])
+	{
+		len++;
+		i++;
+	}
+	return (len);
+}
+
+static char	**ft_free(char **tab, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < j && tab[i] != 0)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	unsigned int	w;
-	char			**tab;
+	char	**tab;
+	int		i;
+	int		j;
 
 	if (!s)
-		return (0);
-	w = wrdnbr(s, c);
-	tab = malloc(sizeof(char *) * (w + 1));
+		return (NULL);
+	tab = malloc(sizeof(char **) * (ft_wolloc(s, c) + 1));
 	if (!tab)
-		return (0);
-	tab = ft_split2(s, c, tab, w);
-	if (!tab)
+		return (NULL);
+	i = -1;
+	j = -1;
+	if (s[0] != c && s[0] != '\0')
+		tab[++j] = ft_substr(s, 0, ft_elen(s, c, 0));
+	while (s[++i])
 	{
-		free(tab);
-		return (0);
+		if (s[i] == c && s[i + 1] != '\0' && s[i + 1] != c)
+		{
+			tab[++j] = ft_substr(s, i + 1, ft_elen(s, c, i + 1));
+			if (!tab[j])
+				return (ft_free(tab, j));
+			i += ft_elen(s, c, i + 1);
+		}
 	}
-	tab[w] = 0;
+	tab[++j] = NULL;
 	return (tab);
 }

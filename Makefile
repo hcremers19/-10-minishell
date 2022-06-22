@@ -26,27 +26,28 @@ LIB_DIR	= ./Sources/Libft/
 
 SRC_DIR	= 	./Sources/
 
-SRC		= 	main.c			\
-			init.c			\
-			pars.c			\
-			pars_dols_int.c	\
-			pars_env_var.c	\
-			pars_end.c		\
-			pars_utils.c	\
-			tab_utils.c 	\
-			lst_env.c		\
-			lst_env1.c		\
-			utils.c			\
-			ft_free.c		\
-			ft_exit.c		\
-			builtins.c		\
-			enviro.c		\
-			signals.c		\
-			pipe.c			\
-			pipe_utils.c	\
-			pipe_utils2.c	\
-			execpipe.c		\
-			ft_cd.c			\
+SRC		= 	main.c				\
+			init.c				\
+			pars.c				\
+			pars_dols_int.c		\
+			pars_env_var.c		\
+			pars_tmp_env_var.c	\
+			pars_end.c			\
+			pars_utils.c		\
+			tab_utils.c 		\
+			lst_env.c			\
+			lst_env1.c			\
+			utils.c				\
+			ft_free.c			\
+			ft_exit.c			\
+			builtins.c			\
+			enviro.c			\
+			signals.c			\
+			pipe.c				\
+			pipe_utils.c		\
+			pipe_utils2.c		\
+			execpipe.c			\
+			ft_cd.c				\
 
 INC		= 	./Includes/minishell.h
 

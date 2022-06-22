@@ -81,11 +81,5 @@ int	main(int ac, char **av, char **env)
 			// 	j++;
 			// }
 			// g_d.all->first = cmd;
-			// i = 0;
-			// while (g_d.env_list)
-			// {
-			// 	printf("[%d] = %s = %s\n", i, g_d.env_list->name, g_d.env_list->content);
-			// 	g_d.env_list = g_d.env_list->next;
-			// 	i++;
-			// }
+
 // /////////////////////////////////////////////////////////////////

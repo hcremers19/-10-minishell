@@ -144,12 +144,16 @@ t_one	*ft_pars(char *s);
 /*--	Pars_end.c ---------------------*/
 int		init_cmds(void);
 int		get_level(t_one *cmd, int i);
+void	init_cmds_values(t_one *cmd, int i);
 
 /*--	Pars_env_var.c -----------------*/
 int		loop_check_env(t_one *cmd);
 char	*env_or_not_env(char *str);
 char	*check_env_var(char *str);
 char	*join_mat(char **tab);
+
+/*--	Check_Tmp_Env_Var.c ------------*/
+int		check_tmp_env(t_one *cmd);
 
 /*--	Pars_dols_int.c ----------------*/
 int		check_lst_stat(t_one *cmd);
