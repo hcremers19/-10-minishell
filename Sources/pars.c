@@ -119,7 +119,7 @@ t_one	*ft_pars(char *s)
 	g_d.all->init_tab = ft_pars_line(s);
 	if (!g_d.all->init_tab)
 		return (NULL);
-	g_d.all->first = (t_one *)malloc(sizeof(t_one));
+	g_d.all->first = ft_calloc(1, sizeof(t_one));
 	if (!g_d.all->first)
 		return (NULL);
 	g_d.s_free = 15;
@@ -135,7 +135,7 @@ t_one	*ft_pars(char *s)
 			tmp->next = NULL;
 		else
 		{
-			tmp->next = (t_one *)malloc(sizeof(t_one));
+			tmp->next = ft_calloc(1, sizeof(t_one));
 			if (!tmp->next)
 				return (NULL);
 		}

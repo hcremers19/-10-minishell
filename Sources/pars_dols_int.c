@@ -41,7 +41,7 @@ char	*replace_lst_stat(char *str, int pos)
 	char	*ret;
 	char	**tmp_tab;
 
-	tmp_tab = (char **)malloc(sizeof(char *) * 4);
+	tmp_tab = ft_calloc(4, sizeof(char *));
 	if (!tmp_tab)
 		return (NULL);
 	t = 0;

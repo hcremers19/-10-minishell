@@ -47,17 +47,17 @@ char	**copy_line_tab(char **tab, int i)
 	j = i;
 	k = 0;
 	init = g_d.all->init_tab;
-	while (init[j] && init[j][0] != '|') //&& ft_strlen(init[j]) != 1)
+	while (init[j] && init[j][0] != '|')
 		j++;
 	if (!j)
 		return (NULL);
 	j -= i;
-	tab = (char **)malloc(sizeof(char *) * (j + 1));
+	tab = ft_calloc(j + 1, sizeof(char *));
 	if (!tab)
 		return (NULL);
 	while (j)
 	{
-		tab[k] = (char *)malloc(sizeof(char) * (ft_strlen(init[i]) + 1));
+		tab[k] = ft_calloc(ft_strlen(init[i]) + 1, sizeof(char));
 		if (!tab[k])
 			return (NULL);
 		ft_strlcpy(tab[k], init[i], ft_strlen(init[i]));

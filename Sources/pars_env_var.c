@@ -18,7 +18,7 @@ char	*join_mat(char **tab)
 	char	*str;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (len_tab_string(tab) + 1));
+	str = ft_calloc(len_tab_string(tab) + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	while (tab && tab[i])
@@ -40,7 +40,7 @@ char	*env_or_not_env(char *str)
 	{
 		if (!ft_strncmp(str, g_d.env_list->name, ft_strlen(str)))
 		{
-			ret = (char *)malloc(sizeof(char) * (ft_strlen(g_d.env_list->content) + 1));
+			ret = ft_calloc(ft_strlen(g_d.env_list->content) + 1, sizeof(char));
 			if (!ret)
 				return (NULL);
 			ret = g_d.env_list->content;
@@ -63,7 +63,7 @@ char	*check_env_var(char *str)
 	char	*ret;
 	char	**tmp_tab;
 
-	tmp_tab = (char **)malloc(sizeof(char *) * 4);
+	tmp_tab = ft_calloc(4, sizeof(char *));
 	if (!tmp_tab)
 		return (NULL);
 	t = 0;
