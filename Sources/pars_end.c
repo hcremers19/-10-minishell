@@ -21,6 +21,7 @@ int	get_level(t_one *cmd, int i)
 	return (1);
 }
 
+
 int	init_cmds(void)
 {
 	int		i;

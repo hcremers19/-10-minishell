@@ -12,11 +12,6 @@
 
 #include "../Includes/minishell.h"
 
-// void	ft_exit(void)
-// {
-// 	exit(EXIT_SUCCESS);
-// } // À élaborer
-
 void	ft_unset(char *name)
 {
 	ft_env_lstdelone(ft_env_lststr(g_d.env_list, name), free);

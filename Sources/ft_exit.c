@@ -43,7 +43,7 @@ void	init_exit(void)
 
 void	loop_exit(void)
 {
-	if (g_d.s_free == 11)
+	if (g_d.s_free == 11 && g_d.all->init_tab)
 		free(g_d.all->init_tab);
 	else if (g_d.s_free > 12)
 	{

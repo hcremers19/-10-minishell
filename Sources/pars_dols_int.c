@@ -26,7 +26,7 @@ int	check_lst_stat(t_one *cmd)
 			if (cmd->pars_tab[i][pos + 1] == '?')
 			{
 				cmd->pars_tab[i] = replace_lst_stat(cmd->pars_tab[i], pos);
-				if (cmd->pars_tab[i])
+				if (!cmd->pars_tab[i])
 					return (-19);
 			}
 		}
@@ -38,7 +38,6 @@ int	check_lst_stat(t_one *cmd)
 char	*replace_lst_stat(char *str, int pos)
 {
 	int		t;
-	char	*ret;
 	char	**tmp_tab;
 
 	tmp_tab = ft_calloc(4, sizeof(char *));
@@ -47,22 +46,19 @@ char	*replace_lst_stat(char *str, int pos)
 	t = 0;
 	if (pos > 0)
 	{
-		tmp_tab[t] = ft_substr(str, 0, pos);
+		tmp_tab[t] = ft_substr(str, 0, pos + 1);
 		if (!tmp_tab[t])
 			return (NULL);
 		t++;
 	}
-	tmp_tab[t] = ft_itoa(g_d.error_code);;
+	tmp_tab[t] = ft_itoa(g_d.error_code);
 	if (!tmp_tab[t])
 		return (NULL);
-	if (pos + 1 < ft_strlen(str))
+	if (pos + 2 < ft_strlen(str))
 	{
 		tmp_tab[++t] = ft_substr(str, pos + 2, ft_strlen(str) - pos + 1);
 		if (!tmp_tab[t])
 			return (NULL);
 	}
-	ret = join_mat(tmp_tab);
-	if (!ret)
-		return (NULL);
-	return (ret);
+	return (join_mat(tmp_tab));
 }

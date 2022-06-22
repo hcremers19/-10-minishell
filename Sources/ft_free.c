@@ -25,8 +25,7 @@ void	ft_free_tab(char **tab)
 			free(tab[i]);
 		i--;
 	}
-	if (tab)
-		free(tab);
+	free(tab);
 }
 
 void	ft_free_lst(t_env *list)

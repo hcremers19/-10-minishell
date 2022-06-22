@@ -60,7 +60,6 @@ char	*check_env_var(char *str)
 	int		j;
 	int		k;
 	int		t;
-	char	*ret;
 	char	**tmp_tab;
 
 	tmp_tab = ft_calloc(4, sizeof(char *));
@@ -91,10 +90,7 @@ char	*check_env_var(char *str)
 		if (!tmp_tab[t])
 			return (NULL);
 	}
-	ret = join_mat(tmp_tab);
-	if (!ret)
-		return (NULL);
-	return (ret);
+	return (join_mat(tmp_tab));
 }
 
 int	loop_check_env(t_one *cmd)

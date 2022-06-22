@@ -80,7 +80,7 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 		while (s[i] && (s[i] == 9 || s[i] == 32))
 			i++;
 		l = pars_len(s, i);
-		tab[j] = (char *)malloc(sizeof(char) * (l + 1));
+		tab[j] = ft_calloc(l + 1, sizeof(char));
 		if (!tab[j])
 			return (NULL);
 		ft_strlcpy(tab[j], &s[i], l);
@@ -96,7 +96,7 @@ char	**ft_pars_line(char const *s)
 	char	**tab;
 
 	i = 0;
-	tab = (char **)malloc(sizeof(char *) * (pars_count(s) + 1));
+	tab = ft_calloc(pars_count(s) + 1, sizeof(char *));
 	if (!tab)
 		return (NULL);
 	g_d.s_free = 11;

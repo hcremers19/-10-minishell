@@ -165,7 +165,6 @@ void	ft_signal(void);
 void	handler(int sig);
 
 /*--	Builtins.c ---------------------*/
-void	ft_exit(void);
 void	ft_unset(char *name);
 void	ft_export(char *name);
 void	tmp_var(char *name, char *content);
