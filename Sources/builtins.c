@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/20 12:09:47 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:45:38 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ void	ft_export(char *name)
 
 void	tmp_var(char *name, char *content)
 {
-	ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
+	t_env	*tmp;
+
+	tmp = ft_env_lststr(g_d.env_list, name);
+	if (!tmp)
+		ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
+	else
+		ft_export(name);
 }
 
 void	ft_env(void)

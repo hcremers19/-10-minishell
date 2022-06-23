@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:00 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/14 11:13:14 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:54:53 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	process(char *envp[], char **all_cmd, t_one *cmd, int to_exec)
 {
 	char	**paths;
 	char	*cmd_path;
+	(void)envp;
 
 	if (ft_strlen(cmd->pars_tab[0]) > 2 && cmd->pars_tab[0][0] == '.'
 		&& cmd->pars_tab[0][1] == '/' && to_exec)
 		ft_end_process(cmd->pars_tab[0], cmd->pars_tab, NULL, cmd);
-	paths = get_path(envp);
+	paths = get_path();
 	if (no_path(paths, all_cmd, cmd, to_exec))
 		return ;
 	cmd_path = find_cmd_path(paths, cmd, all_cmd);

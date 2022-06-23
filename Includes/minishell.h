@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/20 11:35:06 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:50:19 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2]);
 void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd);
 
 /*--	Pipe_utils.c -------------------*/
-char	**get_path(char *env[]);
+char	**get_path(void);
 void	close_pipe(int fd[2]);
 void	ft_free(char **paths, char **cmd);
 void	perror_cnf(char *str, char *cmd, int fd);
