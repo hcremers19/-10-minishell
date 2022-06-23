@@ -77,6 +77,6 @@ void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
 		perror_cnf("command not found: ", cmd[0], 1);
 	}
 	free(cmd_p);
-	ft_free(path, cmd);
+	free(path);
 	exit(g_d.error_code);
 }

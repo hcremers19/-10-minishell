@@ -12,23 +12,38 @@
 
 #include "../Includes/minishell.h"
 
+char	*init_loop(void)
+{
+	char	*prompt;
+	char	*input;
+
+	ft_signal();
+	rl_on_new_line();
+	prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
+	if (!prompt)
+		return (NULL);
+	g_d.s_free = 9;
+	input = readline(prompt);
+	add_history(input);
+	free(prompt);
+	return (input);
+}
+////////////////// changement potentiellellemt a chier, non commit!!!
+/////////////////// regarder free pipex avec wraloc
+
 void	main_loop(void)
 {
 	char	*input;
-	char	*prompt;
 
 	while (19)
 	{
-		ft_signal();
-		rl_on_new_line();
-		prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
-		if (!prompt)
-			init_exit();
-		g_d.s_free = 9;
-		input = readline(prompt);
-		add_history(input);
-		free(prompt);
-		if (input && only_space(input) && ft_strlen(input) != 0)
+		input = init_loop();
+		if (!input)
+		{
+			g_d.s_err = 5;
+			global_exit();
+		}
+		else if (input && only_space(input) && ft_strlen(input) != 0)
 		{
 			g_d.all->first = ft_pars(input);
 			free(input);
@@ -38,11 +53,6 @@ void	main_loop(void)
 				loop_exit();
 			else if (execpipe())//// aucun retour != 0 pr le mmt
 				global_exit();
-		}
-		else if (!input)
-		{
-			g_d.s_err = 5;
-			global_exit();
 		}
 	}
 }
