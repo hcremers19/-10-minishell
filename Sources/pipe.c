@@ -91,7 +91,7 @@ void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd)
 	(void)envp;
 	g_d.error_code_tmp = 0;
 	if (!(!ft_strlen(cmd->pars_tab[0]) || ft_strncmp(cmd->pars_tab[0], "exit", 4)))
-		exit(1);///////////// fonction ft_exit here
+		ft_exit(cmd);
 	if (pipe(next_fd) == -1)
 		return (perror("pipe"));
 	pid = fork();

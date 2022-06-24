@@ -47,7 +47,7 @@ int	builtin_cmds(t_one *cmd)
 	if (!ft_strncmp("env", cmd->cmd, 3))
 		ft_env();
 	else if (!ft_strncmp("exit", cmd->cmd, 4))
-		global_exit();
+		ft_exit(cmd);
 	else if (!ft_strncmp("pwd", cmd->cmd, 3))
 		ft_pwd();
 	else if (!ft_strncmp("echo", cmd->cmd, 4))

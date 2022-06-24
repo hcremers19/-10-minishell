@@ -39,6 +39,7 @@ SRC		= 	main.c				\
 			lst_env1.c			\
 			utils.c				\
 			ft_free.c			\
+			exit.c				\
 			ft_exit.c			\
 			builtins.c			\
 			enviro.c			\

@@ -20,14 +20,20 @@ int	check_lst_stat(t_one *cmd)
 	i = 1;
 	while (cmd->pars_tab[i])
 	{
-		pos = check_c_in(cmd->pars_tab[i], '$');
-		if (pos >= 0)
+		if ((check_c_in(cmd->pars_tab[i], '$') >= 0 \
+			&& cmd->pars_tab[i][0] == '\"') \
+			|| (check_c_in(cmd->pars_tab[i], '$') >= 0 \
+			&& cmd->pars_tab[i][0] != '\''))
 		{
-			if (cmd->pars_tab[i][pos + 1] == '?')
+			pos = check_c_in(cmd->pars_tab[i], '$');
+			if (pos >= 0)
 			{
-				cmd->pars_tab[i] = replace_lst_stat(cmd->pars_tab[i], pos);
-				if (!cmd->pars_tab[i])
-					return (-19);
+				if (cmd->pars_tab[i][pos + 1] == '?')
+				{
+					cmd->pars_tab[i] = replace_lst_stat(cmd->pars_tab[i], pos);
+					if (!cmd->pars_tab[i])
+						return (-19);
+				}
 			}
 		}
 		i++;
@@ -46,7 +52,7 @@ char	*replace_lst_stat(char *str, int pos)
 	t = 0;
 	if (pos > 0)
 	{
-		tmp_tab[t] = ft_substr(str, 0, pos + 1);
+		tmp_tab[t] = ft_substr(str, 0, pos);
 		if (!tmp_tab[t])
 			return (NULL);
 		t++;

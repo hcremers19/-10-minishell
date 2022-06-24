@@ -76,7 +76,8 @@ char	*check_env_var(char *str)
 	}
 	k = j;
 	j++;
-	while (str[j] && str[j] != '$' && str[j] != 9 && str[j] != 32 && str[j] != 34)
+	// while (str[j] && str[j] != '$' && str[j] != 9 && str[j] != 32 && str[j] != 34)
+	while (str[j] && ft_isalpha(str[j]))
 		j++;
 	tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
 		if (!tmp_tab[t])

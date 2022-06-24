@@ -177,7 +177,7 @@ int		ft_cd(char *path);
 void	ft_pwd(void);
 void	ft_echo(char **pars_tab);
 
-/*--	Ft_CD.c ------------------------*/
+/*--	Ft_Cd.c ------------------------*/
 int		ch_oldpwd_env(void);
 int		ch_pwd_env(void);
 int		ft_cd(char *path);
@@ -185,6 +185,9 @@ int		ft_cd(char *path);
 /*--	Ft_echo.c ----------------------*/
 void	write_w_quotes(char *str);
 void	ft_echo(char **pars_tab);
+
+/*--	Ft_exit.c ----------------------*/
+void	ft_exit(t_one *cmd);
 
 /*---	Enviro.c -----------------------*/
 int		create_env(char **env);
@@ -196,7 +199,7 @@ void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
 void	ft_free_cmd_lst(t_one *cmd);
 
-/*---	Ft_exit.c ----------------------*/
+/*---	Exit.c -------------------------*/
 void	init_exit(void);
 void	loop_exit(void);
 void	global_exit(void);
