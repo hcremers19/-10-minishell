@@ -75,6 +75,7 @@ struct s_data
 	int				pid;
 	int				s_free;
 	int				s_err;
+	int				s_ex;
 	int				error_code;
 	int				error_code_tmp;
 	struct s_all	*all;
@@ -211,23 +212,23 @@ int		builtin_cmds_env(t_one *cmd);
 int		builtin_cmds(t_one *cmd);
 
 /*--	Pipe.c -------------------------*/
-void	process(char *envp[], char **all_cmd, t_one *cmd, int to_exec);
-void	child_process(t_all *all, t_one *cmd, int next_fd[2], int pre_fd[2]);
-void	pipe_rec_2(t_all *all, t_one *cmd, int tmp, int next_fd[2]);
-void	pipe_rec(t_all *all, char **envp, int pre_fd[2], t_one *cmd);
+void	process(t_one *cmd, int to_exec);
+void	child_process(t_one *cmd, int next_fd[2], int pre_fd[2]);
+void	ft_pipe_2(t_one *cmd, int tmp, int next_fd[2]);
+void	ft_pipe(int pre_fd[2], t_one *cmd);
 
 /*--	Pipe_utils.c -------------------*/
 char	**get_path(void);
 void	close_pipe(int fd[2]);
 void	ft_free(char **paths, char **cmd);
 void	perror_cnf(char *str, char *cmd, int fd);
-void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str);
+void	ft_end_process(char *cmd_p, char **path, t_one *cmd_str);
 
 /*--	Pipe_utils2.c ------------------*/
-int		no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex);
-char	*find_cmd_path(char **paths, t_one *cmd, char **all_cmd);
+int		no_path(char **paths, t_one *cmd, int to_ex);
+char	*find_cmd_path(char **paths, t_one *cmd);
 void	ft_redirection(int fd_in, int fd_out, int simple, int first);
-void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd);
+void	multi_pipe(int next_fd[2], int pre_fd[2], t_one *cmd);
 void	clean_mat_and_exit(char **paths);
 ////////////////////////////////////////////////////////////////////
 

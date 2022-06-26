@@ -59,7 +59,9 @@ void	loop_exit(void)
 		}
 	}
 /////////////////////////////////////////////////////////
-	if (g_d.s_free > 8 && g_d.all->c_s == 0)
+	if (g_d.s_ex)
+		return (init_data_bis(&g_d));
+	else if (g_d.s_free > 8 && g_d.all->c_s == 0)
 		perror(strerror(g_d.s_err));
 	else if (g_d.all->c_s != 0)
 		ft_putstr_fd("Input/output error: Non closed quotes\n", 1);

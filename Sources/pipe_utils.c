@@ -56,18 +56,18 @@ void	perror_cnf(char *str, char *cmd, int fd)
 	ft_putstr_fd("\n", fd);
 }
 
-void	ft_end_process(char *cmd_p, char **cmd, char **path, t_one *cmd_str)
+void	ft_end_process(char *cmd_p, char **path, t_one *cmd)
 {
-	if (ft_strncmp(cmd_p, cmd[0], ft_strlen(cmd_p)) == 0)
-		cmd_p = cmd[0];
-	if (!check_builtin(cmd_str))
-		execve(cmd_p, cmd,g_d.env_tab);
-	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd_str))
+	if (ft_strncmp(cmd_p, cmd->pars_tab[0], ft_strlen(cmd_p)) == 0)
+		cmd_p = cmd->pars_tab[0];
+	if (!check_builtin(cmd))
+		execve(cmd_p, cmd->pars_tab, g_d.env_tab);
+	if (access(cmd_p, F_OK) != 0 && !check_builtin(cmd))
 	{
 		g_d.error_code = 127;
-		perror_cnf("command not found: ", cmd[0], 1);
+		perror_cnf("command not found: ", cmd->pars_tab[0], 1);
 	}
 	free(cmd_p);
-	free(path);
+	ft_free_tab(path);
 	exit(g_d.error_code);
 }

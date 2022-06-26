@@ -12,18 +12,18 @@
 
 #include "../Includes/minishell.h"
 
-int	no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex)
+int	no_path(char **paths, t_one *cmd, int to_ex)
 {
 	if (!paths && to_ex)
 	{
 		if (access(cmd->pars_tab[0], F_OK) == 0)
 		{
 			ft_free_tab(paths);
-			execve(cmd->pars_tab[0], all_cmd, g_d.env_tab);
+			execve(cmd->pars_tab[0], cmd->pars_tab, g_d.env_tab);
 		}
 		else if (!check_builtin(cmd))
 		{
-			perror_cnf("command not found: ", all_cmd[0], 2);
+			perror_cnf("command not found: ", cmd->pars_tab[0], 2);
 			g_d.error_code = 127;
 			exit (127);
 		}
@@ -34,7 +34,7 @@ int	no_path(char **paths, char **all_cmd, t_one *cmd, int to_ex)
 	return (0);
 }
 
-char	*find_cmd_path(char **paths, t_one *cmd, char **all_cmd)
+char	*find_cmd_path(char **paths, t_one *cmd)
 {
 	int		i;
 	char	*tmp;
@@ -46,9 +46,9 @@ char	*find_cmd_path(char **paths, t_one *cmd, char **all_cmd)
 		cmd_path = ft_strjoin(paths[i], "/");
 		if (!cmd_path)
 			clean_mat_and_exit(paths);
-		if (ft_strncmp(cmd_path, all_cmd[0], ft_strlen(cmd_path)) == 0)
+		if (ft_strncmp(cmd_path, cmd->pars_tab[0], ft_strlen(cmd_path)) == 0)
 			break ;
-		tmp = ft_strjoin(cmd_path, all_cmd[0]);
+		tmp = ft_strjoin(cmd_path, cmd->pars_tab[0]);
 		free(cmd_path);
 		if (!tmp)
 			clean_mat_and_exit(paths);
@@ -90,7 +90,7 @@ void	ft_redirection(int fd_in, int fd_out, int simple, int first)
 	}
 }
 
-void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd)
+void	multi_pipe(int next_fd[2], int pre_fd[2], t_one *cmd)
 {
 	if (cmd->level == 2)
 	{
@@ -99,13 +99,13 @@ void	multi_pipe(t_all *all, int next_fd[2], int pre_fd[2], t_one *cmd)
 		else
 			ft_redirection(cmd->infile, next_fd[1], 0, 1);
 	}
-	else if (all->nb_cmd > 1 && cmd->level != 0)
+	else if (g_d.all->nb_cmd > 1 && cmd->level != 0)
 	{
 		close(pre_fd[1]);
 		close(next_fd[0]);
 		ft_redirection(pre_fd[0], next_fd[1], 0, 0);
 	}
-	else if (all->nb_cmd > 1 && cmd->level == 0)
+	else if (g_d.all->nb_cmd > 1 && cmd->level == 0)
 	{
 		if (cmd->outfile == 1)
 			ft_redirection(pre_fd[0], pre_fd[1], 1, 0);

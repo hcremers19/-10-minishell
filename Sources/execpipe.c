@@ -20,7 +20,7 @@ int	execpipe(void)
 	i = 0;
 	fd[0] = 6;
 	fd[1] = 6;
-	pipe_rec(g_d.all, g_d.env_tab, fd, g_d.all->first);
+	ft_pipe(fd, g_d.all->first);
 	return (0);
 }
 

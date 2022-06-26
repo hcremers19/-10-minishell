@@ -21,6 +21,7 @@ int	check_tmp_env(t_one *cmd)
 	{
 		if (check_c_in(cmd->pars_tab[0], '=') >= 0)
 		{
+			g_d.s_ex = 1;
 			pre = keep_strt(cmd->pars_tab[0]);
 			if (!pre)
 				return (-19);
