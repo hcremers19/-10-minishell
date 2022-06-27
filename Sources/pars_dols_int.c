@@ -12,6 +12,35 @@
 
 #include "../Includes/minishell.h"
 
+char	*replace_lst_stat(char *str, int pos)
+{
+	int		t;
+	char	**tmp_tab;
+
+	tmp_tab = ft_calloc(4, sizeof(char *));
+	if (!tmp_tab)
+		return (NULL);
+	t = 0;
+	if (pos > 0)
+	{
+		tmp_tab[t] = ft_substr(str, 0, pos);
+		if (!tmp_tab[t])
+			return (NULL);
+		t++;
+	}
+	tmp_tab[t] = ft_itoa(g_d.error_code);
+	if (!tmp_tab[t])
+		return (NULL);
+	if (pos + 2 < ft_strlen(str))
+	{
+		tmp_tab[++t] = ft_substr(str, pos + 2, ft_strlen(str) - pos + 1);
+		if (!tmp_tab[t])
+			return (NULL);
+	}
+	free(str);
+	return (join_mat(tmp_tab));
+}
+
 int	check_lst_stat(t_one *cmd)
 {
 	int	i;
@@ -39,32 +68,4 @@ int	check_lst_stat(t_one *cmd)
 		i++;
 	}
 	return (0);
-}
-
-char	*replace_lst_stat(char *str, int pos)
-{
-	int		t;
-	char	**tmp_tab;
-
-	tmp_tab = ft_calloc(4, sizeof(char *));
-	if (!tmp_tab)
-		return (NULL);
-	t = 0;
-	if (pos > 0)
-	{
-		tmp_tab[t] = ft_substr(str, 0, pos);
-		if (!tmp_tab[t])
-			return (NULL);
-		t++;
-	}
-	tmp_tab[t] = ft_itoa(g_d.error_code);
-	if (!tmp_tab[t])
-		return (NULL);
-	if (pos + 2 < ft_strlen(str))
-	{
-		tmp_tab[++t] = ft_substr(str, pos + 2, ft_strlen(str) - pos + 1);
-		if (!tmp_tab[t])
-			return (NULL);
-	}
-	return (join_mat(tmp_tab));
 }

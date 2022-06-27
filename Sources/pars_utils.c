@@ -68,19 +68,3 @@ char	**copy_line_tab(char **tab, int i)
 	tab[k] = NULL;
 	return (tab);
 }
-
-// int	nb_pipe(char **tab)
-// {
-// 	int	i;
-// 	int	count;
-
-// 	i = 0;
-// 	count = 0;
-// 	while (tab && tab[i])
-// 	{
-// 		if (tab[i][0] == '|' && ft_strlen(tab[i]) == 1)
-// 			count++;
-// 		i++;
-// 	}
-// 	return (count);
-// }

@@ -27,9 +27,7 @@ char	*init_loop(void)
 	free(prompt);
 	return (input);
 }
-////////////////// changement potentiellellemt a chier, non commit!!!
 /////////////////// regarder free pipex avec wraloc
-//// Hugo : i_find_a_signal et ft_signal identique ou pas ?
 /// finir free
 
 void	main_loop(void)
@@ -71,25 +69,3 @@ int	main(int ac, char **av, char **env)
 	main_loop();
 	return (0);
 }
-
-
- // 	/////////////////////////////////////////////////////////////////
-			// int i;
-			// int j = 0;
-			// t_one *cmd = g_d.all->first;
-			// while (g_d.all->first)
-			// {
-			// 	printf("==============\n");
-			// 	i = 0;
-			// 	while (g_d.all->first->pars_tab[i])
-			// 	{
-			// 		printf("PARS[%d] -> %d = %s\n", j, i, g_d.all->first->pars_tab[i]);
-			// 		i++;
-			// 	}
-			// 	printf("---------------\n");
-			// 	g_d.all->first = g_d.all->first->next;
-			// 	j++;
-			// }
-			// g_d.all->first = cmd;
-
-// /////////////////////////////////////////////////////////////////

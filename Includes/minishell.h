@@ -163,7 +163,6 @@ char	*replace_lst_stat(char *str, int pos);
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
 char	**copy_line_tab(char **tab, int i);
-// int		nb_pipe(char **tab);
 
 /*--	Signal.c -----------------------*/
 void	ft_signal(void);
@@ -230,7 +229,6 @@ char	*find_cmd_path(char **paths, t_one *cmd);
 void	ft_redirection(int fd_in, int fd_out, int simple, int first);
 void	multi_pipe(int next_fd[2], int pre_fd[2], t_one *cmd);
 void	clean_mat_and_exit(char **paths);
-////////////////////////////////////////////////////////////////////
 
 /*---	Tab_utils.c --------------------*/
 int		len_tab(char **tab);

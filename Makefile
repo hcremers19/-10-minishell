@@ -121,4 +121,4 @@ re : 	fclean all
 
 #------------------------------------------------------------------------------#
 
-.PHONY : all clean fclean re
+.PHONY : all clean clean_minishell clean_libft fclean fclean_minishell fclean_libft re

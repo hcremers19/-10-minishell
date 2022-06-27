@@ -101,10 +101,10 @@ char	**ft_pars_line(char const *s)
 		return (NULL);
 	g_d.s_free = 11;
 	tab = ft_pars_word(s, tab, pars_count(s));
-	g_d.s_free = 13;
 	if (!tab)
 		return (NULL);
 	tab[pars_count(s)] = NULL;
+	g_d.s_free = 13;
 	return (tab);
 }
 
@@ -123,7 +123,6 @@ t_one	*ft_pars(char *s)
 	if (!g_d.all->first)
 		return (NULL);
 	g_d.s_free = 15;
-////////////////////////////////////////////////////////////
 	tmp = g_d.all->first;
 	while (tmp)
 	{
@@ -142,7 +141,6 @@ t_one	*ft_pars(char *s)
 		tmp = tmp->next;
 		i++;
 	}
-	g_d.s_free = 17;
 	g_d.all->nb_cmd = i;
 	if (init_cmds())
 		return (NULL);

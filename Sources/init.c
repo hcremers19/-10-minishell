@@ -46,6 +46,8 @@ void	init_data_bis(t_data *g_d)
 	g_d->s_err = 12;
 	g_d->s_ex = 0;
 	g_d->error_code = 0;
+	g_d->all->init_tab = NULL;
+	g_d->all->first = NULL;
 }
 
 void	init_sreen(void)

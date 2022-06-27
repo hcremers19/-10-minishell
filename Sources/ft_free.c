@@ -18,12 +18,12 @@ void	ft_free_tab(char **tab)
 
 	if (!tab)
 		return ;
-	i = len_tab(tab) - 1;
-	while (i >= 0)
+	i = 0;
+	while (i < len_tab(tab))
 	{
 		if (tab[i])
 			free(tab[i]);
-		i--;
+		i++;
 	}
 	free(tab);
 }
@@ -57,15 +57,13 @@ void	ft_free_cmd_lst(t_one *cmd)
 	t_one	*tmp;
 
 	i = 0;
-	while (cmd->next)
+	tmp = cmd;
+	while (tmp)
 	{
-		tmp = cmd;
-		if (cmd->pars_tab)
-			ft_free_tab(cmd->pars_tab);
-		cmd = tmp->next;
-		if (tmp)
-			free(tmp);
+		if (tmp->pars_tab)
+			ft_free_tab(tmp->pars_tab);
+		tmp = tmp->next;
+		if (cmd)
+			free(cmd);
 	}
 }
-
-// void	ft_free_one()/////////////////////// free one commande

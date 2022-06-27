@@ -48,17 +48,12 @@ void	loop_exit(void)
 		free(g_d.all->init_tab);
 	else if (g_d.s_free > 12)
 	{
-		if (g_d.all->init_tab)
-			ft_free_tab(g_d.all->init_tab);
-		if (g_d.s_free > 14)
-			free(g_d.all->first);
-		else if (g_d.s_free > 16)
+		ft_free_tab(g_d.all->init_tab);
+		if (g_d.s_free > 14 && g_d.all->first)
 		{
-			if (g_d.all->first)
-				ft_free_cmd_lst(g_d.all->first);
+			ft_free_cmd_lst(g_d.all->first);
 		}
 	}
-/////////////////////////////////////////////////////////
 	if (g_d.s_ex)
 		return (init_data_bis(&g_d));
 	else if (g_d.s_free > 8 && g_d.c_s == 0)
@@ -68,12 +63,6 @@ void	loop_exit(void)
 	init_data_bis(&g_d);
 }
 
-
-
-
-
-
-/////////////////////////////////////////////////////////
 void	global_exit(void)
 {
 	init_exit();

@@ -26,7 +26,7 @@ char	*join_mat(char **tab)
 		str = ft_strcat(str, tab[i]);
 		i++;
 	}
-	// ft_free_tab(tab);
+	ft_free_tab(tab);
 	return (str);
 }
 
