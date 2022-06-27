@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/24 15:25:55 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:30:01 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,54 @@
 void	ft_unset(char *name)
 {
 	ft_env_lstdelone(ft_env_lststr(g_d.env_list, name), free);
-	ft_env_lstfreenull(g_d.env_list);
+	// ft_env_lstfreenull(g_d.env_list);
 }
+
+// void	ft_export(char *name)
+// {
+// 	t_env	*tmp; // À tester 🤔
+	
+// 	ft_putstr_fd("Export variable ", 1); ft_putstr_fd(name, 1); ft_putchar_fd(10, 1);
+// 	tmp = ft_env_lststr(g_d.env_list, name);
+// 	if (tmp)
+// 	{
+// 		free(tmp->content);
+// 		tmp->content = ft_strdup(ft_env_lststr(g_d.tmp_list, name)->content);
+// 	}
+// 	ft_env_lstadd_back(&g_d.env_list, ft_env_lststr(g_d.tmp_list, name));
+// 	ft_env_lstdelone(ft_env_lststr(g_d.tmp_list, name), free);
+// 	ft_putstr_fd("End of export ", 1); ft_putchar_fd(10, 1);
+// 	// ft_env_lstfreenull(g_d.tmp_list);
+// }	// Normalement pas de gestion d'erreur parce que la fonction ne devrait juste rien faire si elle ne trouve pas ce qu'elle cherche
+
+// void	tmp_var(char *name, char *content)
+// {
+// 	t_env	*tmp;
+
+// 	tmp = ft_env_lststr(g_d.env_list, name);
+// 	if (!tmp)
+// {		write(1, "if\n", 3); ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
+// }	else
+// {		ft_export(name); write(1, "else\n", 5);
+// 		ft_putstr_fd("TmpVar : ", 1); ft_putstr_fd(tmp->name, 1); ft_putchar_fd(10, 1);
+// }}
 
 void	ft_export(char *name)
 {
-	t_env	*tmp; // À tester 🤔
+	t_env	*tmp;
 
 	tmp = ft_env_lststr(g_d.env_list, name);
-	if (tmp)
+	if (!tmp)
 	{
-		free(tmp->content);
-		tmp->content = ft_strdup(ft_env_lststr(g_d.tmp_list, name)->content);
+		tmp = ft_env_lststr(g_d.tmp_list, name);
+		if (tmp)
+		{
+			ft_putstr_fd("tmp : ", 1); ft_putstr_fd(tmp->name, 1); ft_putchar_fd(10, 1);
+			ft_env_lstadd_back(&g_d.env_list, tmp); // Utiliser un tampon
+			ft_env_lstdelone(tmp, free);
+		}
 	}
-	ft_env_lstadd_back(&g_d.env_list, ft_env_lststr(g_d.tmp_list, name));
-	ft_env_lstdelone(ft_env_lststr(g_d.tmp_list, name), free);
-	ft_env_lstfreenull(g_d.tmp_list);
-}	// Normalement pas de gestion d'erreur parce que la fonction ne devrait juste rien faire si elle ne trouve pas ce qu'elle cherche
+}
 
 void	tmp_var(char *name, char *content)
 {
@@ -66,9 +97,19 @@ void	tmp_var(char *name, char *content)
 
 	tmp = ft_env_lststr(g_d.env_list, name);
 	if (!tmp)
-		ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
+	{
+		tmp = ft_env_lststr(g_d.tmp_list, name);
+		if (!tmp)
+			ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
+		else
+		{
+			tmp->content = ft_strdup(content); // D'abord vider la variable
+		}
+	}
 	else
-		ft_export(name);
+	{
+		tmp->content = ft_strdup(content); // D'abord vider la variable
+	}
 }
 
 void	ft_env(void)
