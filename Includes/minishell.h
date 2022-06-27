@@ -76,6 +76,7 @@ struct s_data
 	int				s_free;
 	int				s_err;
 	int				s_ex;
+	int				c_s;
 	int				error_code;
 	int				error_code_tmp;
 	struct s_all	*all;
@@ -91,7 +92,6 @@ struct s_data
 struct s_all
 {
 	int				nb_cmd;
-	int				c_s;
 	char			**init_tab;
 	struct s_one	*first;
 };

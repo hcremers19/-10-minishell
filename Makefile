@@ -95,17 +95,27 @@ ${NAME}:	${OBJ_DIR} ${OBJS}
 
 #------------------------------------------------------------------------------#
 
-clean :
-	@make clean -C ${LIB_DIR}
+clean : clean_minishell clean_libft
+
+clean_minishell :
 	@${RM} -r ${OBJ_DIR}
-	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell Files Deleted \
+	@${PRI} "$ [${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Minishell Files Deleted \
 	\n${C_DEFAUT}"
 
-fclean : clean
-	@make fclean -C ${LIB_DIR}
+clean_libft:
+	@make clean -C ${LIB_DIR}
+
+#------------------------------------------------------------------------------#
+
+fclean : fclean_minishell fclean_libft
+
+fclean_minishell : clean_minishell
 	@${RM} ${NAME}
-	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}minishell Exe Deleted \
+	@${PRI} "[${C_GREEN}✔︎${C_DEFAUT}]	${C_RED}Minishell Exe Deleted \
 	\n${C_DEFAUT}"
+
+fclean_libft: clean_libft
+	@make fclean -C ${LIB_DIR}
 
 re : 	fclean all
 

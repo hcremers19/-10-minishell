@@ -17,7 +17,6 @@ char	*init_loop(void)
 	char	*prompt;
 	char	*input;
 
-	ft_signal();
 	rl_on_new_line();
 	prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
 	if (!prompt)
@@ -39,6 +38,7 @@ void	main_loop(void)
 
 	while (19)
 	{
+		ft_signal();
 		input = init_loop();
 		if (!input)
 			global_exit();
@@ -48,7 +48,7 @@ void	main_loop(void)
 			free(input);
 			if (!g_d.all->first)
 				global_exit();
-			else if (g_d.all->c_s != 0 || g_d.s_ex)
+			else if (g_d.c_s != 0 || g_d.s_ex)
 					loop_exit();
 			else if (execpipe())//// aucun retour != 0 pr le mmt
 				global_exit();

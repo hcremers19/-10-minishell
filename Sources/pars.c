@@ -23,16 +23,16 @@ int	pars_len(char const *s, int i)
 
 	len = 0;
 	while (s[i + len] && ((s[i + len] != 9 && s[i + len] != 32) \
-			|| g_d.all->c_s != 0))
+			|| g_d.c_s != 0))
 	{
-		if (g_d.all->c_s == 0 && s[i + len] == 39)
-			g_d.all->c_s = 1;
-		else if (g_d.all->c_s == 0 && s[i + len] == 34)
-			g_d.all->c_s = 2;
+		if (g_d.c_s == 0 && s[i + len] == 39)
+			g_d.c_s = 1;
+		else if (g_d.c_s == 0 && s[i + len] == 34)
+			g_d.c_s = 2;
 		else if ((s[i + len] == 39 || s[i + len] == 34) \
-			&& g_d.all->c_s != 0)
-			g_d.all->c_s = 0;
-		if (g_d.all->c_s == 0 && (s[i + len] == 60 \
+			&& g_d.c_s != 0)
+			g_d.c_s = 0;
+		if (g_d.c_s == 0 && (s[i + len] == 60 \
 			|| s[i + len] == 62 || s[i + len] == 124))
 		{
 			if (s[i + len] == s[i + len + 1] && len == 0)
