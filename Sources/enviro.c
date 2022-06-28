@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/15 15:46:03 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:55:32 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*keep_end(char *str)
 	return (ret);
 }
 
-int create_env(char **env)
+int	create_env(char **env)
 {
 	int		i;
 	char	*strt;

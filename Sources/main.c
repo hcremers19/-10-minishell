@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/07 10:24:01 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:57:35 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	main_loop(void)
 			if (!g_d.all->first)
 				global_exit();
 			else if (g_d.c_s != 0 || g_d.s_ex)
-					loop_exit();
-			else if (execpipe())//// aucun retour != 0 pr le mmt
+				loop_exit();
+			else if (execpipe()) //// aucun retour != 0 pr le mmt
 				global_exit();
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_env_var.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:31:13 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/02 18:31:16 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:58:48 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ char	*check_env_var(char *str)
 	while (str[j] && ft_isalpha(str[j]))
 		j++;
 	tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
-		if (!tmp_tab[t])
-			return (NULL);
+	if (!tmp_tab[t])
+		return (NULL);
 	tmp_tab[t] = env_or_not_env(tmp_tab[t]);
 	if (!tmp_tab[t])
 		return (NULL);

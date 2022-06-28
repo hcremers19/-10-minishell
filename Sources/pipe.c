@@ -6,13 +6,13 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:00 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/23 15:54:53 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:59:48 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-static void	i_find_a_signal(int this_signal) // ???
+static void	i_find_a_signal(int this_signal)
 {
 	if (this_signal == SIGQUIT)
 	{
@@ -88,7 +88,8 @@ void	ft_pipe(int pre_fd[2], t_one *cmd)
 	pid_t	pid;
 
 	g_d.error_code_tmp = 0;
-	if (!(!ft_strlen(cmd->pars_tab[0]) || ft_strncmp(cmd->pars_tab[0], "exit", 4)))
+	if (!(!ft_strlen(cmd->pars_tab[0])
+			|| ft_strncmp(cmd->pars_tab[0], "exit", 4)))
 		ft_exit(cmd);
 	if (pipe(next_fd) == -1)
 		return (perror("pipe"));
@@ -103,10 +104,7 @@ void	ft_pipe(int pre_fd[2], t_one *cmd)
 		close_pipe(pre_fd);
 		signal(SIGINT, i_find_a_signal);
 		signal(SIGQUIT, i_find_a_signal);
-		waitpid(pid, &tmp, 0);				// ?
+		waitpid(pid, &tmp, 0);
 		ft_pipe_2(cmd, tmp, next_fd);
 	}
 }
-
-// Demander à Lisa un tour du propriétaire
-// Ne pas copier ce comportement parce que c'est une récursive (voir lignes 108 et 78) et qu'on pourrait faire moins compliqué

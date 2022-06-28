@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:09:24 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/22 21:09:26 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:56:32 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	write_w_quotes(char *str)
 
 void	ft_echo(char **pars_tab)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (!ft_strncmp(pars_tab[i], "-n", 2))

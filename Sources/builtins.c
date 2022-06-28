@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/28 11:40:03 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:55:23 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,4 @@ void	ft_env(void)
 void	ft_pwd(void)
 {
 	printf("%s\n", getcwd(NULL, 0));
-}	// Aller voir le pwd d'Hugo si ça vaut la peine d'en faire un plus complexe
-
+}

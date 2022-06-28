@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:34:05 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/20 11:04:12 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:56:24 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	ch_oldpwd_env(void)
 		if (!ft_strncmp("OLDPWD", g_d.env_list->name, 6))
 		{
 			free(g_d.env_list->content);
-			g_d.env_list->content = (char *)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0)) + 1));
+			g_d.env_list->content
+				= (char *)malloc(sizeof(char)
+					* (ft_strlen(getcwd(NULL, 0)) + 1));
 			if (!g_d.env_list->content)
 				return (1);
 			g_d.env_list->content = getcwd(NULL, 0);
@@ -47,7 +49,9 @@ int	ch_pwd_env(void)
 		if (!ft_strncmp("PWD", g_d.env_list->name, 3))
 		{
 			free(g_d.env_list->content);
-			g_d.env_list->content = (char *)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0)) + 1));
+			g_d.env_list->content
+				= (char *)malloc(sizeof(char)
+					* (ft_strlen(getcwd(NULL, 0)) + 1));
 			if (!g_d.env_list->content)
 				return (1);
 			g_d.env_list->content = getcwd(NULL, 0);
