@@ -51,19 +51,26 @@ void	ft_free_lst(t_env *list)
 	// 	free(list);
 }
 
-void	ft_free_cmd_lst(t_one *cmd)
+void	*ft_free_cmd_lst(t_one *cmd)
 {
 	int		i;
-	t_one	*tmp;
 
-	i = 0;
-	tmp = cmd;
-	while (tmp)
+	i = len_tab(cmd->pars_tab) - 1;
+	while (i >= 0)
 	{
-		if (tmp->pars_tab)
-			ft_free_tab(tmp->pars_tab);
-		tmp = tmp->next;
-		if (cmd)
-			free(cmd);
+		if (cmd->pars_tab[i])
+			free(cmd->pars_tab[i]);
+		i--;
 	}
+	if (cmd->pars_tab)
+		free(cmd->pars_tab);
+	if (cmd->infile > 0)
+		close(cmd->infile);
+	if (cmd->outfile > 1)
+		close(cmd->outfile);
+	if (cmd->next)
+		ft_free_cmd_lst(cmd->next);
+	if (cmd)
+		free(cmd);
+	return (NULL);
 }

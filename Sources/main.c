@@ -29,6 +29,7 @@ char	*init_loop(void)
 }
 /////////////////// regarder free pipex avec wraloc
 /// finir free
+////// incrementer shell level qd minishell ds minishell
 
 void	main_loop(void)
 {

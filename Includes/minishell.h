@@ -34,7 +34,7 @@
 
 # include "../Sources/libft/libft.h"
 
-// # include "../wraloc/wraloc.h"///////// !!!!!!!
+# include "../wraloc/wraloc.h"///////// !!!!!!!
 
 /****************************************************/
 /*		DEFINES										*/
@@ -197,7 +197,7 @@ char	*keep_strt(char *str);
 /*---	Ft_free.c ----------------------*/
 void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
-void	ft_free_cmd_lst(t_one *cmd);
+void	*ft_free_cmd_lst(t_one *cmd);
 
 /*---	Exit.c -------------------------*/
 void	init_exit(void);
@@ -239,7 +239,6 @@ char	**cpy_tab(char **in, int nb_line);
 void	ft_env_lstadd_front(t_env **lst, t_env *new);
 void	ft_env_lstdelone(t_env *lst, void (*del)(void*));
 void	ft_env_lstadd_back(t_env **lst, t_env *new);
-void	ft_env_lstfreenull(t_env *env_list);
 
 /*---	Lst_env1.c ----------------------*/
 t_env	*ft_env_lstnew(char *name, char *content);
