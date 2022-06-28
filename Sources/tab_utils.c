@@ -57,3 +57,21 @@ char	**cpy_tab(char **in, int nb_line)
 	out[i] = 0;
 	return (out);
 }
+
+char	*join_mat(char **tab)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = ft_calloc(len_tab_string(tab) + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	while (tab && tab[i])
+	{
+		str = ft_strcat(str, tab[i]);
+		i++;
+	}
+	ft_free_tab(tab);
+	return (str);
+}

@@ -34,7 +34,7 @@
 
 # include "../Sources/libft/libft.h"
 
-# include "../wraloc/wraloc.h"///////// !!!!!!!
+// # include "../wraloc/wraloc.h"///////// !!!!!!!
 
 /****************************************************/
 /*		DEFINES										*/
@@ -151,7 +151,6 @@ void	init_cmds_values(t_one *cmd, int i);
 int		loop_check_env(t_one *cmd);
 char	*env_or_not_env(char *str);
 char	*check_env_var(char *str);
-char	*join_mat(char **tab);
 
 /*--	Check_Tmp_Env_Var.c ------------*/
 int		check_tmp_env(t_one *cmd);
@@ -234,6 +233,7 @@ void	clean_mat_and_exit(char **paths);
 int		len_tab(char **tab);
 int		len_tab_string(char **tab);
 char	**cpy_tab(char **in, int nb_line);
+char	*join_mat(char **tab);
 
 /*---	Lst_env.c -----------------------*/
 void	ft_env_lstadd_front(t_env **lst, t_env *new);

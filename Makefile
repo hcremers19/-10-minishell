@@ -62,7 +62,7 @@ OBJ_DIR	= 	./Objects/
 #------------------------------------------------------------------------------#
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -I/Users/$(USER)/.brew/Cellar/readline/8.1.2/include
+CFLAGS	= -Wall -Werror -Wextra -I/Users/$(USER)/.brew/Cellar/readline/8.1.2/include #-fsanitize=address
 RLFLAGS = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 MK		= mkdir -p
 RM		= /bin/rm -f

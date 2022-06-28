@@ -26,15 +26,11 @@ void	init_exit(void)
 			if (g_d.tmp_list)
 				ft_free_lst(g_d.tmp_list);
 			if (g_d.s_free > 4)
-			{
 				if (g_d.all)
 					free(g_d.all);
-				if (g_d.s_free > 6 && g_d.all->init_tab)
-					free(g_d.all->init_tab);
-			}
 		}
 	}
-	if (g_d.s_free < 8)
+	if (g_d.s_free < 6)
 	{
 		perror(strerror(g_d.s_err));
 		exit (1);
@@ -43,12 +39,12 @@ void	init_exit(void)
 
 void	loop_exit(void)
 {
-	if (g_d.s_free == 11 && g_d.all->init_tab)
+	if (g_d.s_free == 9 && g_d.all->init_tab)
 		free(g_d.all->init_tab);
-	else if (g_d.s_free > 12)
+	if (g_d.s_free > 10)
 	{
 		ft_free_tab(g_d.all->init_tab);
-		if (g_d.s_free > 14 && g_d.all->first)
+		if (g_d.s_free > 12 && g_d.all->first)
 		{
 			ft_free_cmd_lst(g_d.all->first);
 		}
@@ -64,7 +60,7 @@ void	loop_exit(void)
 
 void	global_exit(void)
 {
-	init_exit();
 	loop_exit();
+	init_exit();
 	exit (1);
 }

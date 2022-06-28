@@ -64,21 +64,16 @@ int	create_env(char **env)
 	end = keep_end(env[i]);
 	g_d.env_list = ft_env_lstnew(strt, end);
 	if (!g_d.env_list)
-		return (1);
-	// free(strt);
-	// free(end);
+		return (-19);
 	i++;
 	while (env[i])
 	{
 		strt = keep_strt(env[i]);
 		end = keep_end(env[i]);
 		if (!strt || !end)
-			return (1);
+			return (-19);
 		ft_env_lstadd_back(&g_d.env_list, ft_env_lstnew(strt, end));
-		// free(strt);
-		// free(end);
 		i++;
 	}
-	// ft_env_lstadd_back(&g_d.env_list, ft_env_lstnew(NULL, NULL));
 	return (0);
 }

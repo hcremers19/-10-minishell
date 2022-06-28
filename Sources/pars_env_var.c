@@ -12,24 +12,6 @@
 
 #include "../Includes/minishell.h"
 
-char	*join_mat(char **tab)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = ft_calloc(len_tab_string(tab) + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	while (tab && tab[i])
-	{
-		str = ft_strcat(str, tab[i]);
-		i++;
-	}
-	ft_free_tab(tab);
-	return (str);
-}
-
 char	*env_or_not_env(char *str)
 {
 	t_env	*tmp;
@@ -43,16 +25,15 @@ char	*env_or_not_env(char *str)
 			ret = ft_calloc(ft_strlen(g_d.env_list->content) + 1, sizeof(char));
 			if (!ret)
 				return (NULL);
-			ret = g_d.env_list->content;
+			ft_strcpy(ret,g_d.env_list->content);
 			g_d.env_list = tmp;
-			free(str);
 			return (ret);
 		}
 		else
 			g_d.env_list = g_d.env_list->next;
 	}
 	g_d.env_list = tmp;
-	return ("");
+	return ("");///////////////////// Changer ici, return "" pas trop possible
 }
 
 char	*check_env_var(char *str)

@@ -99,12 +99,12 @@ char	**ft_pars_line(char const *s)
 	tab = ft_calloc(pars_count(s) + 1, sizeof(char *));
 	if (!tab)
 		return (NULL);
-	g_d.s_free = 11;
+	g_d.s_free = 9;
 	tab = ft_pars_word(s, tab, pars_count(s));
 	if (!tab)
 		return (NULL);
 	tab[pars_count(s)] = NULL;
-	g_d.s_free = 13;
+	g_d.s_free = 11;
 	return (tab);
 }
 
@@ -122,7 +122,7 @@ t_one	*ft_pars(char *s)
 	g_d.all->first = ft_calloc(1, sizeof(t_one));
 	if (!g_d.all->first)
 		return (NULL);
-	g_d.s_free = 15;
+	g_d.s_free = 13;
 	tmp = g_d.all->first;
 	while (tmp)
 	{

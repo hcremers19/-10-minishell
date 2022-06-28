@@ -29,10 +29,6 @@ int	init_data(char **env, t_data *g_d)
 	g_d->all = (t_all *)malloc(sizeof(t_all));
 	if (!g_d->all)
 		return (-19);
-	g_d->s_free = 5;
-	g_d->all->init_tab = (char **)malloc(sizeof(char *));
-	if (!g_d->all->init_tab)
-		return (-19);
 	init_data_bis(g_d);
 	init_sreen();
 	return (0);
@@ -40,13 +36,12 @@ int	init_data(char **env, t_data *g_d)
 
 void	init_data_bis(t_data *g_d)
 {
-	g_d->s_free = 7;
+	g_d->s_free = 5;
 	g_d->pid = 0;
 	g_d->c_s = 0;
 	g_d->s_err = 12;
 	g_d->s_ex = 0;
 	g_d->error_code = 0;
-	g_d->all->init_tab = NULL;
 	g_d->all->first = NULL;
 }
 

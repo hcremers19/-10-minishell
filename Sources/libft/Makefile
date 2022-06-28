@@ -30,7 +30,7 @@ SCRS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 
 OBJS	= ${addprefix ${OBJS_DIR}, ${SCRS:%.c=%.o}}
 
-OBJS_DIR	= Objects/
+OBJS_DIR	= Objects_Libft/
 
 #------------------------------------------------------------------------------#
 

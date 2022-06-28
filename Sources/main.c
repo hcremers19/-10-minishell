@@ -21,20 +21,21 @@ char	*init_loop(void)
 	prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
 	if (!prompt)
 		return (NULL);
-	g_d.s_free = 9;
+	g_d.s_free = 7;
 	input = readline(prompt);
 	add_history(input);
 	free(prompt);
 	return (input);
 }
-/////////////////// regarder free pipex avec wraloc
 /// finir free
-////// incrementer shell level qd minishell ds minishell
+/// lier exit et pipe
 
 void	main_loop(void)
 {
 	char	*input;
+	// int		i = 0;
 
+	// while (i <= 0)
 	while (19)
 	{
 		ft_signal();
@@ -49,10 +50,17 @@ void	main_loop(void)
 				global_exit();
 			else if (g_d.c_s != 0 || g_d.s_ex)
 				loop_exit();
-			else if (execpipe()) //// aucun retour != 0 pr le mmt
-				global_exit();
+			// else if (execpipe()) //// aucun retour != 0 pr le mmt
+			// 	global_exit();
+			else
+			{
+				execpipe();
+				loop_exit();
+			}
 		}
+		// i++;
 	}
+	// global_exit();
 }
 
 int	main(int ac, char **av, char **env)
