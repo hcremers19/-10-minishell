@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:10 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/24 12:03:05 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:03:48 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ char	**get_path(void)
 {
 	char	*all_path;
 	char	**split_path;
+	t_env	*tmp;
 
-	all_path = ft_env_lststr(g_d.env_list, "PATH")->content;
+	tmp = ft_env_lststr(g_d.env_list, "PATH");
+	if (!tmp)
+		return (NULL);
+	all_path = tmp->content;
+	// printf("%d\n", g_d.pid);
 	if (!all_path)
 		return (NULL);
 	split_path = ft_split(all_path, ':');

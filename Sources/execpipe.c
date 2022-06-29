@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:59:47 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/20 11:37:56 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:32:42 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,31 @@ int	execpipe(void)
 	fd[1] = 6;
 	ft_pipe(fd, g_d.all->first);
 	return (0);
+}
+
+int	check_ft_env(t_one *cmd)
+{
+	char	**paths;
+	char	*path;
+	int		i;
+
+	paths = get_path();
+	i = 0;
+	while (paths && paths[i])
+	{
+		path = ft_strjoin(paths[i], "/env");
+		// ft_putstr_fd(path, 1);
+		// ft_putchar_fd(10, 1);
+		if (access(path, F_OK))
+			i++;
+		else
+		{
+			ft_env();
+			return (0);
+		}
+	}
+	perror_cnf("command not found: ", cmd->cmd, 2);
+	return (1);
 }
 
 int	builtin_cmds_env(t_one *cmd)
@@ -45,7 +70,10 @@ int	builtin_cmds_env(t_one *cmd)
 int	builtin_cmds(t_one *cmd)
 {
 	if (!ft_strncmp("env", cmd->cmd, 3))
-		ft_env();
+	{	
+		if (check_ft_env(cmd))
+			return (1);
+	}
 	else if (!ft_strncmp("exit", cmd->cmd, 4))
 		ft_exit(cmd);
 	else if (!ft_strncmp("pwd", cmd->cmd, 3))

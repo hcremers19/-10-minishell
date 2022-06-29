@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:33:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/28 11:36:50 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:59:14 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ t_env	*ft_env_lstnew(char *name, char *content)
 	elmt->name = name;
 	elmt->content = content;
 	elmt->next = NULL;
-	// ft_putstr_fd("LstNew created element ", 1); ft_putstr_fd(name, 1); ft_putchar_fd(10, 1);
+	// ft_putstr_fd("LstNew created element: ", 1); ft_putstr_fd(name, 1);
+	// ft_putstr_fd(", with name: ", 1); ft_putstr_fd(elmt->name, 1);
+	// ft_putstr_fd(", and content: ", 1); ft_putstr_fd(elmt->content, 1);
+	ft_putchar_fd(10, 1);
 	return (elmt);
 }
 
