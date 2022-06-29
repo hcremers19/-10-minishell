@@ -29,6 +29,7 @@ char	*init_loop(void)
 }
 /// finir free
 /// lier exit et pipe
+/// arramger env_or_not_env
 
 void	main_loop(void)
 {

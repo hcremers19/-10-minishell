@@ -12,6 +12,14 @@
 
 #include "../Includes/minishell.h"
 
+int	loop_while(char *str, int i)
+{
+	i++;
+	while (str && str[i] && ft_isalpha(str[i]))
+		i++;
+	return (i);
+}
+
 size_t	ft_strcpy(char *dst, const char *src)
 {
 	size_t	i;
@@ -78,6 +86,8 @@ char	*ft_strcat(char *dest, char *src)
 	unsigned int		j;
 	char				*destination;
 
+	if (!dest)
+		return (src);
 	i = ft_strlen(dest);
 	j = 0;
 	destination = dest;

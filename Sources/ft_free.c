@@ -16,16 +16,9 @@ void	ft_free_tab(char **tab)
 {
 	int	i;
 
+	i = 0;
 	if (!tab)
 		return ;
-	i = 0;
-		// printf("LEN %d\n", len_tab(tab));
-		// while (i < len_tab(tab))
-		// {
-		// 	printf("DEBUG %d = %s\n", i, tab[i]);
-		// 	i++;
-		// }
-	i = 0;
 	while (i < len_tab(tab))
 	{
 		if (tab[i])

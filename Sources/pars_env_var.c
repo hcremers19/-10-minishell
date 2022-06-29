@@ -12,35 +12,63 @@
 
 #include "../Includes/minishell.h"
 
-char	*env_or_not_env(char *str)
+int	env_or_not_env(char *str)
+{
+	t_env	*tmp;
+
+	if (!str)
+		return (0);
+	tmp = g_d.env_list;
+	while (g_d.env_list && str)
+	{
+		if (!ft_strncmp(str, g_d.env_list->name, ft_strlen(str)))
+		{
+			g_d.env_list = tmp;
+			return (19);
+		}
+		else
+			g_d.env_list = g_d.env_list->next;
+	}
+	g_d.env_list = tmp;
+	return (0);
+}
+
+char	*replace_env_var(char *str)
 {
 	t_env	*tmp;
 	char	*ret;
 
 	tmp = g_d.env_list;
-	while (g_d.env_list && str)
+	ret = NULL;
+	while (g_d.env_list)
 	{
 		if (!ft_strncmp(str, g_d.env_list->name, ft_strlen(str)))
 		{
 			ret = ft_calloc(ft_strlen(g_d.env_list->content) + 1, sizeof(char));
 			if (!ret)
 				return (NULL);
-			ft_strcpy(ret,g_d.env_list->content);
-			g_d.env_list = tmp;
-			return (ret);
+			ft_strcpy(ret, g_d.env_list->content);
+			free(str);
+			break ;
 		}
 		else
 			g_d.env_list = g_d.env_list->next;
 	}
 	g_d.env_list = tmp;
-	return ("");///////////////////// Changer ici, return "" pas trop possible
+	return (ret);
 }
+
+// char	*check_env_var_1(char *str)
+// {
+// 	int	
+// }
 
 char	*check_env_var(char *str)
 {
 	int		j;
 	int		k;
 	int		t;
+	char	*tmp;
 	char	**tmp_tab;
 
 	tmp_tab = ft_calloc(4, sizeof(char *));
@@ -51,23 +79,23 @@ char	*check_env_var(char *str)
 	if (j > 0)
 	{
 		tmp_tab[t] = ft_substr(str, 0, j);
-		if (!tmp_tab[t])
+		if (!tmp_tab[t++])
 			return (NULL);
-		t++;
 	}
 	k = j;
-	j++;
-	while (str[j] && ft_isalpha(str[j]))
-		j++;
-	tmp_tab[t] = ft_substr(str, k + 1, j - k - 1);
-	if (!tmp_tab[t])
+	j = loop_while(str, j);
+	tmp = ft_substr(str, k + 1, j - k - 1);
+	if (!tmp)
 		return (NULL);
-	tmp_tab[t] = env_or_not_env(tmp_tab[t]);
-	if (!tmp_tab[t])
-		return (NULL);
+	if (env_or_not_env(tmp))
+	{
+		tmp_tab[t] = replace_env_var(tmp);
+		if (!tmp_tab[t++])
+			return (NULL);
+	}
 	if (j < ft_strlen(str))
 	{
-		tmp_tab[++t] = ft_substr(str, j, ft_strlen(str) - j + 1);
+		tmp_tab[t] = ft_substr(str, j, ft_strlen(str) - j + 1);
 		if (!tmp_tab[t])
 			return (NULL);
 	}

@@ -25,13 +25,19 @@ int	len_tab(char **tab)
 int	len_tab_string(char **tab)
 {
 	int	i;
+	int	j;
 	int	count;
 
 	i = 0;
 	count = 0;
 	while (tab && tab[i])
 	{
-		count += ft_strlen(tab[i]);
+		j = 0;
+		while (tab[i] && tab[i][j])
+		{
+			count++;
+			j++;
+		}
 		i++;
 	}
 	return (count);
@@ -67,9 +73,11 @@ char	*join_mat(char **tab)
 	str = ft_calloc(len_tab_string(tab) + 1, sizeof(char));
 	if (!str)
 		return (NULL);
-	while (tab && tab[i])
+	str[0] = '\0';
+	while (i <= len_tab(tab))
 	{
-		str = ft_strcat(str, tab[i]);
+		if (tab[i])
+			str = ft_strcat(str, tab[i]);
 		i++;
 	}
 	ft_free_tab(tab);

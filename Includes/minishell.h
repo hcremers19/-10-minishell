@@ -148,9 +148,11 @@ int		get_level(t_one *cmd, int i);
 void	init_cmds_values(t_one *cmd, int i);
 
 /*--	Pars_env_var.c -----------------*/
+int		env_or_not_env(char *str);
 int		loop_check_env(t_one *cmd);
-char	*env_or_not_env(char *str);
+// char	*check_env_var_1(char *str, int j);
 char	*check_env_var(char *str);
+char	*replace_env_var(char *str);
 
 /*--	Check_Tmp_Env_Var.c ------------*/
 int		check_tmp_env(t_one *cmd);
@@ -177,8 +179,7 @@ void	ft_pwd(void);
 void	ft_echo(char **pars_tab);
 
 /*--	Ft_Cd.c ------------------------*/
-int		ch_oldpwd_env(void);
-int		ch_pwd_env(void);
+int		ch_pwd_env(char *varname, char *wd);
 int		ft_cd(char *path);
 
 /*--	Ft_echo.c ----------------------*/
@@ -247,6 +248,7 @@ t_env	*ft_env_lststr(t_env *lst, char *name);
 
 /*---	Utils.c ------------------------*/
 size_t	ft_strcpy(char *dst, const char *src);
+int		loop_while(char *str, int j);
 int		check_c_in(char *str, char c);
 int		count_c_in(char *str, char c);
 int		only_space(char *s);
