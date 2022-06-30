@@ -25,17 +25,17 @@ char	*replace_lst_stat(char *str, int pos)
 	{
 		tmp_tab[t] = ft_substr(str, 0, pos);
 		if (!tmp_tab[t])
-			return (NULL);
+			return (ft_free_fct_tab(tmp_tab));
 		t++;
 	}
 	tmp_tab[t] = ft_itoa(g_d.error_code);
 	if (!tmp_tab[t])
-		return (NULL);
+		return (ft_free_fct_tab(tmp_tab));
 	if (pos + 2 < ft_strlen(str))
 	{
 		tmp_tab[++t] = ft_substr(str, pos + 2, ft_strlen(str) - pos + 1);
 		if (!tmp_tab[t])
-			return (NULL);
+			return (ft_free_fct_tab(tmp_tab));
 	}
 	free(str);
 	return (join_mat(tmp_tab));

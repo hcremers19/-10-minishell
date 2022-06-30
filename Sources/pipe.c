@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:00 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/29 13:40:48 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:10:31 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	process(t_one *cmd, int to_exec)
 	char	*cmd_path;
 
 	if (ft_strlen(cmd->pars_tab[0]) > 2 && cmd->pars_tab[0][0] == '.'
-		&& cmd->pars_tab[0][1] == '/' && to_exec)						// ?
+		&& cmd->pars_tab[0][1] == '/' && to_exec)
 		ft_end_process(cmd->pars_tab[0], NULL, cmd);
 	paths = get_path();
 	if (no_path(paths, cmd, to_exec))
@@ -43,7 +43,11 @@ void	process(t_one *cmd, int to_exec)
 	if (to_exec)
 		ft_end_process(cmd_path, paths, cmd);
 	if (paths)
+	{
+		if (cmd_path)
+			free(cmd_path);
 		ft_free_tab(paths);
+	}
 }
 
 void	child_process(t_one *cmd, int next_fd[2], int pre_fd[2])

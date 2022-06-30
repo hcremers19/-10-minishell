@@ -59,7 +59,7 @@ ${OBJS_DIR}%.o:%.c
 	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
 	@${PRI} "$		Compiling	libft :	[${C_ORANGE}$<${C_DEFAUT}]\
 	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-#	@${VEL} 0.5
+# 	@${VEL} 0.5
 	@printf "$(L_CLEAR)\r"
 
 ${NAME}: ${OBJS_DIR} ${OBJS}

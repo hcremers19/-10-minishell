@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
+#    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/06/30 12:44:21 by hcremers         ###   ########.fr        #
+#    Updated: 2022/06/30 15:26:03 by acaillea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC		= 	main.c				\
 			pars_env_var.c		\
 			pars_tmp_env_var.c	\
 			pars_utils.c		\
+			pars_init.c			\
 			pars.c				\
 			pipe_utils.c		\
 			pipe_utils2.c		\
@@ -51,6 +52,7 @@ SRC		= 	main.c				\
 			signals.c			\
 			tab_utils.c 		\
 			utils.c				\
+			utils_1.c			\
 
 INC		= 	./Includes/minishell.h
 

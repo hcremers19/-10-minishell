@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/28 11:57:35 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:22:41 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,11 @@ char	*init_loop(void)
 	free(prompt);
 	return (input);
 }
-/// finir free
-/// lier exit et pipe
-/// arramger env_or_not_env
 
 void	main_loop(void)
 {
 	char	*input;
-	// int		i = 0;
 
-	// while (i <= 0)
 	while (19)
 	{
 		ft_signal();
@@ -51,17 +46,13 @@ void	main_loop(void)
 				global_exit();
 			else if (g_d.c_s != 0 || g_d.s_ex)
 				loop_exit();
-			// else if (execpipe()) //// aucun retour != 0 pr le mmt
-			// 	global_exit();
 			else
 			{
 				execpipe();
 				loop_exit();
 			}
 		}
-		// i++;
 	}
-	// global_exit();
 }
 
 int	main(int ac, char **av, char **env)

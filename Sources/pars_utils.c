@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:17:44 by acaillea          #+#    #+#             */
-/*   Updated: 2022/05/11 12:07:00 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 14:56:13 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,17 @@ char	**copy_line_tab(char **tab, int i)
 		j++;
 	if (!j)
 		return (NULL);
-	j -= i;
-	tab = ft_calloc(j + 1, sizeof(char *));
+	j -= i - 1;
+	tab = ft_calloc(j, sizeof(char *));
 	if (!tab)
 		return (NULL);
-	while (j)
+	while (--j)
 	{
 		tab[k] = ft_calloc(ft_strlen(init[i]) + 1, sizeof(char));
 		if (!tab[k])
 			return (NULL);
-		ft_strlcpy(tab[k], init[i], ft_strlen(init[i]));
-		k++;
+		ft_strlcpy(tab[k++], init[i], ft_strlen(init[i]));
 		i++;
-		j--;
 	}
 	tab[k] = NULL;
 	return (tab);

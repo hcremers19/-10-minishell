@@ -58,10 +58,31 @@ char	*replace_env_var(char *str)
 	return (ret);
 }
 
-// char	*check_env_var_1(char *str)
-// {
-// 	int	
-// }
+char	*check_env_var_bis(char *str, char **tmp_tab, char *tmp, int t)
+{
+	int	j;
+
+	j = loop_while(str, check_c_in(str, '$'));
+	if (!tmp)
+		return (ft_free_fct_tab(tmp_tab));
+	if (env_or_not_env(tmp))
+	{
+		tmp_tab[t] = replace_env_var(tmp);
+		if (!tmp_tab[t++])
+			return (ft_free_fct_tab(tmp_tab));
+	}
+	else
+		free(tmp);
+	if (j < ft_strlen(str))
+	{
+		tmp_tab[t] = ft_substr(str, j, ft_strlen(str) - j + 1);
+		if (!tmp_tab[t])
+			return (ft_free_fct_tab(tmp_tab));
+	}
+	free(str);
+	tmp_tab[3] = NULL;
+	return (join_mat(tmp_tab));
+}
 
 char	*check_env_var(char *str)
 {
@@ -71,7 +92,7 @@ char	*check_env_var(char *str)
 	char	*tmp;
 	char	**tmp_tab;
 
-	tmp_tab = ft_calloc(4, sizeof(char *));
+	tmp_tab = ft_calloc(3, sizeof(char *));
 	if (!tmp_tab)
 		return (NULL);
 	t = 0;
@@ -80,26 +101,12 @@ char	*check_env_var(char *str)
 	{
 		tmp_tab[t] = ft_substr(str, 0, j);
 		if (!tmp_tab[t++])
-			return (NULL);
+			return (ft_free_fct_tab(tmp_tab));
 	}
 	k = j;
 	j = loop_while(str, j);
 	tmp = ft_substr(str, k + 1, j - k - 1);
-	if (!tmp)
-		return (NULL);
-	if (env_or_not_env(tmp))
-	{
-		tmp_tab[t] = replace_env_var(tmp);
-		if (!tmp_tab[t++])
-			return (NULL);
-	}
-	if (j < ft_strlen(str))
-	{
-		tmp_tab[t] = ft_substr(str, j, ft_strlen(str) - j + 1);
-		if (!tmp_tab[t])
-			return (NULL);
-	}
-	return (join_mat(tmp_tab));
+	return (check_env_var_bis(str, tmp_tab, tmp, t));
 }
 
 int	loop_check_env(t_one *cmd)

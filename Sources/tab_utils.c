@@ -25,20 +25,13 @@ int	len_tab(char **tab)
 int	len_tab_string(char **tab)
 {
 	int	i;
-	int	j;
 	int	count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	while (tab && tab[i])
+	while (tab && tab[++i])
 	{
-		j = 0;
-		while (tab[i] && tab[i][j])
-		{
-			count++;
-			j++;
-		}
-		i++;
+		count += ft_strlen(tab[i]);
 	}
 	return (count);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 12:40:14 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:13:13 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void	ft_exit(t_one *cmd);
 void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
 void	*ft_free_cmd_lst(t_one *cmd);
+char	*ft_free_fct_tab(char **tab);
 
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *g_d);
@@ -201,7 +202,7 @@ void	init_cmds_values(t_one *cmd, int i);
 /*--	Pars_env_var.c -----------------*/
 int		env_or_not_env(char *str);
 int		loop_check_env(t_one *cmd);
-// char	*check_env_var_1(char *str, int j);
+char	*check_env_var_bis(char *str, char **tmp_tab, char *tmp, int t);
 char	*check_env_var(char *str);
 char	*replace_env_var(char *str);
 
@@ -212,12 +213,15 @@ int		check_tmp_env(t_one *cmd);
 int		nb_spec_char(char **tab, int c, int len);
 char	**copy_line_tab(char **tab, int i);
 
-/*--	Pars.c -------------------------*/
+/*--	Pars_init.c --------------------*/
 int		pars_len(char const *s, int i);
 int		pars_count(char const *s);
 char	**ft_pars_word(char const *s, char **tab, int nb);
 char	**ft_pars_line(char const *str);
+
+/*--	Pars.c -------------------------*/
 t_one	*ft_pars(char *s);
+t_one	*ft_pars_loop(t_one *tmp, int *j);
 
 /*--	Pipe_utils.c -------------------*/
 char	**get_path(void);
@@ -254,6 +258,8 @@ size_t	ft_strcpy(char *dst, const char *src);
 int		loop_while(char *str, int j);
 int		check_c_in(char *str, char c);
 int		count_c_in(char *str, char c);
+
+/*---	Utils_1.c ----------------------*/
 int		only_space(char *s);
 char	*ft_strcat(char *dest, char *src);
 

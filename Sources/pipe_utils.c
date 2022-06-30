@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:10 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/29 13:03:48 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:10:54 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	**get_path(void)
 	if (!tmp)
 		return (NULL);
 	all_path = tmp->content;
-	// printf("%d\n", g_d.pid);
 	if (!all_path)
 		return (NULL);
 	split_path = ft_split(all_path, ':');

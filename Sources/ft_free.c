@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:38:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/01 15:39:01 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:11:14 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ void	*ft_free_cmd_lst(t_one *cmd)
 {
 	int		i;
 
-	i = len_tab(cmd->pars_tab) - 1;
-	while (i >= 0)
-	{
-		if (cmd->pars_tab[i])
-			free(cmd->pars_tab[i]);
-		i--;
-	}
+	i = len_tab(cmd->pars_tab);
+	while (--i >= 0)
+		free(cmd->pars_tab[i]);
 	if (cmd->pars_tab)
 		free(cmd->pars_tab);
 	if (cmd->infile > 0)
@@ -72,5 +68,21 @@ void	*ft_free_cmd_lst(t_one *cmd)
 		ft_free_cmd_lst(cmd->next);
 	if (cmd)
 		free(cmd);
+	return (NULL);
+}
+
+char	*ft_free_fct_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (NULL);
+	while (i < len_tab(tab))
+	{
+		if (tab[i])
+			free(tab[i]);
+		i++;
+	}
 	return (NULL);
 }
