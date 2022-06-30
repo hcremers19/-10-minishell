@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/29 16:58:34 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:59:53 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_export(char *name)
 	char	*content;
 	char	*dupname;
 
+	if (ft_strchr(name, '='))
+		tmp_var(keep_strt(name), keep_end(name));
 	tmp = ft_env_lststr(g_d.env_list, name);
 	if (!tmp)
 	{
@@ -91,7 +93,6 @@ void	ft_env(void)
 	t_env	*tmp;
 
 	tmp = g_d.env_list;
-	// ft_putstr_fd("Maillon reçu dans env : ", 1); ft_putstr_fd(tmp->name, 1); ft_putchar_fd(10, 1);
 	while (g_d.env_list)
 	{
 		if (g_d.env_list->name || g_d.env_list->content)

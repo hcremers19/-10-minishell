@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/24 12:07:27 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:40:14 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,17 +130,68 @@ t_data					g_d;
 /*		PROTOTYPES									*/
 /****************************************************/
 
+/*--	Builtins.c ---------------------*/
+void	ft_unset(char *name);
+void	ft_export(char *name);
+void	tmp_var(char *name, char *content);
+void	ft_env(void);
+int		ft_cd(char *path);
+void	ft_pwd(void);
+void	ft_echo(char **pars_tab);
+
+/*---	Env_utils.c --------------------*/
+int		ft_strlcmp(const char *s1, const char *s2);
+
+/*---	Enviro.c -----------------------*/
+int		create_env(char **env);
+char	*keep_end(char *str);
+char	*keep_strt(char *str);
+
+/*--	Execpipe.c ---------------------*/
+int		execpipe(void);
+int		check_builtin(t_one *cmd);
+int		builtin_cmds_env(t_one *cmd);
+int		builtin_cmds(t_one *cmd);
+
+/*---	Exit.c -------------------------*/
+void	init_exit(void);
+void	loop_exit(void);
+void	global_exit(void);
+
+/*--	Ft_Cd.c ------------------------*/
+int		ch_pwd_env(char *varname, char *wd);
+int		ft_cd(char *path);
+
+/*--	Ft_echo.c ----------------------*/
+void	write_w_quotes(char *str);
+void	ft_echo(char **pars_tab);
+
+/*--	Ft_exit.c ----------------------*/
+void	ft_exit(t_one *cmd);
+
+/*---	Ft_free.c ----------------------*/
+void	ft_free_tab(char **tab);
+void	ft_free_lst(t_env *env_list);
+void	*ft_free_cmd_lst(t_one *cmd);
+
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *g_d);
 void	init_data_bis(t_data *g_d);
 void	init_sreen(void);
 
-/*--	Pars.c -------------------------*/
-int		pars_len(char const *s, int i);
-int		pars_count(char const *s);
-char	**ft_pars_word(char const *s, char **tab, int nb);
-char	**ft_pars_line(char const *str);
-t_one	*ft_pars(char *s);
+/*---	Lst_env.c ----------------------*/
+void	ft_env_lstadd_front(t_env **lst, t_env *new);
+void	ft_env_lstdelone(t_env *lst, void (*del)(void*));
+void	ft_env_lstadd_back(t_env **lst, t_env *new);
+
+/*---	Lst_env1.c ---------------------*/
+t_env	*ft_env_lstnew(char *name, char *content);
+t_env	*ft_env_lstlast(t_env *lst);
+t_env	*ft_env_lststr(t_env *lst, char *name);
+
+/*--	Pars_dols_int.c ----------------*/
+int		check_lst_stat(t_one *cmd);
+char	*replace_lst_stat(char *str, int pos);
 
 /*--	Pars_end.c ---------------------*/
 int		init_cmds(void);
@@ -154,67 +205,19 @@ int		loop_check_env(t_one *cmd);
 char	*check_env_var(char *str);
 char	*replace_env_var(char *str);
 
-/*--	Check_Tmp_Env_Var.c ------------*/
+/*--	Pars_Tmp_Env_Var.c -------------*/
 int		check_tmp_env(t_one *cmd);
-
-/*--	Pars_dols_int.c ----------------*/
-int		check_lst_stat(t_one *cmd);
-char	*replace_lst_stat(char *str, int pos);
 
 /*--	Pars_utils.c -------------------*/
 int		nb_spec_char(char **tab, int c, int len);
 char	**copy_line_tab(char **tab, int i);
 
-/*--	Signal.c -----------------------*/
-void	ft_signal(void);
-void	handler(int sig);
-
-/*--	Builtins.c ---------------------*/
-void	ft_unset(char *name);
-void	ft_export(char *name);
-void	tmp_var(char *name, char *content);
-void	ft_env(void);
-int		ft_cd(char *path);
-void	ft_pwd(void);
-void	ft_echo(char **pars_tab);
-
-/*--	Ft_Cd.c ------------------------*/
-int		ch_pwd_env(char *varname, char *wd);
-int		ft_cd(char *path);
-
-/*--	Ft_echo.c ----------------------*/
-void	write_w_quotes(char *str);
-void	ft_echo(char **pars_tab);
-
-/*--	Ft_exit.c ----------------------*/
-void	ft_exit(t_one *cmd);
-
-/*---	Enviro.c -----------------------*/
-int		create_env(char **env);
-char	*keep_end(char *str);
-char	*keep_strt(char *str);
-
-/*---	Ft_free.c ----------------------*/
-void	ft_free_tab(char **tab);
-void	ft_free_lst(t_env *env_list);
-void	*ft_free_cmd_lst(t_one *cmd);
-
-/*---	Exit.c -------------------------*/
-void	init_exit(void);
-void	loop_exit(void);
-void	global_exit(void);
-
-/*--	Execpipe.c ---------------------*/
-int		execpipe(void);
-int		check_builtin(t_one *cmd);
-int		builtin_cmds_env(t_one *cmd);
-int		builtin_cmds(t_one *cmd);
-
-/*--	Pipe.c -------------------------*/
-void	process(t_one *cmd, int to_exec);
-void	child_process(t_one *cmd, int next_fd[2], int pre_fd[2]);
-void	ft_pipe_2(t_one *cmd, int tmp, int next_fd[2]);
-void	ft_pipe(int pre_fd[2], t_one *cmd);
+/*--	Pars.c -------------------------*/
+int		pars_len(char const *s, int i);
+int		pars_count(char const *s);
+char	**ft_pars_word(char const *s, char **tab, int nb);
+char	**ft_pars_line(char const *str);
+t_one	*ft_pars(char *s);
 
 /*--	Pipe_utils.c -------------------*/
 char	**get_path(void);
@@ -230,21 +233,21 @@ void	ft_redirection(int fd_in, int fd_out, int simple, int first);
 void	multi_pipe(int next_fd[2], int pre_fd[2], t_one *cmd);
 void	clean_mat_and_exit(char **paths);
 
+/*--	Pipe.c -------------------------*/
+void	process(t_one *cmd, int to_exec);
+void	child_process(t_one *cmd, int next_fd[2], int pre_fd[2]);
+void	ft_pipe_2(t_one *cmd, int tmp, int next_fd[2]);
+void	ft_pipe(int pre_fd[2], t_one *cmd);
+
+/*--	Signal.c -----------------------*/
+void	ft_signal(void);
+void	handler(int sig);
+
 /*---	Tab_utils.c --------------------*/
 int		len_tab(char **tab);
 int		len_tab_string(char **tab);
 char	**cpy_tab(char **in, int nb_line);
 char	*join_mat(char **tab);
-
-/*---	Lst_env.c -----------------------*/
-void	ft_env_lstadd_front(t_env **lst, t_env *new);
-void	ft_env_lstdelone(t_env *lst, void (*del)(void*));
-void	ft_env_lstadd_back(t_env **lst, t_env *new);
-
-/*---	Lst_env1.c ----------------------*/
-t_env	*ft_env_lstnew(char *name, char *content);
-t_env	*ft_env_lstlast(t_env *lst);
-t_env	*ft_env_lststr(t_env *lst, char *name);
 
 /*---	Utils.c ------------------------*/
 size_t	ft_strcpy(char *dst, const char *src);

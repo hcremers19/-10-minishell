@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 12:32:30 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/30 11:58:13 by hcremers         ###   ########.fr       */
+/*   Created: 2022/06/30 12:23:35 by hcremers          #+#    #+#             */
+/*   Updated: 2022/06/30 12:33:13 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Includes/minishell.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strlcmp(const char *s1, const char *s2)
 {
-	const char	*r;
-	int			i;
+	int	len1;
+	int	len2;
 
-	i = 0;
-	if (!c)
-	{
-		r = s + ft_strlen(s);
-		return ((char *)r);
-	}
-	while (s && s[i])
-	{
-		if (s[i] == (unsigned char)c)
-		{
-			r = s + i;
-			return ((char *)r);
-		}
-		else
-			i++;
-	}
-	return (0);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	return (!(!ft_strncmp(s1, s2, len1) && len1 == len2));
 }
