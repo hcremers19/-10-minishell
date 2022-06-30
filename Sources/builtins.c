@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/30 17:44:16 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:42:40 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	ft_export(char *name)
 	char	*dupname;
 
 	if (ft_strchr(name, '='))
+	{
 		tmp_var(keep_strt(name), keep_end(name));
+		name = keep_strt(name);
+	}
 	tmp = ft_env_lststr(g_d.env_list, name);
 	if (!tmp)
 	{

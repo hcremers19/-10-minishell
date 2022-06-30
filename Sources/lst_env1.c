@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:33:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 17:44:39 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:43:06 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ t_env	*ft_env_lststr(t_env *lst, char *name)
 	while (lst)
 	{
 		if (!ft_strlcmp(lst->name, name))
-		{
 			return (lst);
-		}
 		else
 			lst = lst->next;
 	}
