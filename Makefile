@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
+#    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/06/30 15:26:03 by acaillea         ###   ########.fr        #
+#    Updated: 2022/06/30 17:42:01 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ LIB_DIR	= ./Sources/Libft/
 SRC_DIR	= 	./Sources/
 
 SRC		= 	main.c				\
+			builtin_launcher.c	\
 			builtins.c			\
 			env_utils.c			\
 			enviro.c			\

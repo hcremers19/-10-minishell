@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:09:24 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/28 11:56:32 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:59:27 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_echo(char **pars_tab)
 	int	i;
 
 	i = 1;
-	while (!ft_strncmp(pars_tab[i], "-n", 2))
+	while (!ft_strlcmp(pars_tab[i], "-n"))
 		i++;
 	while (pars_tab[i])
 	{
@@ -46,6 +46,7 @@ void	ft_echo(char **pars_tab)
 		if (pars_tab[i])
 			ft_putchar_fd(' ', 1);
 	}
-	if (ft_strncmp(pars_tab[1], "-n", 2))
+	if (ft_strlcmp(pars_tab[1], "-n"))
 		ft_putchar_fd('\n', 1);
+	g_d.error_code = 0;
 }

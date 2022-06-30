@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/30 11:59:53 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:44:16 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 void	ft_unset(char *name)
 {
 	ft_env_lstdelone(ft_env_lststr(g_d.env_list, name), free);
+	g_d.error_code = 0;
 }
 
 void	ft_export(char *name)
@@ -58,7 +59,6 @@ void	ft_export(char *name)
 		tmp = ft_env_lststr(g_d.tmp_list, name);
 		if (tmp)
 		{
-			// ft_putstr_fd("tmp : ", 1); ft_putstr_fd(tmp->name, 1); ft_putchar_fd(10, 1);
 			content = ft_strdup(tmp->content);
 			dupname = ft_strdup(tmp->name);
 			ft_env_lstadd_back(&g_d.env_list, ft_env_lstnew(dupname, content));
@@ -78,14 +78,10 @@ void	tmp_var(char *name, char *content)
 		if (!tmp)
 			ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
 		else
-		{
-			tmp->content = ft_strdup(content); // D'abord vider la variable ?
-		}
+			tmp->content = ft_strdup(content);
 	}
 	else
-	{
-		tmp->content = ft_strdup(content); // D'abord vider la variable ?
-	}
+		tmp->content = ft_strdup(content);
 }
 
 void	ft_env(void)
@@ -105,9 +101,12 @@ void	ft_env(void)
 		g_d.env_list = g_d.env_list->next;
 	}
 	g_d.env_list = tmp;
+	g_d.error_code = 0;
 }
 
 void	ft_pwd(void)
 {
-	printf("%s\n", getcwd(NULL, 0));
+	ft_putstr_fd(getcwd(NULL, 0), 1);
+	ft_putchar_fd(10, 1);
+	g_d.error_code = 0;
 }

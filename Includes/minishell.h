@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 15:13:13 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:26:00 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,11 @@ t_data					g_d;
 /****************************************************/
 /*		PROTOTYPES									*/
 /****************************************************/
+
+/*--	Builtin_launcher.c -------------*/
+int		ft_unset_launcher(t_one *cmd);
+int		ft_env_launcher(t_one *cmd);
+int		ft_pwd_launcher(t_one *cmd);
 
 /*--	Builtins.c ---------------------*/
 void	ft_unset(char *name);
