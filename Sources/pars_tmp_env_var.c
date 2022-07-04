@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pars_tmp_env_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:35:27 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/22 17:35:28 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:45:59 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Put temporary variable (VAR_NAME'='VAR_CONTENT) into 
+	temporary environnement linked list.
+	---------------------------------------------------------	*/
 
 int	check_tmp_env(t_one *cmd)
 {

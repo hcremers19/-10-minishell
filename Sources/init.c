@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:16:31 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/15 10:44:26 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:15:17 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Switching termios, initiation of environnement tab and 
+	environnment list.
+	---------------------------------------------------------	*/
 
 int	init_data(char **env, t_data *g_d)
 {
@@ -31,19 +36,28 @@ int	init_data(char **env, t_data *g_d)
 		return (-19);
 	init_data_bis(g_d);
 	init_sreen();
+	g_d->s_free = 5;
+	g_d->error_code = 0;
 	return (0);
 }
 
+/*	---------------------------------------------------------
+	Global_datas values initiation.
+	---------------------------------------------------------	*/
+
 void	init_data_bis(t_data *g_d)
 {
-	g_d->s_free = 5;
 	g_d->pid = 0;
 	g_d->c_s = 0;
 	g_d->s_err = 12;
 	g_d->s_ex = 0;
-	g_d->error_code = 0;
 	g_d->all->first = NULL;
 }
+
+/*	---------------------------------------------------------
+	Clear screen and put header when programme launching 
+	./minishell.
+	---------------------------------------------------------	*/
 
 void	init_sreen(void)
 {

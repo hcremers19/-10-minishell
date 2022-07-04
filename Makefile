@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
+#    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/06/30 17:42:01 by hcremers         ###   ########.fr        #
+#    Updated: 2022/07/04 18:08:51 by acaillea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,8 @@ SRC		= 	main.c				\
 			init.c				\
 			lst_env.c			\
 			lst_env1.c			\
-			pars_dols_int.c		\
 			pars_end.c			\
-			pars_env_var.c		\
+			pars_dollar.c		\
 			pars_tmp_env_var.c	\
 			pars_utils.c		\
 			pars_init.c			\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 18:24:32 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:23:29 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	ft_exit(t_one *cmd);
 void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
 void	*ft_free_cmd_lst(t_one *cmd);
-char	*ft_free_fct_tab(char **tab);
+char	*ft_free_fct_tab(char **tab, char *tmp);
 
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *g_d);
@@ -195,27 +195,24 @@ t_env	*ft_env_lstnew(char *name, char *content);
 t_env	*ft_env_lstlast(t_env *lst);
 t_env	*ft_env_lststr(t_env *lst, char *name);
 
-/*--	Pars_dols_int.c ----------------*/
-int		check_lst_stat(t_one *cmd);
-char	*replace_lst_stat(char *str, int pos);
-
 /*--	Pars_end.c ---------------------*/
 int		init_cmds(void);
 int		get_level(t_one *cmd, int i);
+int		check_dollar(t_one *cmd);
+int		loop_check_dollar(char	*str, int pos);
 void	init_cmds_values(t_one *cmd, int i);
 
-/*--	Pars_env_var.c -----------------*/
-int		env_or_not_env(char *str);
-int		loop_check_env(t_one *cmd);
+/*--	Pars_dollar.c ------------------*/
+int		env_or_not_env(char *str, t_env *list);
 char	*check_env_var_bis(char *str, char **tmp_tab, char *tmp, int t);
 char	*check_env_var(char *str);
-char	*replace_env_var(char *str);
+char	*replace_env_var(char *str, t_env *list);
+char	*replace_lst_stat(char *str, int pos);
 
 /*--	Pars_Tmp_Env_Var.c -------------*/
 int		check_tmp_env(t_one *cmd);
 
 /*--	Pars_utils.c -------------------*/
-int		nb_spec_char(char **tab, int c, int len);
 char	**copy_line_tab(char **tab, int i);
 
 /*--	Pars_init.c --------------------*/

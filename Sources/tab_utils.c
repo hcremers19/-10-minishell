@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:02:42 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/09 11:02:43 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:59:58 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Get number of strings in a matrix.
+	---------------------------------------------------------	*/
 
 int	len_tab(char **tab)
 {
@@ -21,6 +25,11 @@ int	len_tab(char **tab)
 		i++;
 	return (i);
 }
+
+/*	---------------------------------------------------------
+	Get number of char in a matrix, all char of all string
+	of the matrix cumulate.
+	---------------------------------------------------------	*/
 
 int	len_tab_string(char **tab)
 {
@@ -35,6 +44,10 @@ int	len_tab_string(char **tab)
 	}
 	return (count);
 }
+
+/*	---------------------------------------------------------
+	Copies a matrix.
+	---------------------------------------------------------	*/
 
 char	**cpy_tab(char **in, int nb_line)
 {
@@ -56,6 +69,11 @@ char	**cpy_tab(char **in, int nb_line)
 	out[i] = 0;
 	return (out);
 }
+
+/*	---------------------------------------------------------
+	Joins strings of a matrix to return an unique string
+	of it.
+	---------------------------------------------------------	*/
 
 char	*join_mat(char **tab)
 {

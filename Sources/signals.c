@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:48:55 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/14 11:21:48 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:25:50 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,3 @@ void	ft_signal(void)
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 }
-
-// À réparer :
-// - Ctrl + D sur une ligne non-vide

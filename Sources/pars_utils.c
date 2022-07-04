@@ -6,37 +6,16 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:17:44 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 14:56:13 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:57:49 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-int	nb_spec_char(char **tab, int c, int len)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	if (len != 2 && len != 1)
-		return (-19);
-	while (tab && tab[i])
-	{
-		if (len == 2)
-		{
-			if (tab[i][0] == c && tab[i][1] == c && ft_strlen(tab[i]) == 2)
-				count++;
-		}
-		else if (len == 1)
-		{
-			if (tab[i][0] == c && ft_strlen(tab[i]) == 1)
-				count++;
-		}
-		i++;
-	}
-	return (count);
-}
+/*	---------------------------------------------------------
+	Cut init_tab for each command structure to create, for
+	each, its pars_tab.
+	---------------------------------------------------------	*/
 
 char	**copy_line_tab(char **tab, int i)
 {

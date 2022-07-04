@@ -6,11 +6,16 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:45:57 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 15:25:21 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:36:45 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Check the presence of simple quotes, double quotes and 
+	pipe and returns the len of each block of the input.
+	---------------------------------------------------------	*/
 
 int	pars_len(char const *s, int i)
 {
@@ -40,6 +45,11 @@ int	pars_len(char const *s, int i)
 	return (len);
 }
 
+/*	---------------------------------------------------------
+	Counts number of blocks/words in the input in order to
+	create init_tab.
+	---------------------------------------------------------	*/
+
 int	pars_count(char const *s)
 {
 	size_t	count;
@@ -59,6 +69,11 @@ int	pars_count(char const *s)
 	}
 	return (count);
 }
+
+/*	---------------------------------------------------------
+	Malloc and fills init_tab's strings with parts of the
+	input.
+	---------------------------------------------------------	*/
 
 char	**ft_pars_word(char const *s, char **tab, int nb)
 {
@@ -83,6 +98,11 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 	}
 	return (tab);
 }
+
+/*	---------------------------------------------------------
+	Malloc matrix for init_tab and calls ft_pars_word.
+	Returns in fine the init_tab.
+	---------------------------------------------------------	*/
 
 char	**ft_pars_line(char const *s)
 {

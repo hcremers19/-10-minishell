@@ -6,11 +6,16 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:20:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 14:22:10 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:09:35 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Check if the string s is only filled whit space (32) and
+	tab (9). Returns 1 if it does not.
+	---------------------------------------------------------	*/
 
 int	only_space(char *s)
 {
@@ -25,6 +30,10 @@ int	only_space(char *s)
 		return (1);
 	return (0);
 }
+
+/*	---------------------------------------------------------
+	Appends string src to the end of dst. No len specified.
+	---------------------------------------------------------	*/
 
 char	*ft_strcat(char *dest, char *src)
 {

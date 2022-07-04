@@ -6,11 +6,15 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:38:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 15:11:14 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:06:59 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Free matrix.
+	---------------------------------------------------------	*/
 
 void	ft_free_tab(char **tab)
 {
@@ -27,6 +31,10 @@ void	ft_free_tab(char **tab)
 	}
 	free(tab);
 }
+
+/*	---------------------------------------------------------
+	Free environnement and temporary environnement linked list.
+	---------------------------------------------------------	*/
 
 void	ft_free_lst(t_env *list)
 {
@@ -51,6 +59,10 @@ void	ft_free_lst(t_env *list)
 		free(list);
 }
 
+/*	---------------------------------------------------------
+	Free command structure linked list.
+	---------------------------------------------------------	*/
+
 void	*ft_free_cmd_lst(t_one *cmd)
 {
 	int		i;
@@ -71,7 +83,11 @@ void	*ft_free_cmd_lst(t_one *cmd)
 	return (NULL);
 }
 
-char	*ft_free_fct_tab(char **tab)
+/*	---------------------------------------------------------
+	Free matrix and tmp for parsing exception.
+	---------------------------------------------------------	*/
+
+char	*ft_free_fct_tab(char **tab, char *tmp)
 {
 	int	i;
 
@@ -84,5 +100,7 @@ char	*ft_free_fct_tab(char **tab)
 			free(tab[i]);
 		i++;
 	}
+	if (tmp)
+		free(tmp);
 	return (NULL);
 }

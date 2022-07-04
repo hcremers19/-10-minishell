@@ -6,11 +6,16 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:07:37 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 14:46:20 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:30:44 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	---------------------------------------------------------
+	Calls for init_tab creation and create structure linked
+	list where each structure is a command.
+	---------------------------------------------------------	*/
 
 t_one	*ft_pars(char *s)
 {
@@ -37,6 +42,18 @@ t_one	*ft_pars(char *s)
 		return (NULL);
 	return (g_d.all->first);
 }
+
+/*	---------------------------------------------------------
+	Loops in ft_pars to create pars_tab (matrix which contains
+	strings of the command and parameters) for each structure/
+	command. J is incremmenting in init_tab.
+	Ex.:
+	Input 			=  env | grep USER | wc -l
+	init_tab		= ([env], [|], [grep], [USER], [|], [wc], [-l])
+	cmd[0]pars_tab 	= ([env])
+	cmd[1]pars_tab 	= ([grep], [USER])
+	cmd[2]pars_tab 	= ([wc], [-l])
+	---------------------------------------------------------	*/
 
 t_one	*ft_pars_loop(t_one *tmp, int *j)
 {
