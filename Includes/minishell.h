@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:23:29 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:39:15 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void	ft_free_tab(char **tab);
 void	ft_free_lst(t_env *env_list);
 void	*ft_free_cmd_lst(t_one *cmd);
 char	*ft_free_fct_tab(char **tab, char *tmp);
+void	ft_free_two(char *s1, char *s2);
 
 /*---	Init.c -------------------------*/
 int		init_data(char **env, t_data *g_d);
@@ -199,7 +200,7 @@ t_env	*ft_env_lststr(t_env *lst, char *name);
 int		init_cmds(void);
 int		get_level(t_one *cmd, int i);
 int		check_dollar(t_one *cmd);
-int		loop_check_dollar(char	*str, int pos);
+char	*loop_check_dollar(char	*str, int pos);
 void	init_cmds_values(t_one *cmd, int i);
 
 /*--	Pars_dollar.c ------------------*/

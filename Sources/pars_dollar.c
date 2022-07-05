@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:31:13 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:33:51 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:22:08 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ char	*check_env_var_bis(char *str, char **tmp_tab, char *tmp, int t)
 			return (ft_free_fct_tab(tmp_tab, tmp));
 	}
 	free(str);
+	// ft_free_two(str, tmp);
+	tmp_tab[3] = NULL;
 	return (join_mat(tmp_tab));
 }
 
@@ -137,8 +139,12 @@ char	*check_env_var(char *str)
 
 /*	*********************************************************	*/
 /*							$?									*/
-/*			Replace '$?' by last command status					*/
 /*	********************************************************	*/
+
+/*	---------------------------------------------------------
+	Replace '$?' by last command status by cutting the string
+	in three if it is needed.
+	---------------------------------------------------------	*/	
 
 char	*replace_lst_stat(char *str, int pos)
 {

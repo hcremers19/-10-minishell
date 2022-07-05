@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:44:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:04:07 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:12:09 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int	loop_while(char *str, int i)
 {
 	i++;
-	while (str && str[i] && ft_isalpha(str[i]))
+	while (str && str[i] && (ft_isalpha(str[i]) || str[i] == 45))
 		i++;
 	return (i);
 }

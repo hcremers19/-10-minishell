@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:38:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:06:59 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:41:17 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ void	ft_free_lst(t_env *list)
 void	*ft_free_cmd_lst(t_one *cmd)
 {
 	int		i;
+	int		j;
 
 	i = len_tab(cmd->pars_tab);
-	while (--i >= 0)
-		free(cmd->pars_tab[i]);
+	j = -1;
+	while (++j <= i && cmd->pars_tab[j])
+		free(cmd->pars_tab[j]);
 	if (cmd->pars_tab)
 		free(cmd->pars_tab);
 	if (cmd->infile > 0)
@@ -103,4 +105,16 @@ char	*ft_free_fct_tab(char **tab, char *tmp)
 	if (tmp)
 		free(tmp);
 	return (NULL);
+}
+
+/*	---------------------------------------------------------
+	Free two strings.
+	---------------------------------------------------------	*/
+
+void	ft_free_two(char *s1, char *s2)
+{
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
 }

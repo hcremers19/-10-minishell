@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:38:16 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:34:36 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:40:22 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	check_dollar(t_one *cmd)
 {
 	int	i;
 	int	pos;
+	
 
 	i = 0;
 	while (cmd->pars_tab[i])
@@ -32,7 +33,8 @@ int	check_dollar(t_one *cmd)
 			&& cmd->pars_tab[i][0] != '\''))
 		{
 			pos = check_c_in(cmd->pars_tab[i], '$');
-			if (loop_check_dollar(cmd->pars_tab[i], pos))
+			cmd->pars_tab[i] = loop_check_dollar(cmd->pars_tab[i], pos);
+			if (!cmd->pars_tab[i])
 				return (-19);
 		}
 		i++;
@@ -40,9 +42,7 @@ int	check_dollar(t_one *cmd)
 	return (0);
 }
 
-/////  Checker normage qui q foutu le bordel
-
-int	loop_check_dollar(char *str, int pos)
+char	*loop_check_dollar(char *str, int pos)
 {
 	while (pos >= 0 && str[pos + 1])
 	{
@@ -50,17 +50,17 @@ int	loop_check_dollar(char *str, int pos)
 		{
 			str = replace_lst_stat(str, pos);
 			if (!str)
-				return (-19);
+				return (NULL);
 		}
 		else if (ft_isalpha(str[pos + 1]))
 		{
 			str = check_env_var(str);
 			if (!str)
-				return (-19);
+				return (NULL);
 		}
 		pos = check_c_in(str, '$');
 	}
-	return (0);
+	return (str);
 }
 
 /*	---------------------------------------------------------
