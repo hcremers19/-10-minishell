@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:02:42 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 16:34:31 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:25:44 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	**cpy_tab(char **in, int nb_line)
 			return (NULL);
 		}
 		ft_strcpy(out[i], in[i]);
-		ft_putstr_fd(out[i], 1);
 		i++;
 	}
 	out[i] = 0;
