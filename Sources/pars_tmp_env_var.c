@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_tmp_env_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:35:27 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 20:24:35 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:27:41 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,27 @@ int	check_tmp_env(t_one *cmd)
 {
 	char	*pre;
 	char	*aft;
+	int		i;
+	char	*tmp;
 
-	if (len_tab(cmd->pars_tab) == 1 && (!g_d.all->first->next))
+	i = 0;
+	while (cmd->pars_tab[i])
 	{
-		if (check_c_in(cmd->pars_tab[0], '=') >= 0)
+		if (check_c_in(cmd->pars_tab[i], '=') > 0)
 		{
-			g_d.s_ex = 1;
-			pre = keep_strt(cmd->pars_tab[0]);
+			g_d.s_ex = ft_strlcmp(cmd->pars_tab[0], "export");
+			pre = keep_strt(cmd->pars_tab[i]);
 			if (!pre)
 				return (-19);
-			aft = keep_end(cmd->pars_tab[0]);
+			aft = keep_end(cmd->pars_tab[i]);
 			if (!aft)
-			{
-				free(pre);
 				return (-19);
-			}
-			if (tmp_var(pre, aft))
-				return (ft_free_two(pre, aft));
+			tmp_var(pre, aft);
+			tmp = keep_strt(cmd->pars_tab[i]);
+			free(cmd->pars_tab[i]);
+			cmd->pars_tab[i] = tmp;
 		}
+		i++;
 	}
 	return (0);
 }
