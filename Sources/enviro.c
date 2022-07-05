@@ -6,11 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/05 16:44:11 by acaillea         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/05 15:46:57 by hcremers         ###   ########.fr       */
->>>>>>> 9c11e3d79828b78182f2da63b8b119b6c487a3b1
+/*   Updated: 2022/07/05 20:14:59 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +19,7 @@
 
 char	*keep_strt(char *str)
 {
-	int		s;
+	int		s; 
 	char	*ret;
 	int		r;
 
