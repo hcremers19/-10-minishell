@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:20:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 15:32:55 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:00:55 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,26 @@ int	ft_strlcmp(const char *s1, const char *s2)
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	return (!(!ft_strncmp(s1, s2, len1) && len1 == len2));
+}
+
+/*	--------------------------------------------------------------------------
+	Check quotes closing status of input.
+	-----------------------------------------------------------------------	*/
+
+void	pars_quotes(char *s)
+{
+	int	stat;
+
+	if (s[0] == 39)
+	{
+		stat = count_c_in(s, '\'');
+		if (stat % 2 != 0)
+			g_d.c_s = 2;
+	}
+	else if (s[0] == 34)
+	{
+		stat = count_c_in(s, '\"');
+		if (stat % 2 != 0)
+			g_d.c_s = 1;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 19:07:21 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:00:13 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	main_loop(void)
 		else if (input && only_space(input) && ft_strlen(input) != 0)
 		{
 			g_d.all->first = ft_pars(input);
+			pars_quotes(input);
 			free(input);
 			if (!g_d.all->first)
 				global_exit();

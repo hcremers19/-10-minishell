@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 22:19:27 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:01:04 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,5 +262,6 @@ int		count_c_in(char *str, char c);
 /*---	Utils_1.c ----------------------*/
 int		only_space(char *s);
 char	*ft_strcat(char *dest, char *src);
+void	pars_quotes(char *s);
 
 #endif
