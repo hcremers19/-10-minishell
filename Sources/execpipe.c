@@ -6,11 +6,15 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:59:47 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 17:40:05 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:04:31 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	--------------------------------------------------------------------------
+**	???
+**	-----------------------------------------------------------------------	*/
 
 int	execpipe(void)
 {
@@ -23,6 +27,13 @@ int	execpipe(void)
 	ft_pipe(fd, g_d.all->first);
 	return (0);
 }
+
+/*	--------------------------------------------------------------------------
+**	First wave of checks in order to execute the function that matches the
+**	received command
+**	ft_export, ft_cd, ft_exit an ft_echo are called here if the conditions are
+**	OK
+**	-----------------------------------------------------------------------	*/
 
 int	builtin_cmds_env(t_one *cmd)
 {
@@ -75,6 +86,11 @@ int	builtin_cmds(t_one *cmd)
 		return (1);
 	return (0);
 }
+
+/*	--------------------------------------------------------------------------
+**	Checks whether the received command matches one of our homemade functions
+**	or not.
+**	-----------------------------------------------------------------------	*/	
 
 int	check_builtin(t_one *cmd)
 {

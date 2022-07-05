@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:20:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:09:35 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:32:55 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,19 @@ char	*ft_strcat(char *dest, char *src)
 	}
 	destination[i] = '\0';
 	return (destination);
+}
+
+/*	--------------------------------------------------------------------------
+**	Does the same job as the 'ft_strncmp' function from the libft, but also
+**	compares the length of both strings
+**	-----------------------------------------------------------------------	*/
+
+int	ft_strlcmp(const char *s1, const char *s2)
+{
+	int	len1;
+	int	len2;
+
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	return (!(!ft_strncmp(s1, s2, len1) && len1 == len2));
 }

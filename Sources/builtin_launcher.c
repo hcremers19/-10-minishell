@@ -6,11 +6,18 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:24:02 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/30 17:42:53 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:03:16 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	
+**	Third check-up in order to execute env if the matching command has been
+**	received
+**	ft_env is called here if the 'PATH' environment variable holds a valid
+**	path to the original 'echo' command
+**	*/
 
 int	check_ft_env(t_one *cmd)
 {
@@ -35,6 +42,13 @@ int	check_ft_env(t_one *cmd)
 	g_d.error_code = 1;
 	return (1);
 }
+
+/*	--------------------------------------------------------------------------
+**	Second wave of checks in order to execute the function that matches the
+**	received command
+**	ft_unset and ft_pwd are called here if the conditions are OK (number of
+**	arguments)
+**	-----------------------------------------------------------------------	*/
 
 int	ft_env_launcher(t_one *cmd)
 {

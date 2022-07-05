@@ -6,11 +6,15 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:34:05 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/30 14:51:30 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:12:06 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	--------------------------------------------------------------------------
+**	Change the content of the 'PWD' or 'OLDPWD' environment variable
+**	-----------------------------------------------------------------------	*/
 
 int	ch_pwd_env(char *varname, char *wd)
 {
@@ -37,6 +41,11 @@ int	ch_pwd_env(char *varname, char *wd)
 	g_d.env_list = tmp;
 	return (1);
 }
+
+/*	--------------------------------------------------------------------------
+**	Reproduce 'cd' built-in command's behaviour:
+**	Change the current working directory
+**	-----------------------------------------------------------------------	*/
 
 int	ft_cd(char *path)
 {

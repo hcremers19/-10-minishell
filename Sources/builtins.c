@@ -6,44 +6,53 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/06/30 18:42:40 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:46:38 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-// /* debug */
+/*	--------------------------------------------------------------------------
+**	Reproduce 'pwd' built-in command's behaviour:
+**	Display the pathname of the current working directory on stdout
+**	-----------------------------------------------------------------------	*/
 
-// void	ft_tmp(void)
-// {
-// 	t_env	*tmp;
-
-// 	tmp = g_d.tmp_list;
-// 	while (g_d.tmp_list->next)
-// 	{
-// 		if (g_d.tmp_list->name || g_d.tmp_list->content)
-// 		{
-// 			ft_putstr_fd(g_d.tmp_list->name, 1);
-// 			ft_putchar_fd('=', 1);
-// 			ft_putstr_fd(g_d.tmp_list->content, 1);
-// 			ft_putchar_fd(10, 1);
-// 		}
-// 		g_d.tmp_list = g_d.tmp_list->next;
-// 	}
-// 	ft_putstr_fd(g_d.tmp_list->name, 1);
-// 	ft_putchar_fd('=', 1);
-// 	ft_putstr_fd(g_d.tmp_list->content, 1);
-// 	ft_putchar_fd(10, 1);
-// 	g_d.tmp_list = tmp;
-// }
-
-// /* end of debug */
-
-void	ft_unset(char *name)
+void	ft_pwd(void)
 {
-	ft_env_lstdelone(ft_env_lststr(g_d.env_list, name), free);
+	ft_putstr_fd(getcwd(NULL, 0), 1);
+	ft_putchar_fd(10, 1);
 	g_d.error_code = 0;
 }
+
+/*	--------------------------------------------------------------------------
+**	Create a new environment variable and insert it in the 'temporary'
+**	environment
+**	-----------------------------------------------------------------------	*/
+
+void	tmp_var(char *name, char *content)
+{
+	t_env	*tmp;
+
+	tmp = ft_env_lststr(g_d.env_list, name);
+	if (!tmp)
+	{
+		tmp = ft_env_lststr(g_d.tmp_list, name);
+		if (!tmp)
+			ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
+		else
+			tmp->content = ft_strdup(content);
+	}
+	else
+		tmp->content = ft_strdup(content);
+}
+
+/*	--------------------------------------------------------------------------
+**	Reproduce 'export' built-in command's behaviour:
+**	Transfer an environment variable from the 'temporary' environment to the
+**	'definitive' environment, and delete it from the temporary list.
+**	If a name and its content are found as arguments, immediately insert them
+**	in the definitive list.
+**	-----------------------------------------------------------------------	*/
 
 void	ft_export(char *name)
 {
@@ -70,22 +79,23 @@ void	ft_export(char *name)
 	}
 }
 
-void	tmp_var(char *name, char *content)
-{
-	t_env	*tmp;
+/*	--------------------------------------------------------------------------
+**	Reproduce 'unset' built-in command's behaviour:
+**	Delete an environment variable either from the 'temporary' environment or
+**	the 'definitive' one
+**	-----------------------------------------------------------------------	*/
 
-	tmp = ft_env_lststr(g_d.env_list, name);
-	if (!tmp)
-	{
-		tmp = ft_env_lststr(g_d.tmp_list, name);
-		if (!tmp)
-			ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
-		else
-			tmp->content = ft_strdup(content);
-	}
-	else
-		tmp->content = ft_strdup(content);
+void	ft_unset(char *name)
+{
+	ft_env_lstdelone(ft_env_lststr(g_d.tmp_list, name), free);
+	ft_env_lstdelone(ft_env_lststr(g_d.env_list, name), free);
+	g_d.error_code = 0;
 }
+
+/*	--------------------------------------------------------------------------
+**	Reproduce 'env' command's behaviour:
+**	Display the list of all 'definitive' environment variables on stdout
+**	-----------------------------------------------------------------------	*/
 
 void	ft_env(void)
 {
@@ -104,12 +114,5 @@ void	ft_env(void)
 		g_d.env_list = g_d.env_list->next;
 	}
 	g_d.env_list = tmp;
-	g_d.error_code = 0;
-}
-
-void	ft_pwd(void)
-{
-	ft_putstr_fd(getcwd(NULL, 0), 1);
-	ft_putchar_fd(10, 1);
 	g_d.error_code = 0;
 }

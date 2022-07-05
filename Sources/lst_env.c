@@ -6,11 +6,16 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:14:46 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 17:44:26 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:22:04 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	--------------------------------------------------------------------------
+**	libft functions adapted to support the chained list used for our
+**	environment
+**	-----------------------------------------------------------------------	*/
 
 void	ft_env_lstadd_front(t_env **lst, t_env *new)
 {

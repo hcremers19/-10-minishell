@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 21:09:24 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 19:16:40 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:16:50 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ void	write_w_quotes(char *str)
 		i++;
 	}
 }
+
+/*	--------------------------------------------------------------------------
+**	Reproduce 'echo' built-in command's behaviour:
+**	Write the string(s) passed as argument(s) on stdout
+**	The '-n' option prevents the function from printing the ending newline
+**	character
+**	-----------------------------------------------------------------------	*/
 
 void	ft_echo(char **pars_tab)
 {
