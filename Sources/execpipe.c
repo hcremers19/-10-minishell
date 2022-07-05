@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:59:47 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 15:04:31 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:05:47 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ int	execpipe(void)
 
 int	builtin_cmds_env(t_one *cmd)
 {
+	int	i;
+
 	if (!ft_strlcmp("export", cmd->cmd))
 	{
-		if (cmd->pars_tab[1])
-			ft_export(cmd->pars_tab[1]);
-		else
+		i = 1;
+		if (!cmd->pars_tab[i])
 			ft_env();
+		while (cmd->pars_tab[i])
+			ft_export(cmd->pars_tab[i++]);
 	}
 	else if (!ft_strlcmp("cd", cmd->cmd))
 	{

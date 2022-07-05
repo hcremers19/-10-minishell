@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 18:39:07 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:04:55 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	ft_export(char *name)
 	char	*content;
 	char	*dupname;
 
-	if (ft_strchr(name, '='))
-	{
-		tmp_var(keep_strt(name), keep_end(name));
-		name = keep_strt(name);
-	}
+	// if (ft_strchr(name, '='))
+	// {
+	// 	tmp_var(keep_strt(name), keep_end(name));
+	// 	name = keep_strt(name);
+	// }
 	tmp = ft_env_lststr(g_d.env_list, name);
 	if (!tmp)
 	{

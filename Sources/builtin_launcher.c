@@ -6,18 +6,18 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:24:02 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 15:03:16 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:05:19 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
 
-/*	
+/*	--------------------------------------------------------------------------
 **	Third check-up in order to execute env if the matching command has been
 **	received
 **	ft_env is called here if the 'PATH' environment variable holds a valid
 **	path to the original 'echo' command
-**	*/
+**	-----------------------------------------------------------------------	*/
 
 int	check_ft_env(t_one *cmd)
 {
@@ -65,13 +65,17 @@ int	ft_env_launcher(t_one *cmd)
 
 int	ft_unset_launcher(t_one *cmd)
 {
-	if (!cmd->pars_tab[1])
+	int	i;
+
+	i = 1;
+	if (!cmd->pars_tab[i])
 	{
 		ft_putstr_fd("unset: not enough arguments\n", 2);
 		g_d.error_code = 1;
 		return (1);
 	}
-	ft_unset(cmd->pars_tab[1]);
+	while (cmd->pars_tab[i])
+		ft_unset(cmd->pars_tab[i++]);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 19:43:14 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:03:38 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,6 @@ void	ft_export(char *name);
 void	tmp_var(char *name, char *content);
 void	ft_env(void);
 int		ft_cd(char *path);
-void	ft_pwd(void);
-void	ft_echo(char **pars_tab);
 
 /*---	Env_utils.c --------------------*/
 int		ft_strlcmp(const char *s1, const char *s2);
