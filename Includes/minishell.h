@@ -6,7 +6,7 @@
 /*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 20:11:06 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:12:32 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	ft_unset(char *name);
 void	ft_export(char *name);
 void	tmp_var(char *name, char *content);
 void	ft_env(void);
-int		ft_pwd(void);
+void	ft_pwd(void);
 
 /*---	Env_utils.c --------------------*/
 int		ft_strlcmp(const char *s1, const char *s2);
