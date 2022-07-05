@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 20:12:32 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:23:34 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # include <sys/stat.h>
 
 # include "../Sources/libft/libft.h"
-
-// # include "../wraloc/wraloc.h"/////////
 
 /****************************************************/
 /*		DEFINES										*/
@@ -138,9 +136,9 @@ int		ft_pwd_launcher(t_one *cmd);
 /*--	Builtins.c ---------------------*/
 void	ft_unset(char *name);
 void	ft_export(char *name);
-void	tmp_var(char *name, char *content);
 void	ft_env(void);
 void	ft_pwd(void);
+int		tmp_var(char *name, char *content);
 
 /*---	Env_utils.c --------------------*/
 int		ft_strlcmp(const char *s1, const char *s2);

@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 14:59:40 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 19:43:21 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:16:57 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 
 # include "../../Includes/minishell.h"
-// # include "../../wraloc/wraloc.h"
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

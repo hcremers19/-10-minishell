@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 20:04:55 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:23:14 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_pwd(void)
 **	environment
 **	-----------------------------------------------------------------------	*/
 
-void	tmp_var(char *name, char *content)
+int	tmp_var(char *name, char *content)
 {
 	t_env	*tmp;
 
@@ -40,10 +40,19 @@ void	tmp_var(char *name, char *content)
 		if (!tmp)
 			ft_env_lstadd_front(&g_d.tmp_list, ft_env_lstnew(name, content));
 		else
+		{
 			tmp->content = ft_strdup(content);
+			if (!tmp->content)
+				return (-19);
+		}
 	}
 	else
+	{
 		tmp->content = ft_strdup(content);
+		if (!tmp->content)
+			return (-19);
+	}
+	return (0);
 }
 
 /*	--------------------------------------------------------------------------

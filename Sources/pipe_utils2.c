@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:22 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 18:59:55 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:25:49 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,5 @@ void	multi_pipe(int next_fd[2], int pre_fd[2], t_one *cmd)
 void	clean_mat_and_exit(char **paths)
 {
 	ft_free_tab(paths);
-	global_exit();	
+	global_exit();
 }

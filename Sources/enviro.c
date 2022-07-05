@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enviro.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 20:14:59 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:26:19 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 char	*keep_strt(char *str)
 {
-	int		s; 
+	int		s;
 	char	*ret;
 	int		r;
 
