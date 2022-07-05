@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execpipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:59:47 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 20:05:47 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:42:19 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	builtin_cmds_env(t_one *cmd)
 		if (!cmd->pars_tab[i])
 			ft_env();
 		while (cmd->pars_tab[i])
-			ft_export(cmd->pars_tab[i++]);
+			if (ft_export(cmd->pars_tab[i++]))
+				return (1);
 	}
 	else if (!ft_strlcmp("cd", cmd->cmd))
 	{
@@ -55,10 +56,7 @@ int	builtin_cmds_env(t_one *cmd)
 			ft_cd(ft_env_lststr(g_d.env_list, "HOME")->content);
 	}
 	else if (!ft_strlcmp("unset", cmd->cmd))
-	{
-		if (ft_unset_launcher(cmd))
-			return (1);
-	}
+		return (ft_unset_launcher(cmd));
 	else
 		return (1);
 	return (0);

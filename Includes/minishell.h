@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 20:23:34 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:36:00 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,9 @@ int		ft_pwd_launcher(t_one *cmd);
 
 /*--	Builtins.c ---------------------*/
 void	ft_unset(char *name);
-void	ft_export(char *name);
 void	ft_env(void);
 void	ft_pwd(void);
+int		ft_export(char *name);
 int		tmp_var(char *name, char *content);
 
 /*---	Env_utils.c --------------------*/

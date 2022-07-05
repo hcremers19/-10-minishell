@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:24:02 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 20:25:26 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:43:49 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ int	check_ft_env(t_one *cmd)
 	int		i;
 
 	paths = get_path();
-	if (!paths)
-	{
-		g_d.error_code = 12;
-		return (0);
-	}
 	i = 0;
 	while (paths && paths[i])
 	{

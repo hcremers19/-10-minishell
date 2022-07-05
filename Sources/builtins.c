@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 13:17:20 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 21:25:03 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:35:43 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	tmp_var(char *name, char *content)
 **	in the definitive list.
 **	-----------------------------------------------------------------------	*/
 
-void	ft_export(char *name)
+int	ft_export(char *name)
 {
 	t_env	*tmp;
 	char	*content;
@@ -77,10 +77,13 @@ void	ft_export(char *name)
 		{
 			content = ft_strdup(tmp->content);
 			dupname = ft_strdup(tmp->name);
+			if (!content || !dupname)
+				return (-19);
 			ft_env_lstadd_back(&g_d.env_list, ft_env_lstnew(dupname, content));
 			ft_env_lstdelone(tmp, free);
 		}
 	}
+	return (0);
 }
 
 /*	--------------------------------------------------------------------------

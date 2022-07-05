@@ -6,7 +6,7 @@
 #    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/07/05 15:47:33 by acaillea         ###   ########.fr        #
+#    Updated: 2022/07/05 21:09:21 by acaillea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ OBJ_DIR	= 	./Objects/
 #------------------------------------------------------------------------------#
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -I/Users/$(USER)/.brew/Cellar/readline/8.1.2/include #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -I/Users/$(USER)/.brew/Cellar/readline/8.1.2/include
 RLFLAGS = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 MK		= mkdir -p
 RM		= /bin/rm -f
@@ -84,7 +84,7 @@ ${OBJ_DIR}%.o:${SRC_DIR}%.c
 	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
 	@${PRI} "$		Compiling	minishell :	[${C_ORANGE}$<${C_DEFAUT}]\
 	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-#	@${VEL} 0.1
+	@${VEL} 0.1
 	@printf "$(L_CLEAR)\r"
 
 ${NAME}:	${OBJ_DIR} ${OBJS}
