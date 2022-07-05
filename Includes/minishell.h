@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 21:36:00 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:19:27 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void	write_w_quotes(char *str);
 void	ft_echo(char **pars_tab);
 
 /*--	Ft_exit.c ----------------------*/
+int		ft_isfulldigit(char *str);
 void	ft_exit(t_one *cmd);
 
 /*---	Ft_free.c ----------------------*/
