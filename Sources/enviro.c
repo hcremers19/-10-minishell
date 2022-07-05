@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   enviro.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/05 16:44:11 by acaillea         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/05 15:46:57 by hcremers         ###   ########.fr       */
+>>>>>>> 9c11e3d79828b78182f2da63b8b119b6c487a3b1
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+/*	--------------------------------------------------------------------------
+**	Returns whatever is found before the first '=' sign in the string recieved
+**	The string returned will be used as the name of the environment variable
+**	-----------------------------------------------------------------------	*/
 
 char	*keep_strt(char *str)
 {
@@ -32,6 +41,12 @@ char	*keep_strt(char *str)
 	return (ret);
 }
 
+/*	--------------------------------------------------------------------------
+**	Returns whatever is found after the first '=' sign in the string recieved
+**	The string returned will be used as the content of the environment
+**	variable
+**	-----------------------------------------------------------------------	*/
+
 char	*keep_end(char *str)
 {
 	int		len;
@@ -52,6 +67,10 @@ char	*keep_end(char *str)
 	ret[r] = 0;
 	return (ret);
 }
+
+/*	--------------------------------------------------------------------------
+**	Uses the 'envp' argument from main to generate the minishell environment
+**	-----------------------------------------------------------------------	*/
 
 int	create_env(char **env)
 {
