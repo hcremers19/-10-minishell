@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:17:44 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 18:57:49 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:11:04 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**copy_line_tab(char **tab, int i)
 	{
 		tab[k] = ft_calloc(ft_strlen(init[i]) + 1, sizeof(char));
 		if (!tab[k])
-			return (NULL);
+			return ((char **)ft_free_fct_tab(tab, NULL));
 		ft_strlcpy(tab[k++], init[i], ft_strlen(init[i]));
 		i++;
 	}

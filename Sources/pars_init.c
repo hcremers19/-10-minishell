@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:45:57 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 18:36:45 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:11:28 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 		l = pars_len(s, i);
 		tab[j] = ft_calloc(l + 1, sizeof(char));
 		if (!tab[j])
-			return (NULL);
+			return ((char **)ft_free_fct_tab(tab, NULL));
 		ft_strlcpy(tab[j], &s[i], l);
 		i += l;
 		j++;

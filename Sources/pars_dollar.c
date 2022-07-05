@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:31:13 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 12:22:08 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:31:42 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ char	*replace_env_var(char *str, t_env *list)
 	{
 		if (!ft_strncmp(str, list->name, ft_strlen(str)))
 		{
+			if (ret)
+				free(ret);
 			ret = ft_calloc(ft_strlen(list->content) + 1, sizeof(char));
 			if (!ret)
 				return (NULL);
 			ft_strcpy(ret, list->content);
-			free(str);
 			break ;
 		}
 		else
@@ -96,16 +97,13 @@ char	*check_env_var_bis(char *str, char **tmp_tab, char *tmp, int t)
 		if (!tmp_tab[t++])
 			return (ft_free_fct_tab(tmp_tab, tmp));
 	}
-	else
-		free(tmp);
 	if (j < ft_strlen(str))
 	{
 		tmp_tab[t] = ft_substr(str, j, ft_strlen(str) - j + 1);
 		if (!tmp_tab[t])
 			return (ft_free_fct_tab(tmp_tab, tmp));
 	}
-	free(str);
-	// ft_free_two(str, tmp);
+	free(tmp);
 	tmp_tab[3] = NULL;
 	return (join_mat(tmp_tab));
 }
@@ -139,7 +137,7 @@ char	*check_env_var(char *str)
 
 /*	*********************************************************	*/
 /*							$?									*/
-/*	********************************************************	*/
+/*	*********************************************************	*/
 
 /*	---------------------------------------------------------
 	Replace '$?' by last command status by cutting the string
@@ -171,6 +169,5 @@ char	*replace_lst_stat(char *str, int pos)
 		if (!tmp_tab[t])
 			return (ft_free_fct_tab(tmp_tab, NULL));
 	}
-	free(str);
 	return (join_mat(tmp_tab));
 }

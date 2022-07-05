@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:07:15 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/04 19:14:36 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:44:11 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ int	create_env(char **env)
 	i = 0;
 	strt = keep_strt(env[i]);
 	end = keep_end(env[i]);
+	if (!strt || !end)
+		return (ft_free_two(strt, end));
 	g_d.env_list = ft_env_lstnew(strt, end);
 	if (!g_d.env_list)
 		return (-19);
-	i++;
-	while (env[i])
+	while (env[++i])
 	{
 		strt = keep_strt(env[i]);
 		end = keep_end(env[i]);
 		if (!strt || !end)
-			return (-19);
+			return (ft_free_two(strt, end));
 		ft_env_lstadd_back(&g_d.env_list, ft_env_lstnew(strt, end));
-		i++;
 	}
 	return (0);
 }

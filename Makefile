@@ -6,7 +6,7 @@
 #    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/07/04 18:08:51 by acaillea         ###   ########.fr        #
+#    Updated: 2022/07/05 15:47:33 by acaillea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRC_DIR	= 	./Sources/
 SRC		= 	main.c				\
 			builtin_launcher.c	\
 			builtins.c			\
-			env_utils.c			\
 			enviro.c			\
 			execpipe.c			\
 			exit.c				\
@@ -85,7 +84,7 @@ ${OBJ_DIR}%.o:${SRC_DIR}%.c
 	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
 	@${PRI} "$		Compiling	minishell :	[${C_ORANGE}$<${C_DEFAUT}]\
 	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-#	@${VEL} 0.5
+#	@${VEL} 0.1
 	@printf "$(L_CLEAR)\r"
 
 ${NAME}:	${OBJ_DIR} ${OBJS}

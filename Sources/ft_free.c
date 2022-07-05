@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:38:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 12:41:17 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:19:51 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,23 @@
 void	ft_free_tab(char **tab)
 {
 	int	i;
+	int	len;
 
 	i = 0;
 	if (!tab)
 		return ;
-	while (i < len_tab(tab))
+	len = len_tab(tab);
+	while (i < len)
 	{
 		if (tab[i])
+		{
 			free(tab[i]);
+			tab[i] = NULL;
+		}
 		i++;
 	}
 	free(tab);
+	tab = NULL;
 }
 
 /*	---------------------------------------------------------
@@ -70,7 +76,7 @@ void	*ft_free_cmd_lst(t_one *cmd)
 
 	i = len_tab(cmd->pars_tab);
 	j = -1;
-	while (++j <= i && cmd->pars_tab[j])
+	while (++j < i && cmd->pars_tab[j])
 		free(cmd->pars_tab[j]);
 	if (cmd->pars_tab)
 		free(cmd->pars_tab);
@@ -86,22 +92,28 @@ void	*ft_free_cmd_lst(t_one *cmd)
 }
 
 /*	---------------------------------------------------------
-	Free matrix and tmp for parsing exception.
+	Free matrix and tmp for parsing exception. Returns NULL.
 	---------------------------------------------------------	*/
 
 char	*ft_free_fct_tab(char **tab, char *tmp)
 {
 	int	i;
+	int	len;
 
 	i = 0;
 	if (!tab)
 		return (NULL);
-	while (i < len_tab(tab))
+	len = len_tab(tab);
+	while (i < len)
 	{
 		if (tab[i])
+		{
 			free(tab[i]);
+			tab[i] = NULL;
+		}
 		i++;
 	}
+	free(tab);
 	if (tmp)
 		free(tmp);
 	return (NULL);
@@ -111,10 +123,17 @@ char	*ft_free_fct_tab(char **tab, char *tmp)
 	Free two strings.
 	---------------------------------------------------------	*/
 
-void	ft_free_two(char *s1, char *s2)
+int	ft_free_two(char *s1, char *s2)
 {
 	if (s1)
+	{
 		free(s1);
+		s1 = NULL;
+	}
 	if (s2)
+	{
 		free(s2);
+		s2 = NULL;
+	}
+	return (-19);
 }

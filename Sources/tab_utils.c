@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:02:42 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 12:40:30 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:34:31 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,13 @@ char	**cpy_tab(char **in, int nb_line)
 	while (i < nb_line)
 	{
 		out[i] = (char *)malloc(sizeof(char) * (ft_strlen(in[i]) + 1));
-		if (!out)
+		if (!out[i])
+		{
+			ft_free_tab(out);
 			return (NULL);
+		}
 		ft_strcpy(out[i], in[i]);
+		ft_putstr_fd(out[i], 1);
 		i++;
 	}
 	out[i] = 0;

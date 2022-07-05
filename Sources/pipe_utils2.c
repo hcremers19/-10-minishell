@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:22 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/14 11:13:16 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:59:55 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,5 @@ void	multi_pipe(int next_fd[2], int pre_fd[2], t_one *cmd)
 void	clean_mat_and_exit(char **paths)
 {
 	ft_free_tab(paths);
-	exit (1);
+	global_exit();	
 }

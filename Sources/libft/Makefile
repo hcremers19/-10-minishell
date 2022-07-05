@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
+#    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/28 14:25:14 by hcremers          #+#    #+#              #
-#    Updated: 2022/04/29 16:26:03 by hcremers         ###   ########.fr        #
+#    Updated: 2022/07/05 15:47:56 by acaillea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ ${OBJS_DIR}%.o:%.c
 	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
 	@${PRI} "$		Compiling	libft :	[${C_ORANGE}$<${C_DEFAUT}]\
 	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-# 	@${VEL} 0.5
+# 	@${VEL} 0.1
 	@printf "$(L_CLEAR)\r"
 
 ${NAME}: ${OBJS_DIR} ${OBJS}

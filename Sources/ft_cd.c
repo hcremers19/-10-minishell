@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:34:05 by hcremers          #+#    #+#             */
-/*   Updated: 2022/07/05 15:12:06 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:44:13 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	ft_cd(char *path)
 	{
 		tmp = ft_strjoin(ft_env_lststr(g_d.env_list, "HOME")->content,
 				ft_substr(path, 1, ft_strlen(path)));
+		if (!tmp)
+			return (-19);
 		free(path);
 		path = tmp;
 	}

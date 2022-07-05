@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:10 by acaillea          #+#    #+#             */
-/*   Updated: 2022/06/30 15:10:54 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:56:54 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	ft_end_process(char *cmd_p, char **path, t_one *cmd)
 	}
 	free(cmd_p);
 	ft_free_tab(path);
-	exit(g_d.error_code);
+	global_exit();
 }

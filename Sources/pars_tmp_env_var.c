@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:35:27 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 18:45:59 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:27:27 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	check_tmp_env(t_one *cmd)
 				return (-19);
 			aft = keep_end(cmd->pars_tab[0]);
 			if (!aft)
+			{
+				free(pre);
 				return (-19);
+			}
 			tmp_var(pre, aft);
 		}
 	}

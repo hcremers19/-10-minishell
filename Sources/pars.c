@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:07:37 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/04 18:30:44 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:43:21 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ t_one	*ft_pars(char *s)
 	i = -1;
 	j = 0;
 	g_d.all->init_tab = ft_pars_line(s);
+	if (!g_d.all->init_tab)
+		return (NULL);
 	g_d.all->first = ft_calloc(1, sizeof(t_one));
-	if (!g_d.all->init_tab || !g_d.all->first)
+	if (!g_d.all->first)
 		return (NULL);
 	g_d.s_free = 13;
 	tmp = g_d.all->first;
@@ -39,7 +41,7 @@ t_one	*ft_pars(char *s)
 	}
 	g_d.all->nb_cmd = i;
 	if (init_cmds())
-		return (NULL);
+		return (ft_free_cmd_lst(g_d.all->first));
 	return (g_d.all->first);
 }
 
@@ -66,7 +68,10 @@ t_one	*ft_pars_loop(t_one *tmp, int *j)
 	{
 		tmp->next = ft_calloc(1, sizeof(t_one));
 		if (!tmp->next)
+		{
+			ft_free_cmd_lst(tmp);
 			return (NULL);
+		}
 	}
 	return (tmp);
 }

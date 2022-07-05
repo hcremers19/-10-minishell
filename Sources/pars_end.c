@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:38:16 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 12:40:22 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:03:46 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	check_dollar(t_one *cmd)
 {
 	int	i;
 	int	pos;
-	
 
 	i = 0;
 	while (cmd->pars_tab[i])
@@ -44,19 +43,25 @@ int	check_dollar(t_one *cmd)
 
 char	*loop_check_dollar(char *str, int pos)
 {
+	char	*tmp;
+
 	while (pos >= 0 && str[pos + 1])
 	{
 		if (str[pos + 1] == '?')
 		{
-			str = replace_lst_stat(str, pos);
-			if (!str)
+			tmp = replace_lst_stat(str, pos);
+			free(str);
+			if (!tmp)
 				return (NULL);
+			str = tmp;
 		}
 		else if (ft_isalpha(str[pos + 1]))
 		{
-			str = check_env_var(str);
-			if (!str)
+			tmp = check_env_var(str);
+			free(str);
+			if (!tmp)
 				return (NULL);
+			str = tmp;
 		}
 		pos = check_c_in(str, '$');
 	}

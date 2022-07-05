@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:39 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 11:49:31 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:47:09 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,17 @@
 void	init_exit(void)
 {
 	tcsetattr(0, TCSANOW, &g_d.new);
-	if (g_d.s_free > 0)
+	if (g_d.env_tab)
+		ft_free_tab(g_d.env_tab);
+	if (g_d.s_free > 2)
 	{
-		if (g_d.env_tab)
-			ft_free_tab(g_d.env_tab);
-		if (g_d.s_free > 2)
-		{
-			if (g_d.env_list)
-				ft_free_lst(g_d.env_list);
-			if (g_d.tmp_list)
-				ft_free_lst(g_d.tmp_list);
-			if (g_d.s_free > 4)
-				if (g_d.all)
-					free(g_d.all);
-		}
+		if (g_d.env_list)
+			ft_free_lst(g_d.env_list);
+		if (g_d.tmp_list)
+			ft_free_lst(g_d.tmp_list);
+		if (g_d.s_free > 4)
+			if (g_d.all)
+				free(g_d.all);
 	}
 	if (g_d.s_free < 6)
 	{
