@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:38:16 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 14:57:23 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:08:02 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	them by their content. Does loop while $ is present in
 	the string.
 	---------------------------------------------------------	*/
-
+	
 int	check_dollar(t_one *cmd)
 {
 	int	i;
@@ -37,6 +37,7 @@ int	check_dollar(t_one *cmd)
 		}
 		i++;
 	}
+	g_d.pos = 0;
 	return (0);
 }
 

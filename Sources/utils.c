@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:44:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 14:46:07 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:11:24 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	check_c_in_bis(char *str, char c, int pos)
 {
 	int	i;
 
-	i = pos + 1;
+	i = pos;
 	while (str && str[i])
 	{
 		if (str[i] == c)

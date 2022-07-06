@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:44:20 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 15:44:15 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:20:21 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_exit(t_one *cmd)
 	}
 	else
 	{
+		g_d.error_code = 1;
 		g_d.s_err = 7;
 		loop_exit();
 		main_loop();
