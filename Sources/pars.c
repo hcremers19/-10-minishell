@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:07:37 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 18:43:21 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:11:40 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_one	*ft_pars(char *s)
 	int		i;
 	t_one	*tmp;
 
-	i = -1;
+	i = 0;
 	j = 0;
 	g_d.all->init_tab = ft_pars_line(s);
 	if (!g_d.all->init_tab)
