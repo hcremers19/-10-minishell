@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 23:01:04 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:56:42 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ struct s_data
 	int				s_err;
 	int				s_ex;
 	int				c_s;
+	int				pos;
 	int				error_code;
 	int				error_code_tmp;
 	struct s_all	*all;
@@ -197,7 +198,7 @@ t_env	*ft_env_lststr(t_env *lst, char *name);
 int		init_cmds(void);
 int		get_level(t_one *cmd, int i);
 int		check_dollar(t_one *cmd);
-char	*loop_check_dollar(char	*str, int pos);
+char	*loop_check_dollar(char	*str);
 void	init_cmds_values(t_one *cmd, int i);
 
 /*--	Pars_dollar.c ------------------*/
@@ -258,6 +259,7 @@ size_t	ft_strcpy(char *dst, const char *src);
 int		loop_while(char *str, int j);
 int		check_c_in(char *str, char c);
 int		count_c_in(char *str, char c);
+int		check_c_in_bis(char *str, char c, int pos);
 
 /*---	Utils_1.c ----------------------*/
 int		only_space(char *s);

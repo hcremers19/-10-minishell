@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:44:55 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 12:12:09 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:46:07 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,23 @@ int	count_c_in(char *str, char c)
 		i++;
 	}
 	return (count);
+}
+
+/*	---------------------------------------------------------
+	Check if c is present in str starting from pos, returns 
+	it's position or a negative if it do not.
+	---------------------------------------------------------	*/
+
+int	check_c_in_bis(char *str, char c, int pos)
+{
+	int	i;
+
+	i = pos + 1;
+	while (str && str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-19);
 }

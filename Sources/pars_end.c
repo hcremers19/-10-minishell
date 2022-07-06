@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:38:16 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 14:14:46 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:57:23 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 int	check_dollar(t_one *cmd)
 {
 	int	i;
-	int	pos;
 
 	i = 0;
 	while (cmd->pars_tab[i])
@@ -31,8 +30,8 @@ int	check_dollar(t_one *cmd)
 			|| (check_c_in(cmd->pars_tab[i], '$') >= 0 \
 			&& cmd->pars_tab[i][0] != '\''))
 		{
-			pos = check_c_in(cmd->pars_tab[i], '$');
-			cmd->pars_tab[i] = loop_check_dollar(cmd->pars_tab[i], pos);
+			g_d.pos = check_c_in(cmd->pars_tab[i], '$');
+			cmd->pars_tab[i] = loop_check_dollar(cmd->pars_tab[i]);
 			if (!cmd->pars_tab[i])
 				return (-19);
 		}
@@ -41,21 +40,21 @@ int	check_dollar(t_one *cmd)
 	return (0);
 }
 
-char	*loop_check_dollar(char *str, int pos)
+char	*loop_check_dollar(char *str)
 {
 	char	*tmp;
 
-	while (pos >= 0 && str[pos + 1])
+	while (g_d.pos >= 0 && str[g_d.pos + 1])
 	{
-		if (str[pos + 1] == '?')
+		if (str[g_d.pos + 1] == '?')
 		{
-			tmp = replace_lst_stat(str, pos);
+			tmp = replace_lst_stat(str, g_d.pos);
 			free(str);
 			if (!tmp)
 				return (NULL);
 			str = tmp;
 		}
-		else if (ft_isalpha(str[pos + 1]))
+		else if (ft_isalpha(str[g_d.pos + 1]))
 		{
 			tmp = check_env_var(str);
 			free(str);
@@ -63,7 +62,7 @@ char	*loop_check_dollar(char *str, int pos)
 				return (NULL);
 			str = tmp;
 		}
-		pos = check_c_in(str, '$');
+		g_d.pos = check_c_in_bis(str, '$', g_d.pos);
 	}
 	return (str);
 }

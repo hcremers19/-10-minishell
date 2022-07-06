@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:31:13 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 19:31:42 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:57:34 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*check_env_var_bis(char *str, char **tmp_tab, char *tmp, int t)
 {
 	int	j;
 
-	j = loop_while(str, check_c_in(str, '$'));
+	j = loop_while(str, g_d.pos);
 	if (env_or_not_env(tmp, g_d.env_list))
 	{
 		tmp_tab[t] = replace_env_var(tmp, g_d.env_list);
@@ -120,7 +120,7 @@ char	*check_env_var(char *str)
 	if (!tmp_tab)
 		return (NULL);
 	t = 0;
-	j = check_c_in(str, '$');
+	j = g_d.pos;
 	if (j > 0)
 	{
 		tmp_tab[t] = ft_substr(str, 0, j);
