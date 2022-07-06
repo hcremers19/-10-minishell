@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 16:16:31 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 17:02:09 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:20:22 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	init_data(char **env, t_data *g_d)
 void	init_data_bis(t_data *g_d)
 {
 	g_d->pid = 0;
+	g_d->pos = 0;
 	g_d->c_s = 0;
 	g_d->s_err = 12;
 	g_d->s_ex = 0;

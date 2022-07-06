@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:39 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 18:47:09 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:43:14 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ void	loop_exit(void)
 {
 	if (g_d.s_free == 9 && g_d.all->init_tab)
 		free(g_d.all->init_tab);
-	if (g_d.s_free > 10)
+	else if (g_d.s_free > 10)
 	{
 		ft_free_tab(g_d.all->init_tab);
 		if (g_d.s_free > 12 && g_d.all->first)
-		{
 			ft_free_cmd_lst(g_d.all->first);
-		}
 	}
 	if (g_d.s_ex)
 		return (init_data_bis(&g_d));

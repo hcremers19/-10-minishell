@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:00 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 14:14:57 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:39:27 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ void	ft_pipe(int pre_fd[2], t_one *cmd)
 	g_d.error_code_tmp = 0;
 	if (!(!ft_strlen(cmd->pars_tab[0])
 			|| ft_strncmp(cmd->pars_tab[0], "exit", 4)))
+	{
 		ft_exit(cmd);
+		return ;
+	}
 	if (pipe(next_fd) == -1)
 		return (perror("pipe"));
 	pid = fork();

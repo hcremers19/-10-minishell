@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
+/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:44:20 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 22:15:51 by hcremers         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:44:15 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isfulldigit(char *str)
 	i = 0;
 	while (i < ft_strlen(str))
 	{
-		if (ft_isdigit(str[i]))
+		if (ft_isdigit(str[i]) || str[i] == 45)
 			i++;
 		else
 			return (1);
@@ -54,5 +54,6 @@ void	ft_exit(t_one *cmd)
 	{
 		g_d.s_err = 7;
 		loop_exit();
+		main_loop();
 	}
 }

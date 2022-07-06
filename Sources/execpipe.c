@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:59:47 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 12:51:49 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:46:14 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int	builtin_cmds(t_one *cmd)
 		if (ft_env_launcher(cmd))
 			return (1);
 	}
-	else if (!ft_strlcmp("exit", cmd->cmd))
-		ft_exit(cmd);
 	else if (!ft_strlcmp("pwd", cmd->cmd))
 	{
 		if (ft_pwd_launcher(cmd))
