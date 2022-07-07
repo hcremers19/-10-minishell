@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:38:16 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 14:12:41 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:03:52 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*loop_check_dollar(char *str)
 {
 	char	*tmp;
 
-	while (g_d.pos >= 0 && str[g_d.pos + 1])
+	while (g_d.pos >= 0 && str[g_d.pos + 1] && str[g_d.pos + 1] != 34)
 	{
 		if (str[g_d.pos + 1] == '?')
 		{
