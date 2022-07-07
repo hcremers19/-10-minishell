@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:20:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 12:27:24 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:11:32 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ int	ft_strlcmp(const char *s1, const char *s2)
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	return (!(!ft_strncmp(s1, s2, len1) && len1 == len2));
+}
+
+/*	--------------------------------------------------------------------------
+**	Malloc and returns a copy of s1 without the first and last char.
+**	-----------------------------------------------------------------------	*/
+
+char	*ft_strtrim_c(const char *s1)
+{
+	size_t	i;
+
+	if (!s1)
+		return (NULL);
+	i = ft_strlen(s1);
+	return (ft_substr(s1, 1, i - 2));
 }

@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 13:33:29 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:13:04 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,7 @@ int		check_tmp_env(t_one *cmd);
 
 /*--	Pars_utils.c -------------------*/
 char	**copy_line_tab(char **tab, int i);
+int		check_quotes(t_one *cmd);
 
 /*--	Pars_init.c --------------------*/
 int		pars_len(char const *s, int i);
@@ -270,5 +271,6 @@ int		check_c_in_bis(char *str, char c, int pos);
 int		only_space(char *s);
 char	*ft_strcat(char *dest, char *src);
 void	pars_quotes(char *s);
+char	*ft_strtrim_c(const char *s1);
 
 #endif

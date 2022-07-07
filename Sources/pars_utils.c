@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:17:44 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 19:11:04 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:15:07 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,37 @@ char	**copy_line_tab(char **tab, int i)
 	}
 	tab[k] = NULL;
 	return (tab);
+}
+
+/*	---------------------------------------------------------
+	Check if the string begins by simple or doubles quotes.
+	If it does, it removes it.
+	---------------------------------------------------------	*/
+
+int	check_quotes(t_one *cmd)
+{
+	int		i;
+	char	*tmp;
+
+	i = -1;
+	while (cmd->pars_tab[++i])
+	{
+		if (cmd->pars_tab[i][0] == '\"')
+		{
+			tmp = ft_strtrim_c(cmd->pars_tab[i]);
+			free(cmd->pars_tab[i]);
+			if (!tmp)
+				return (-19);
+			cmd->pars_tab[i] = tmp;
+		}
+		else if (cmd->pars_tab[i][0] == '\'')
+		{
+			tmp = ft_strtrim_c(cmd->pars_tab[i]);
+			free(cmd->pars_tab[i]);
+			if (!tmp)
+				return (-19);
+			cmd->pars_tab[i] = tmp;
+		}
+	}
+	return (0);
 }

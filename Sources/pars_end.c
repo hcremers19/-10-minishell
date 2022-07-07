@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:38:16 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 10:15:15 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:12:41 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int	init_cmds(void)
 		if (check_tmp_env(g_d.all->first))
 			return (-19);
 		if (check_dollar(g_d.all->first))
+			return (-19);
+		if (check_quotes(g_d.all->first))
 			return (-19);
 		i++;
 		g_d.all->first = g_d.all->first->next;
