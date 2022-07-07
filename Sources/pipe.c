@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:19:00 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 10:30:53 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:51:16 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	i_find_a_signal(int this_signal)
 {
 	if (this_signal == SIGQUIT)
 	{
-		ft_putstr_fd("^\\QUIT: 3", 1);
+		ft_putstr_fd("QUIT: 3", 1);
 		g_d.error_code_tmp = 131;
 		kill(g_d.pid, SIGKILL);
 	}
