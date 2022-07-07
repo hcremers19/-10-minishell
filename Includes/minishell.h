@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 11:47:58 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:32:13 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 /*--	Variables-----------------------*/
 
 # define ET "\x1b[37m#\033[0;39m"
-# define MINI_PRPT "\033[0;31m.minishell >> \033[0;39m"
 # define SCREEN "\x1b[33m\
 * ************************************************************************ *\n\
 *                                                                          *\n\
@@ -130,10 +129,6 @@ t_data					g_d;
 /*		PROTOTYPES									*/
 /****************************************************/
 
-/*--	Main.c -------------------------*/
-char	*init_loop(void);
-void	main_loop(void);
-
 /*--	Builtin_launcher.c -------------*/
 int		ft_unset_launcher(t_one *cmd);
 int		ft_env_launcher(t_one *cmd);
@@ -199,6 +194,11 @@ t_env	*ft_env_lstnew(char *name, char *content);
 t_env	*ft_env_lstlast(t_env *lst);
 t_env	*ft_env_lststr(t_env *lst, char *name);
 
+/*--	Main.c -------------------------*/
+char	*get_prompt(void);
+char	*init_loop(void);
+void	main_loop(void);
+
 /*--	Pars_end.c ---------------------*/
 int		init_cmds(void);
 int		get_level(t_one *cmd, int i);
@@ -214,6 +214,7 @@ char	*replace_env_var(char *str, t_env *list);
 char	*replace_lst_stat(char *str, int pos);
 
 /*--	Pars_Tmp_Env_Var.c -------------*/
+void	check_tmp_env_bis(t_one *cmd, char *pre, char *aft, int i);
 int		check_tmp_env(t_one *cmd);
 
 /*--	Pars_utils.c -------------------*/
