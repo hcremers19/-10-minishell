@@ -6,11 +6,34 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:26:51 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/06 12:27:19 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:51:01 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+
+char	*get_prompt(void)
+{
+	char	*tmp;
+	char	*tmp1;
+	char	*ret;
+
+	tmp = ft_strjoin("\x1b[31m", getenv("USER="));
+	if (!tmp)
+		return (NULL);
+	tmp1 = ft_strjoin(tmp, ET);
+	free(tmp);
+	if (!tmp1)
+		return (NULL);
+	if (g_d.error_code)
+		ret = ft_strjoin(tmp1, "\033[0;31mminishell >> \033[0;39m");
+	else
+		ret = ft_strjoin(tmp1, "\033[1;32mminishell >> \033[0;39m");
+	free(tmp1);
+	if (!ret)
+		return (NULL);
+	return (ret);
+}
 
 char	*init_loop(void)
 {
@@ -18,7 +41,7 @@ char	*init_loop(void)
 	char	*input;
 
 	rl_on_new_line();
-	prompt = ft_strjoin(getenv("USER="), MINI_PRPT);
+	prompt = get_prompt();
 	if (!prompt)
 		return (NULL);
 	g_d.s_free = 7;
