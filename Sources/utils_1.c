@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:20:59 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 14:11:32 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:50:43 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ int	ft_strlcmp(const char *s1, const char *s2)
 char	*ft_strtrim_c(const char *s1)
 {
 	size_t	i;
+	char	*ret;
 
 	if (!s1)
 		return (NULL);
 	i = ft_strlen(s1);
-	return (ft_substr(s1, 1, i - 2));
+	ret = ft_substr(s1, 1, i - 2);
+	return (ret);
 }

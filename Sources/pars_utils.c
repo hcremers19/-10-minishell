@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 14:17:44 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 14:15:07 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:50:32 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,18 @@ int	check_quotes(t_one *cmd)
 	i = -1;
 	while (cmd->pars_tab[++i])
 	{
-		if (cmd->pars_tab[i][0] == '\"')
+		if (cmd->pars_tab[i][0] == '\"' && cmd->pars_tab[i])
 		{
 			tmp = ft_strtrim_c(cmd->pars_tab[i]);
 			free(cmd->pars_tab[i]);
-			if (!tmp)
-				return (-19);
 			cmd->pars_tab[i] = tmp;
 		}
-		else if (cmd->pars_tab[i][0] == '\'')
+		else if (cmd->pars_tab[i][0] == '\'' && cmd->pars_tab[i])
 		{
 			tmp = ft_strtrim_c(cmd->pars_tab[i]);
-			free(cmd->pars_tab[i]);
 			if (!tmp)
 				return (-19);
+			free(cmd->pars_tab[i]);
 			cmd->pars_tab[i] = tmp;
 		}
 	}

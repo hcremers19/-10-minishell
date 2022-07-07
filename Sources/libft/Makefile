@@ -6,7 +6,7 @@
 #    By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/28 14:25:14 by hcremers          #+#    #+#              #
-#    Updated: 2022/07/05 22:06:09 by acaillea         ###   ########.fr        #
+#    Updated: 2022/07/07 14:53:14 by acaillea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ ${OBJS_DIR}%.o:%.c
 	@${CC} -g ${CFLAGS} -I ${INC} -c $< -o $@
 	@${PRI} "$		Compiling	libft :	[${C_ORANGE}$<${C_DEFAUT}]\
 	 $(C_RESET) $(L_CLEAR)\r${C_DEFAUT}"
-#	@${VEL} 0.1
+	@${VEL} 0.1
 	@printf "$(L_CLEAR)\r"
 
 ${NAME}: ${OBJS_DIR} ${OBJS}
