@@ -6,7 +6,7 @@
 /*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:22:08 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/07 12:32:13 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:33:29 by acaillea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,6 @@ char	*replace_env_var(char *str, t_env *list);
 char	*replace_lst_stat(char *str, int pos);
 
 /*--	Pars_Tmp_Env_Var.c -------------*/
-void	check_tmp_env_bis(t_one *cmd, char *pre, char *aft, int i);
 int		check_tmp_env(t_one *cmd);
 
 /*--	Pars_utils.c -------------------*/
