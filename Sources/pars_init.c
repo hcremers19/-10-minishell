@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaillea <acaillea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:45:57 by acaillea          #+#    #+#             */
-/*   Updated: 2022/07/05 22:58:52 by acaillea         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:28:03 by hcremers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,8 @@ char	**ft_pars_word(char const *s, char **tab, int nb)
 
 char	**ft_pars_line(char const *s)
 {
-	int		i;
 	char	**tab;
 
-	i = 0;
 	tab = ft_calloc(pars_count(s) + 1, sizeof(char *));
 	if (!tab)
 		return (NULL);
