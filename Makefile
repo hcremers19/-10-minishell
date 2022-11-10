@@ -6,28 +6,28 @@
 #    By: hcremers <hcremers@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 15:12:04 by acaillea          #+#    #+#              #
-#    Updated: 2022/11/10 13:48:46 by hcremers         ###   ########.fr        #
+#    Updated: 2022/11/10 20:30:40 by hcremers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= minishell
+NAME		= minishell
 
-SRCS	= main.c
+SRCS		= main.c
 
-OBJS	= $(addprefix $(OBJDIR), $(SRCS:.c=.o))
-OBJDIR	= Objects/
+OBJS		= $(addprefix $(OBJDIR), $(SRCS:.c=.o))
+OBJDIR		= Objects/
 
-CC		= gcc
-RM		= rm -f
-MKDIR	= mkdir
+CC			= gcc
+RM			= rm -f
+MKDIR		= mkdir
 
-LIBDIR	= Sources/
-LIB		= $(LIBDIR)libsrcs.a
+LIBDIR		= Sources/
+LIB			= $(LIBDIR)libsrcs.a
 
-LIBFTDIR	=	Sources/libft/
-LIBFT		=	$(LIBFTDIR)libft.a
+LIBFTDIR	= Sources/libft/
+LIBFT		= $(LIBFTDIR)libft.a
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 
 ###############################################################################
 
